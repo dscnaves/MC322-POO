@@ -39,5 +39,4 @@ public class Robo{
         this.posicaoY = newy; 
     }
 
-    // LALALALALALALLALA
 }
