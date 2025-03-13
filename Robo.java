@@ -38,4 +38,6 @@ public class Robo{
     public void setPosicaoY(int newy){
         this.posicaoY = newy; 
     }
+
+    // LALALALALALALLALA
 }
