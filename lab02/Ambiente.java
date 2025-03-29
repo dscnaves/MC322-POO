@@ -40,7 +40,7 @@ public class Ambiente {
         }
     }
 
-    private void atualizarMapa(int x, int y, String simbolo) {
+    public void atualizarMapa(int x, int y, String simbolo) {
         if (x >= 0 && x < largura && y >= 0 && y < altura) {
             mapa[y][x] = simbolo;
         }
