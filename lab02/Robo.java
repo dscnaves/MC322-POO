@@ -63,11 +63,34 @@ public class Robo{
         }
     }
 
-    public void identificarObstaculo(){
+    public void identificarObstaculo(int x, int y){
         System.out.println(nome + " identificou um obstáculo em (" + x + ", " + y + ")");
     }
 
-    
+    // Função para tentar dar a volta no obstáculo
+    protected void contornarObstaculo(int stepX, int stepY) {
+        // Se ele ainda precisa andar na horizontal
+        if (stepX != 0) {        
+            // Tentar desviar na horizontal
+            if (ambiente.posicaoLivre(posicaoX, posicaoY + 1)) {    // Desviar para Leste
+                moverPasso(0, 1);
+            }
+            
+            else if (ambiente.posicaoLivre(posicaoX, posicaoY - 1)) {    // Desviar para Oeste
+                moverPasso(0, -1);
+            }
+        }
+        
+        // Se ele ainda precisa andar na vertical
+        else if (stepY != 0) { 
+            // Tentar desviar na horizontal
+            if (ambiente.posicaoLivre(posicaoX + 1, posicaoY)) {
+                moverPasso(1, 0);
+            } else if (ambiente.posicaoLivre(posicaoX - 1, posicaoY)) {
+                moverPasso(-1, 0);
+            }
+        }
+    }
     
     // Função responsável pela exibição da posição atual do Robo
     public void exibirPosicao(){
