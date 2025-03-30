@@ -30,12 +30,12 @@ Este projeto em Java simula um ambiente bidimensional com diferentes tipos de ro
 
 1. Compile todos os arquivos:
    ```bash
-   javac *.java
+   javac -d bin src/mc322/Simulator/*.java
    ```
 
 2. Execute a simulação:
    ```bash
-   java Main
+   java -cp bin mc322.Simulator.Main
    ```
 
 ---
