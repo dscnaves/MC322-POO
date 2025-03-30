@@ -2,34 +2,47 @@ public class RoboAereo extends Robo {
     private int altitude;
     private int altitudeMaxima;
 
-    public Robo Aereo(String nome, int posicaoX, int posicaoY, int direcao, int altitudeMaxima, int altitude, Ambiente ambiente){
+    public RoboAereo(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente){
         super(nome, posicaoX, posicaoY, direcao, ambiente);
         this.altitudeMaxima = altitudeMaxima;
-        this.altitude = 0;
+        
+        // Define altitude inicial do robo aereo
+        if (altitude >= 0 && altitude <= altitudeMaxima 
+        && altitude <= ambiente.getAmbienteAltitude()) {
+            this.altitude = altitude;
+        } else {
+            this.altitude = 0;
+            System.out.println("Robo " + nome + " com altitude inicial invalida. Altitude inicial definida como 0.");
+        }
     }
 
     public void subir(int metros){
-        if (altitude + metros <= altitudeMaxima){
-            altitude += metros;
+        int newAltitude = altitude + metros;
+        int limite = Math.min(altitudeMaxima, ambiente.getAmbienteAltitude());
+        if (newAltitude <= limite){
+            altitude = newAltitude;
             System.out.println(nome + " subiu " + metros + " metros. Altitude atual: " + altitude);
         } else {
-            altitude = altitudeMaxima;
-            System.out.println("Altura máxima excedida!");
+            metros = limite - altitude;
+            altitude = limite;
+            System.out.println("Altura maxima do robo ou do ambiente excedida!");
             System.out.println(nome + " subiu " + metros + " metros. Altitude atual: " + altitude);
         }
     }
 
     public void descer(int metros) {
-        if (altitude - metros >= 0) {
-            altitude -= metros;
+        int newAltitude = altitude - metros;
+        if (newAltitude >= 0) {
+            altitude = newAltitude;
             System.out.println(nome + " desceu " + metros + " metros. Altitude atual: " + altitude);
         } else {
             altitude = 0;
-            System.out.println("Altura não pode ser negativa!");
+            System.out.println("Altura minima do ambiente excedida!");
             System.out.println(nome + " atingiu o solo");
         }
     }
 
+    // Funções Getters e Setters
     public int getAltitude() { return altitude; }
     public int getAltitudeMaxima() { return altitudeMaxima; }
 

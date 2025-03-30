@@ -1,5 +1,5 @@
 public class Robo{
-    //Atributoos necessários para definir a classe Robo
+    //Atributos necessários para definir a classe Robo
     protected String nome;
     protected int posicaoX;
     protected int posicaoY;
@@ -11,107 +11,70 @@ public class Robo{
         this.nome = name;
         this.posicaoX = x;
         this.posicaoY = y;
-        this.direcao = "Norte";
+        this.direcao = direcao;
         this.ambiente = ambiente;
     }
 
     // Função responsável pela movimentação do Robo
-    public void mover(int deltaX, int deltaY, String direcao){
-        // Ajustar a direção a cada movimentação do robo
-        if (deltaX > 0) this.direcao = "Leste";
-        else if (deltaX < 0) this.direcao = "Oeste";
-        else if (deltaY > 0) this.direcao = "Norte";
-        else if (deltaY < 0) this.direcao = "Sul";
-
-        // Calculando posições finais
+    public void mover(int deltaX, int deltaY){
+        // Movimentação no eixo X primeiro
         int finalX = posicaoX + deltaX;
+        int passoX = (deltaX > 0 ? 1 : -1);
+        while (posicaoX != finalX) {
+            int proximoX = posicaoX + passoX;
+            if (ambiente.posicaoLivre(proximoX, posicaoY)) {
+                ambiente.atualizarMapa(posicaoX, posicaoY, "_");
+                posicaoX = proximoX;
+                ambiente.atualizarMapa(posicaoX, posicaoY, "&");
+            } else {
+                System.out.println(nome + " encontrou obstaculo ao andar no eixo X e parou em (" + posicaoX + ", " + posicaoY + ")");
+                break;
+            }
+        }
+        
+        // Movimentação no eixo Y 
         int finalY = posicaoY + deltaY;
-        
-        // Mover passo por passo
-        while (posicaoX != finalX || posicaoY != finalY) {
-            int stepX = Integer.compare(finalX, posicaoX);
-            int stepY = Integer.compare(finalY, posicaoY);
-
-            if (posicaoX != finalX) {
-                moverPasso(stepX, 0);
-            } else if (posicaoY != finalY) {
-                moverPasso(0, stepY);
+        int passoY = (deltaY > 0 ? 1 : -1);
+        while (posicaoY != finalY) {
+            int proximoY = posicaoY + passoY;
+            if (ambiente.posicaoLivre(posicaoX, proximoY)) {
+                ambiente.atualizarMapa(posicaoX, posicaoY, "_");
+                posicaoY = proximoY;
+                ambiente.atualizarMapa(posicaoX, posicaoY, "&");
+            } else {
+                System.out.println(nome + " encontrou obstaculo ao andar no eixo Y e parou em (" + posicaoX + ", " + posicaoY + ")");
+                break;
             }
         }
     }
 
-    protected void moverPasso(int stepX, int stepY) {
-        int newX = posicaoX + stepX;
-        int newY = posicaoY + stepY;
+    public void identificarObstaculo(){
+        System.out.println("Verificando obstaculos ao redor do robo " + nome + ":");
+        checarPosicao(posicaoX + 1, posicaoY, "Leste");
+        checarPosicao(posicaoX - 1, posicaoY, "Oeste");
+        checarPosicao(posicaoX, posicaoY + 1, "Norte");
+        checarPosicao(posicaoX, posicaoY - 1, "Sul");
+    }
 
-        // Verificando se o Robo pode dar o próximo passo
-        if (ambiente.posicaoLivre(newX, newY)) {
-            // Marcar posição antiga como desocupada
-            ambiente.atualizarMapa(posicaoX, posicaoY, "_");
-            
-            // Robo dá um passo
-            posicaoX = newX;
-            posicaoY = newY;
-            
-            // Atualizar posição do Robo no mapa
-            ambiente.atualizarMapa(posicaoX, posicaoY, "&");
-
-            System.out.println(nome + " moveu para (" + posicaoX + ", " + posicaoY + ")");
+    private void checarPosicao(int x, int y, String direcao) {
+        if (!ambiente.dentroDosLimites(x, y, 0)) {
+            System.err.println("- Fora do mapa ao " + direcao);
+        } else if (!ambiente.posicaoLivre(x, y)) {
+            System.out.println("- Obstaculo ao " + direcao + " em (" + x + ", " + y + ")");
         } else {
-            identificarObstaculo(newX, newY);
-            contornarObstaculo(stepX, stepY);
-        }
-    }
-
-    public void identificarObstaculo(int x, int y){
-        System.out.println(nome + " identificou um obstáculo em (" + x + ", " + y + ")");
-    }
-
-    // Função para tentar dar a volta no obstáculo
-    protected void contornarObstaculo(int stepX, int stepY) {
-        // Se ele ainda precisa andar na horizontal
-        if (stepX != 0) {        
-            // Tentar desviar na horizontal
-            if (ambiente.posicaoLivre(posicaoX, posicaoY + 1)) {    // Desviar para Leste
-                moverPasso(0, 1);
-            }
-            
-            else if (ambiente.posicaoLivre(posicaoX, posicaoY - 1)) {    // Desviar para Oeste
-                moverPasso(0, -1);
-            }
-        }
-        
-        // Se ele ainda precisa andar na vertical
-        else if (stepY != 0) { 
-            // Tentar desviar na horizontal
-            if (ambiente.posicaoLivre(posicaoX + 1, posicaoY)) {
-                moverPasso(1, 0);
-            } else if (ambiente.posicaoLivre(posicaoX - 1, posicaoY)) {
-                moverPasso(-1, 0);
-            }
+            System.out.println("- Sem obstaculo ao " + direcao);
         }
     }
     
     // Função responsável pela exibição da posição atual do Robo
     public void exibirPosicao(){
-        System.out.println("Posicao atual do robo" + nome + ": (" + posicaoX + " , " + posicaoY + ")");
+        System.out.println("Posicao atual do robo " + nome + ": (" + posicaoX + " , " + posicaoY + ")");
     }
 
     // Funções Getters e Setting
-    public int getPosicaoX(){
-        return posicaoX;
-    }
-
-    public int getPosicaoY(){
-        return posicaoY;
-    }
-
-    public void setPosicaoX(int newx){
-        this.posicaoX = newx;
-    }
-    
-    public void setPosicaoY(int newy){
-        this.posicaoY = newy; 
-    }
+    public int getPosicaoX(){ return posicaoX; }
+    public int getPosicaoY(){ return posicaoY; }
+    public void setPosicaoX(int newx){ this.posicaoX = newx; }
+    public void setPosicaoY(int newy){ this.posicaoY = newy; }
 
 }

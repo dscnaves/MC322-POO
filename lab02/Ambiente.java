@@ -8,10 +8,10 @@ public class Ambiente {
     private ArrayList<Obstaculo> obstaculos;
     private String[][] mapa;
 
-    public Ambiente(int altura, int largura) {
+    public Ambiente(int altura, int largura, int altitude) {
         this.largura = largura;
         this.altura = altura;
-        this.altitude = 0;
+        this.altitude = altitude;
         this.robosAtivos = new ArrayList<>();
         this.obstaculos = new ArrayList<>();
         this.mapa = new String[altura][largura];
@@ -40,19 +40,21 @@ public class Ambiente {
         }
     }
 
-    public void atualizarMapa(int x, int y, String simbolo) {
-        if (x >= 0 && x < largura && y >= 0 && y < altura) {
-            mapa[y][x] = simbolo;
-        }
-    }
-
     public boolean dentroDosLimites(int x, int y, int z) {
-        return ((x >= 0 && x < largura) && (y >= 0 && y < altura) && (z >= 0 && z <= altitude));
+        return ((x >= 0 && x < largura) && 
+               (y >= 0 && y < altura) && 
+               (z >= 0 && z < altitude));
     }
 
     public boolean posicaoLivre(int x, int y) {
         if (!dentroDosLimites(x, y, 0)) return false;
         return mapa[y][x].equals("_");
+    }
+
+    public void atualizarMapa(int x, int y, String simbolo) {
+        if (x >= 0 && x < largura && y >= 0 && y < altura) {
+            mapa[y][x] = simbolo;
+        }
     }
 
     public void exibirMapa() {

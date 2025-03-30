@@ -1,66 +1,81 @@
 public class Main{
     public static void main(String[] args){
         // Criação do objeto ambiente
-        Ambiente ambiente = new Ambiente(50,50);
-
-        // Criação dos objetos robos que "habitarão" o objeto ambiente
-        Robo robo_merida = new Robo("Merida", 27, 6);
-        Robo robo_mulan = new Robo("Mulan", 18, 6);
-        Robo robo_tiana = new Robo("Tiana", 1, 3);
-
-        //Exibir posição atual dos objetos robos inicializados
-        robo_merida.exibirPosicao();
-        robo_mulan.exibirPosicao();
-        robo_tiana.exibirPosicao();
+        Ambiente ambiente = new Ambiente(10, 10, 50);
         
-        // Testando a função mover da classe robo
-        int deltaX = 5, deltaY = 7;
-        int newx = robo_merida.getPosicaoX() + deltaX;
-        int newy = robo_merida.getPosicaoY() + deltaY;
+        // Adicionando obstáculos
+        ambiente.adicionarObstaculo(new Obstaculo(3, 2));
+        ambiente.adicionarObstaculo(new Obstaculo(4, 4));
+        ambiente.adicionarObstaculo(new Obstaculo(5, 5));
 
+        // Criando robôs
+        RoboLimpeza wallE = new RoboLimpeza("Wall-E", 1, 1, "Norte", 3, 5, ambiente);
+        RoboProfessor esther = new RoboProfessor("Esther", 2, 2, "Leste", 2, 3, ambiente);
+        RoboAgentePessoalSaude baymax = new RoboAgentePessoalSaude("Baymax", 0, 0, "Sul", 30, 10, 90, ambiente);
+        RoboCientista r2d2 = new RoboCientista("R2-D2", 4, 0, "Oeste", 100, 15, 'p', ambiente);
+
+        ambiente.adicionarRobo(wallE);
+        ambiente.adicionarRobo(esther);
+        ambiente.adicionarRobo(baymax);
+        ambiente.adicionarRobo(r2d2);
+
+        // Exibindo mapa inicial
+        System.out.println("\n--- Mapa Inicial ---");
+        ambiente.exibirMapa();
         System.out.println();
 
-        if(ambiente.dentroDosLimites(newx, newy)){
-            System.out.println("Movimento valido!");
-            robo_merida.mover(deltaX, deltaY);
-            robo_merida.exibirPosicao();
-            System.out.println();
-        }
-        else{
-            System.out.println("Movimento invalido!");
-            System.out.println();
-        }
+        // Movimentações
+        wallE.mover(2, 1);  // deve parar se encontrar obstáculo
+        esther.mover(0, 3);
+        baymax.mover(1, 0);
+        r2d2.mover(0, 4);
+        System.out.println();
 
-        deltaX = 8;
-        deltaY = 2;
-        newx = robo_tiana.getPosicaoX() + deltaX;
-        newy = robo_tiana.getPosicaoY() + deltaY;
-    
-        if(ambiente.dentroDosLimites(newx, newy)){
-            System.out.println("Movimento valido!");
-            robo_tiana.mover(deltaX, deltaY);
-            robo_tiana.exibirPosicao();
-            System.out.println();
-        }
-        else{
-            System.out.println("Movimento invalido!");
-            System.out.println();
-        }
+        // Wall-E (terrestre)
+        wallE.mover(10, 0); // tentar mover mais do que sua velocidade
+        System.out.println();
 
-        deltaX = 80;
-        deltaY = 2;
-        newx = robo_mulan.getPosicaoX() + deltaX;
-        newy = robo_mulan.getPosicaoY() + deltaY;
-    
-        if(ambiente.dentroDosLimites(newx, newy)){
-            System.out.println("Movimento valido!");
-            robo_mulan.mover(deltaX, deltaY);
-            robo_mulan.exibirPosicao();
-            System.out.println();
-        }
-        else{
-            System.out.println("Movimento invalido!");
-            System.out.println();
-        }
+        // Baymax (aéreo)
+        baymax.subir(15); // Deve subir até altura = 25 (se altitude inicial = 10)
+        baymax.subir(50); // Testa limite de ambiente (máximo = 50)
+        baymax.descer(30); // Testa descida normal
+        baymax.descer(100); // Testa descida abaixo do solo
+        System.out.println();
+
+        // Funções específicas
+        wallE.compactarLixo(4);  // dentro do limite
+        System.out.println();
+        wallE.compactarLixo(10); // ultrapassa o limite
+        System.out.println();
+
+        esther.darAula(2);
+        System.out.println();
+        esther.darAula(5); // excede aulas
+        System.out.println();
+
+        baymax.fazerCheckup(2);
+        System.out.println();
+        baymax.fazerCheckup(8);
+        System.out.println();
+
+        r2d2.decodificarMensagem("dpipnpopspspapuprpop"); // deve virar dinossauro
+        System.out.println();
+
+        // Checando posição e obstáculos ao redor
+        wallE.identificarObstaculo();
+        esther.identificarObstaculo();
+        baymax.identificarObstaculo();
+        r2d2.identificarObstaculo();
+
+        // Exibir posições finais
+        System.out.println("\n--- Posições Finais ---");
+        wallE.exibirPosicao();
+        esther.exibirPosicao();
+        baymax.exibirPosicao();
+        r2d2.exibirPosicao();
+
+        // Exibir mapa final
+        System.out.println("\n--- Mapa Final ---");
+        ambiente.exibirMapa();
     }
 }
