@@ -104,6 +104,9 @@ A altitude respeita os seguintes limites:
 | `RoboCientista`          | `decodificarMensagem(msg)` | Remove uma letra específica da mensagem| 
 |                          |                                codificada                           |
 
+> **Importante:** A classe `RoboCientista` estende `RoboAereo` e representa um robô especializado em decodificação de mensagens. Além das funcionalidades herdadas, ele possui um atributo `letraCodificacao`, que define o caractere a ser removido das mensagens criptografadas. O método `decodificarMensagem(String mensagemCodificada)` exibe uma mensagem simulando o processo de decodificação e remove a letra codificada da string recebida.
+
+> Uma limitação dessa abordagem de decodificação é que ela simplesmente remove todas as ocorrências da letra codificada da mensagem, sem considerar o contexto ou um padrão mais sofisticado de substituição. Por exemplo, se a mensagem original for "papagaio" e a letra de codificação for 'p', o resultado será "aagaio", o que pode tornar a mensagem difícil de interpretar ou até mesmo irreconhecível, especialmente se palavras diferentes compartilharem a mesma letra codificada.
 
 ---
 
