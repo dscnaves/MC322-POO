@@ -1,5 +1,21 @@
+/*
+ * Main.java
+ * 
+ * Última modificação: 30/03/2025
+ * 
+ * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
+ * 
+ * Autores: Anita Almeida e Daniela Naves
+ */
+
+/*
+ * Esta classe contém a estrutura de implementação da Main de um
+ * simulador de robôs, responsável por testar o funcionamento 
+ * das demais classes envolvidas.
+ */
 public class Main{
     public static void main(String[] args){
+
         // Criação do objeto ambiente
         Ambiente ambiente = new Ambiente(10, 10, 50);
         
@@ -32,31 +48,31 @@ public class Main{
         r2d2.mover(0, 4);
         System.out.println();
 
-        // Wall-E (terrestre)
-        wallE.mover(10, 0); // tentar mover mais do que sua velocidade
+        // Teste velocidade máxima do Wall-E (terrestre)
+        wallE.mover(10, 0); // tentar mover mais do que sua velocidade permite
         System.out.println();
 
-        // Baymax (aéreo)
+        // Teste de movimentos aéreos do Baymax (aéreo)
         baymax.subir(15); // Deve subir até altura = 25 (se altitude inicial = 10)
         baymax.subir(50); // Testa limite de ambiente (máximo = 50)
         baymax.descer(30); // Testa descida normal
         baymax.descer(100); // Testa descida abaixo do solo
         System.out.println();
 
-        // Funções específicas
+        // Funções específicas de cada robô
         wallE.compactarLixo(4);  // dentro do limite
         System.out.println();
         wallE.compactarLixo(10); // ultrapassa o limite
         System.out.println();
 
-        esther.darAula(2);
+        esther.darAula(2); // dentro do limite
         System.out.println();
         esther.darAula(5); // excede aulas
         System.out.println();
 
-        baymax.fazerCheckup(2);
+        baymax.fazerCheckup(2); // dor leve
         System.out.println();
-        baymax.fazerCheckup(8);
+        baymax.fazerCheckup(8); // dor intensa
         System.out.println();
 
         r2d2.decodificarMensagem("dpipnpopspspapuprpop"); // deve virar dinossauro

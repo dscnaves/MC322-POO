@@ -1,7 +1,24 @@
+/*
+ * RoboProfessor.java
+ * 
+ * Última modificação: 30/03/2025
+ * 
+ * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
+ * 
+ * Autores: Anita Almeida e Daniela Naves
+ */
+
+/*
+ * Esta classe contém a estrutura de implementação de RoboProfessor de um 
+ * simulador de robôs, que representa uma classe para robôs capazes de dar
+ * aulas com um determinado limite diário.
+ */
 public class RoboProfessor extends RoboTerrestre{
+
+    // Atributo necessário para definir a classe RoboProfessor
     private int aulasMaximasPorDia;
     
-    // Método construtor
+    // Método construtor para inicialização dos atributos da classe RoboProfessor
     public RoboProfessor(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, int aulasMaximasPorDia, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
         this.aulasMaximasPorDia = aulasMaximasPorDia;
@@ -23,4 +40,5 @@ public class RoboProfessor extends RoboTerrestre{
     public void setAulasMaximasPorDia(int newAulasMaximasPorDia){
         this.aulasMaximasPorDia = newAulasMaximasPorDia;
     }
+    
 }

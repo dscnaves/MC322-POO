@@ -1,5 +1,19 @@
+/*
+ * Ambiente.java
+ * 
+ * Última modificação: 30/03/2025
+ * 
+ * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
+ * 
+ * Autores: Anita Almeida e Daniela Naves
+ */
+
 import java.util.ArrayList;
 
+/*
+ * Esta classe contém a estrutura de implementação do Ambiente 
+ * de um simulador de robôs
+ */
 public class Ambiente {
 
     // Dimensões do ambiente
@@ -82,7 +96,7 @@ public class Ambiente {
         }
     }
 
-    // Getters and Setters
+    // Getters e Setters
     public void setAmbiente(int newLargura, int newAltura, int newAltitude) {
         this.largura = newLargura;
         this.altura = newAltura;
@@ -92,7 +106,11 @@ public class Ambiente {
     }
 
     public int getAmbienteLargura() { return largura; }
+
     public int getAmbienteAltura() { return altura; }
+
     public int getAmbienteAltitude() { return altitude; }
+
     public String[][] getMapa() { return mapa; }
+
 }

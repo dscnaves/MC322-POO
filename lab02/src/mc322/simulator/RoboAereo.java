@@ -1,7 +1,25 @@
+/*
+ * RoboAereo.java
+ * 
+ * Última modificação: 30/03/2025
+ * 
+ * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
+ * 
+ * Autores: Anita Almeida e Daniela Naves
+ */
+
+/*
+ * Esta classe contém a estrutura de implementação de RoboAereo de um
+ * simulador de robôs, que representa uma classe para robôs que se movem
+ * em X, Y e altitude (Z).
+ */
 public class RoboAereo extends Robo {
+
+    //Atributos necessários para definir a classe RoboAereo
     private int altitude;
     private int altitudeMaxima;
 
+    // Método construtor para inicialização dos atributos da classe RoboAereo
     public RoboAereo(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente){
         super(nome, posicaoX, posicaoY, direcao, ambiente);
         this.altitudeMaxima = altitudeMaxima;
@@ -46,12 +64,15 @@ public class RoboAereo extends Robo {
 
     // Funções Getters e Setters
     public int getAltitude() { return altitude; }
+
     public int getAltitudeMaxima() { return altitudeMaxima; }
 
     public void setAltitude(int newAltitude){
         this.altitude = newAltitude;
     }
+
     public void setAltitudeMaxima(int newAltitudeMaxima){
         this.altitudeMaxima = newAltitudeMaxima;
     }
+
 }

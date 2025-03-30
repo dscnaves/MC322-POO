@@ -1,7 +1,24 @@
+/*
+ * RoboTerrestre.java
+ * 
+ * Última modificação: 30/03/2025
+ * 
+ * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
+ * 
+ * Autores: Anita Almeida e Daniela Naves
+ */
+
+/*
+ * Esta classe contém a estrutura de implementação de RoboTerrestre de um
+ * simulador de robôs, que representa uma classe para robôs que se movem
+ * no plano XY com velocidade máxima limitada.
+ */
 public class RoboTerrestre extends Robo {
+
+    // Atributos necessários para definir a classe RoboTerrestre
     private int velocidadeMaxima;
 
-    // Método construtor
+    // Método construtor para inicialização dos atributos da classe RoboTerrestre
     public RoboTerrestre(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente){
         super(nome, posicaoX, posicaoY, direcao, ambiente);
         this.velocidadeMaxima = velocidadeMaxima;
@@ -33,5 +50,6 @@ public class RoboTerrestre extends Robo {
     public void setVelocidadeMaxima(int velocidadeMaxima){
         this.velocidadeMaxima = velocidadeMaxima;
     }
+    
 }
 
