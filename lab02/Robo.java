@@ -22,11 +22,16 @@ public class Robo{
         int passoX = (deltaX > 0 ? 1 : -1);
         while (posicaoX != finalX) {
             int proximoX = posicaoX + passoX;
+            // Verificar se a próxima posição está livre para seguir
             if (ambiente.posicaoLivre(proximoX, posicaoY)) {
+                // Atualizar posição que o Robo deixou como livre
                 ambiente.atualizarMapa(posicaoX, posicaoY, "_");
+                // Atualizar posição do Robo e atualizar do mapa
                 posicaoX = proximoX;
                 ambiente.atualizarMapa(posicaoX, posicaoY, "&");
-            } else {
+            }
+            // Se a posição não estiver livre, Robo irá parar execução do caminhar em X
+            else {
                 System.out.println(nome + " encontrou obstaculo ao andar no eixo X e parou em (" + posicaoX + ", " + posicaoY + ")");
                 break;
             }
@@ -37,17 +42,23 @@ public class Robo{
         int passoY = (deltaY > 0 ? 1 : -1);
         while (posicaoY != finalY) {
             int proximoY = posicaoY + passoY;
+            // Verificar se a próxima posição está livre para seguir
             if (ambiente.posicaoLivre(posicaoX, proximoY)) {
+                // Atualizar posição que o Robo deixou como livre
                 ambiente.atualizarMapa(posicaoX, posicaoY, "_");
+                // Atualizar posição do Robo e atualizar do mapa
                 posicaoY = proximoY;
                 ambiente.atualizarMapa(posicaoX, posicaoY, "&");
-            } else {
+            }
+            // Se a posição não estiver livre, Robo irá parar execução do caminhar em Y
+            else {
                 System.out.println(nome + " encontrou obstaculo ao andar no eixo Y e parou em (" + posicaoX + ", " + posicaoY + ")");
                 break;
             }
         }
     }
 
+    // Função para identificar obstáculos ao longo do mapa nas 4 direções cartesinas
     public void identificarObstaculo(){
         System.out.println("Verificando obstaculos ao redor do robo " + nome + ":");
         checarPosicao(posicaoX + 1, posicaoY, "Leste");
@@ -56,6 +67,7 @@ public class Robo{
         checarPosicao(posicaoX, posicaoY - 1, "Sul");
     }
 
+    // Função para checar os obstáculos em 1 direção cartesiana por vez
     private void checarPosicao(int x, int y, String direcao) {
         if (!ambiente.dentroDosLimites(x, y, 0)) {
             System.err.println("- Fora do mapa ao " + direcao);

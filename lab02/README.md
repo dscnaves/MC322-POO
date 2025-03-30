@@ -6,18 +6,18 @@ Este projeto em Java simula um ambiente bidimensional com diferentes tipos de ro
 
 ## 📁 Estrutura de Arquivos
 
-| Arquivo                     | Descrição |
-|----------------------------|-----------|
-| `Main.java`                | Classe principal com simulações e testes |
-| `Ambiente.java`            | Define o ambiente (tamanho, obstáculos, robôs) |
-| `Obstaculo.java`           | Representa obstáculos fixos no ambiente |
-| `Robo.java`                | Classe base para todos os robôs, com movimentação |
-| `RoboTerrestre.java`       | Robôs que se movem no plano com velocidade limitada |
-| `RoboAereo.java`           | Robôs com movimentação em X, Y e altitude |
-| `RoboLimpeza.java`         | Robô especializado em coleta e compactação de lixo |
-| `RoboProfessor.java`       | Robô capaz de dar aulas com limite diário |
-| `RoboAgentePessoalSaude.java` | Robô que avalia o nível de dor com base em empatia |
-| `RoboCientista.java`       | Robô que decodifica mensagens com base em letra-chave |
+| Arquivo                       | Descrição                                             |
+|-------------------------------|-------------------------------------------------------|
+| `Main.java`                   | Classe principal com simulações e testes              |
+| `Ambiente.java`               | Define o ambiente (tamanho, obstáculos, robôs)        |
+| `Obstaculo.java`              | Representa obstáculos fixos no ambiente               |
+| `Robo.java`                   | Classe base para todos os robôs, com movimentação     |
+| `RoboTerrestre.java`          | Robôs que se movem no plano com velocidade limitada   |
+| `RoboAereo.java`              | Robôs com movimentação em X, Y e altitude             |
+| `RoboLimpeza.java`            | Robô especializado em coleta e compactação de lixo    |
+| `RoboProfessor.java`          | Robô capaz de dar aulas com limite diário             |
+| `RoboAgentePessoalSaude.java` | Robô que avalia o nível de dor com base em empatia    |
+| `RoboCientista.java`          | Robô que decodifica mensagens com base em letra-chave |
 
 ---
 
@@ -94,12 +94,16 @@ A altitude respeita os seguintes limites:
 
 ## 🧠 Ações Específicas por Tipo de Robô
 
-| Classe                   | Método Especial | Função |
-|--------------------------|------------------|--------|
-| `RoboLimpeza`            | `compactarLixo(peso)` | Compacta lixo até um limite máximo |
-| `RoboProfessor`          | `darAula(qtd)`        | Dá aulas, respeitando um número máximo por dia |
-| `RoboAgentePessoalSaude` | `fazerCheckup(nivelDor)` | Responde com empatia ao nível de dor informado |
-| `RoboCientista`          | `decodificarMensagem(msg)` | Remove uma letra específica da mensagem codificada |
+| Classe                   | Método Especial       | Função                                      |
+|--------------------------|-----------------------|---------------------------------------------|
+| `RoboLimpeza`            | `compactarLixo(peso)` | Compacta lixo até um limite máximo          |
+| `RoboProfessor`          | `darAula(qtd)`        | Dá aulas, respeitando um número máximo      |
+|                          |                            por dia                                  |
+| `RoboAgentePessoalSaude` | `fazerCheckup(nivelDor)` | Responde com empatia ao nível de dor     |
+|                          |                                informado                            | 
+| `RoboCientista`          | `decodificarMensagem(msg)` | Remove uma letra específica da mensagem| 
+|                          |                                codificada                           |
+
 
 ---
 
