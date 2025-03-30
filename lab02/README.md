@@ -1,4 +1,9 @@
-# 🤖 Sistema de Robôs Inteligentes
+# Laboratório 02 - MC322 - Programação Orientada a Objetos
+**Autores:** 
+- Anita Almeida - RA: 173273
+- Daniela Naves - RA: 284111
+
+# 🤖 Simulador de Robôs
 
 Este projeto em Java simula um ambiente bidimensional com diferentes tipos de robôs que interagem com obstáculos e realizam ações específicas. Cada robô possui características distintas — como capacidade de voo, empatia, ensino, coleta de lixo ou decodificação de mensagens — e pode se mover por esse ambiente controlado, respeitando limites de movimentação e obstáculos.
 
