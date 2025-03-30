@@ -52,7 +52,7 @@ O ambiente possui três dimensões:
 
 ## 🤖 Regras de Movimentação
 
-A movimentação é feita através do método `mover(int deltaX, int deltaY)`.  
+A movimentação é feita através do método `mover(int deltaX, int deltaY)`. Cada robô se move primeiro no eixo X e, em seguida, no eixo Y.
 
 > **Importante:** O atributo `direcao` (como "Norte", "Sul", etc.) é **apenas decorativo** e **não influencia o movimento** real do robô.
 
@@ -68,6 +68,8 @@ A movimentação é feita através do método `mover(int deltaX, int deltaY)`.
 Se o robô encontrar um obstáculo no caminho, ele:
 - Para imediatamente na posição anterior ao obstáculo
 - Exibe uma mensagem informando a colisão
+
+> **Importante:** Caso seja encontrado um obstaculo no eixo X, o robô encerra sua movimentação nesse eixo, mas inicia a movimentação no eixo Y, encerrando completamentamente a movimentação apenas após se mover no eixo Y também.
 
 ---
 
