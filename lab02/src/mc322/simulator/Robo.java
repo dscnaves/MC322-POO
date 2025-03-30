@@ -1,4 +1,20 @@
+/*
+ * Robo.java
+ * 
+ * Última modificação: 30/03/2025
+ * 
+ * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
+ * 
+ * Autores: Anita Almeida e Daniela Naves
+ */
+
+/*
+ * Esta classe contém a estrutura de implementação de Robo de um
+ * simulador de robôs, que representa uma classe base para todos
+ * os robôs, com movimentação.
+ */
 public class Robo{
+
     //Atributos necessários para definir a classe Robo
     protected String nome;
     protected int posicaoX;
@@ -32,7 +48,7 @@ public class Robo{
             }
             // Se a posição não estiver livre, Robo irá parar execução do caminhar em X
             else {
-                System.out.println(nome + " encontrou obstaculo ao andar no eixo X e parou em (" + posicaoX + ", " + posicaoY + ")");
+                System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo X e parou em (" + posicaoX + ", " + posicaoY + ")");
                 break;
             }
         }
@@ -56,7 +72,7 @@ public class Robo{
             
             // Se a posição não estiver livre, Robo irá parar execução do caminhar em Y
             else {
-                System.out.println(nome + " encontrou obstaculo ao andar no eixo Y e parou em (" + posicaoX + ", " + posicaoY + ")");
+                System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo Y e parou em (" + posicaoX + ", " + posicaoY + ")");
                 break;
             }
         }
@@ -99,8 +115,11 @@ public class Robo{
 
     // Funções Getters e Setting
     public int getPosicaoX(){ return posicaoX; }
+
     public int getPosicaoY(){ return posicaoY; }
+
     public void setPosicaoX(int newx){ this.posicaoX = newx; }
+
     public void setPosicaoY(int newy){ this.posicaoY = newy; }
 
 }

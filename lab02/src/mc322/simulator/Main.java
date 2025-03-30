@@ -10,8 +10,8 @@
 
 /*
  * Esta classe contém a estrutura de implementação da Main de um
- * simulador de robôs, responsável por testar o funcionamento 
- * das demais classes envolvidas.
+ * simulador de robôs, responsável por testar e simular o 
+ * funcionamento das demais classes envolvidas.
  */
 public class Main{
     public static void main(String[] args){
@@ -44,7 +44,7 @@ public class Main{
         // Movimentações
         wallE.mover(2, 1);  // deve parar se encontrar obstáculo
         esther.mover(0, 3);
-        baymax.mover(1, 0);
+        baymax.mover(-1, 0); // nao deve se mover por sair do ambiente
         r2d2.mover(0, 4);
         System.out.println();
 
@@ -95,4 +95,5 @@ public class Main{
         System.out.println("\n--- Mapa Final ---");
         ambiente.exibirMapa();
     }
+
 }

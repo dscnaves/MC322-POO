@@ -12,7 +12,8 @@ import java.util.ArrayList;
 
 /*
  * Esta classe contém a estrutura de implementação do Ambiente 
- * de um simulador de robôs
+ * de um simulador de robôs, responsavel por definir o tamanho
+ * do mesmo, possíveis obstáculos e robôs presentes.
  */
 public class Ambiente {
 

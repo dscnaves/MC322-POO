@@ -15,7 +15,7 @@
  */
 public class RoboAereo extends Robo {
 
-    //Atributos necessários para definir a classe RoboAereo
+    // Atributos necessários para definir a classe RoboAereo
     private int altitude;
     private int altitudeMaxima;
 
