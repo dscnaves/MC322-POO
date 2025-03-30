@@ -16,6 +16,7 @@ public class RoboAereo extends Robo {
         }
     }
 
+    // Função que definirá o movimento de subida do robo
     public void subir(int metros){
         int newAltitude = altitude + metros;
         int limite = Math.min(altitudeMaxima, ambiente.getAmbienteAltitude());
@@ -30,6 +31,7 @@ public class RoboAereo extends Robo {
         }
     }
 
+    // Função que definirá o movimento de descida do robo
     public void descer(int metros) {
         int newAltitude = altitude - metros;
         if (newAltitude >= 0) {

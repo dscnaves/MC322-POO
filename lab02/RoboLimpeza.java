@@ -1,11 +1,13 @@
 public class RoboLimpeza extends RoboTerrestre{
     private int pesoMaximoLixo;
 
+    // Método construtor
     public RoboLimpeza(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, int pesoMaximoLixo, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
         this.pesoMaximoLixo = pesoMaximoLixo;
     }
     
+    // Funnção para compactar lixo dentros dos limites de peso máximo
     public void compactarLixo(int pesoLixo) {
         if (pesoLixo <= pesoMaximoLixo) {
             int pesoLixoCompactado = Math.max(pesoLixo, 0);

@@ -1,6 +1,7 @@
 public class RoboTerrestre extends Robo {
     private int velocidadeMaxima;
 
+    // Método construtor
     public RoboTerrestre(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente){
         super(nome, posicaoX, posicaoY, direcao, ambiente);
         this.velocidadeMaxima = velocidadeMaxima;

@@ -6,10 +6,15 @@ public class RoboAgentePessoalSaude extends RoboAereo {
         this.nivelEmpatia = nivelEmpatia;
     }
 
+    // Função para simular atendimento médico do Robo Agente Pessoal de Saúde
     public void fazerCheckup(int nivelDor) {
+
+        //Atendimento sofrerá variações a depender do nível de empatia doAgente Pessoal de Saúde
         if (nivelEmpatia >= 66) {
             System.out.println("Olá, com licenca, eu sou " + nome + ", seu agente pessoal de saude sempre pronto para ajudar! ;)");
             System.out.println("Em uma escala de 0 a 10, voce classificou sua dor como " + nivelDor + ".");
+            
+            // Tomada de decisão a depender do nível de dor do paciente
             if (nivelDor < 0 || nivelDor > 10) {
                 System.out.println("Infelizmente, esse nivel de dor eh invalido. Tente novamente com um valor entre 1 e 10, por favor.");
             } else if (nivelDor <= 3) {
@@ -22,6 +27,8 @@ public class RoboAgentePessoalSaude extends RoboAereo {
         } else if (nivelEmpatia >= 33) {
             System.out.println("Olá, eu sou " + nome + ", seu agente pessoal de saude.");
             System.out.println("Em uma escala de 1 a 10, voce classificou sua dor como " + nivelDor + ".");
+            
+            // Tomada de decisão a depender do nível de dor do paciente
             if (nivelDor < 0 || nivelDor > 10) {
                 System.out.println("Esse nivel de dor eh invalido. Tente novamente com um valor entre 1 e 10.");
             } else if (nivelDor <= 3) {
@@ -34,6 +41,8 @@ public class RoboAgentePessoalSaude extends RoboAereo {
         } else {
             System.out.println("Olá.");
             System.out.println("Em uma escala de 1 a 10, voce classificou sua dor como " + nivelDor + ".");
+            
+            // Tomada de decisão a depender do nível de dor do paciente
             if (nivelDor < 0 || nivelDor > 10) {
                 System.out.println("Nivel de dor invalido. Valor validos somente entre 1 e 10.");
             } else if (nivelDor <= 3) {

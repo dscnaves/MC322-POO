@@ -42,14 +42,18 @@ public class Robo{
         int passoY = (deltaY > 0 ? 1 : -1);
         while (posicaoY != finalY) {
             int proximoY = posicaoY + passoY;
+            
             // Verificar se a próxima posição está livre para seguir
             if (ambiente.posicaoLivre(posicaoX, proximoY)) {
+                
                 // Atualizar posição que o Robo deixou como livre
                 ambiente.atualizarMapa(posicaoX, posicaoY, "_");
+                
                 // Atualizar posição do Robo e atualizar do mapa
                 posicaoY = proximoY;
                 ambiente.atualizarMapa(posicaoX, posicaoY, "&");
             }
+            
             // Se a posição não estiver livre, Robo irá parar execução do caminhar em Y
             else {
                 System.out.println(nome + " encontrou obstaculo ao andar no eixo Y e parou em (" + posicaoX + ", " + posicaoY + ")");
@@ -61,6 +65,8 @@ public class Robo{
     // Função para identificar obstáculos ao longo do mapa nas 4 direções cartesinas
     public void identificarObstaculo(){
         System.out.println("Verificando obstaculos ao redor do robo " + nome + ":");
+
+        // Checar cada uma das 4 direções
         checarPosicao(posicaoX + 1, posicaoY, "Leste");
         checarPosicao(posicaoX - 1, posicaoY, "Oeste");
         checarPosicao(posicaoX, posicaoY + 1, "Norte");
@@ -69,11 +75,19 @@ public class Robo{
 
     // Função para checar os obstáculos em 1 direção cartesiana por vez
     private void checarPosicao(int x, int y, String direcao) {
+
+        // Se a posição checada está fora do mapa
         if (!ambiente.dentroDosLimites(x, y, 0)) {
             System.err.println("- Fora do mapa ao " + direcao);
-        } else if (!ambiente.posicaoLivre(x, y)) {
+        } 
+        
+        // Se a posição checada contém um obstáculo
+        else if (!ambiente.posicaoLivre(x, y)) {
             System.out.println("- Obstaculo ao " + direcao + " em (" + x + ", " + y + ")");
-        } else {
+        }
+        
+        // Se a posição checada está livre
+        else {
             System.out.println("- Sem obstaculo ao " + direcao);
         }
     }

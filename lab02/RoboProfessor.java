@@ -1,11 +1,13 @@
 public class RoboProfessor extends RoboTerrestre{
     private int aulasMaximasPorDia;
-
+    
+    // Método construtor
     public RoboProfessor(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, int aulasMaximasPorDia, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
         this.aulasMaximasPorDia = aulasMaximasPorDia;
     }
 
+    // Função para gerenciamento de quantidade de aulas em um dia
     public void darAula(int quantidadeAulas) {
         int AulasDadas = Math.max(quantidadeAulas, 0);
         if (quantidadeAulas <= aulasMaximasPorDia) {

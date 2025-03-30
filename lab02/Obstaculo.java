@@ -1,4 +1,5 @@
 public class Obstaculo {
+    // Atributos de posição do obstáculo dentro do mapa
     private int x;
     private int y;
 

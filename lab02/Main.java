@@ -14,6 +14,7 @@ public class Main{
         RoboAgentePessoalSaude baymax = new RoboAgentePessoalSaude("Baymax", 0, 0, "Sul", 30, 10, 90, ambiente);
         RoboCientista r2d2 = new RoboCientista("R2-D2", 4, 0, "Oeste", 100, 15, 'p', ambiente);
 
+        // Adicionando os Robos na lista de Robos dentro de ambiente
         ambiente.adicionarRobo(wallE);
         ambiente.adicionarRobo(esther);
         ambiente.adicionarRobo(baymax);
