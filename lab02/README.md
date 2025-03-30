@@ -35,7 +35,7 @@ Este projeto em Java simula um ambiente bidimensional com diferentes tipos de ro
 
 2. Execute a simulação:
    ```bash
-   java -cp bin mc322.Simulator.Main
+   java -cp bin Main
    ```
 
 ---
