@@ -1,17 +1,19 @@
 package mc322.simulator;
 
-public class Sensor{
-    private int raio;       // Alcance máximo do sensor
+public abstract class Sensor {
+    protected double raio;
 
-    public Sensor(int raio){
+    public Sensor(double raio) {
         this.raio = raio;
     }
 
-    public void monitorar(){
-        /*
-        Dúvida: Cada tipo de sensor atua de forma diferente
-        O que essa função faria?
-         */
+    public double getRaio() {
+        return raio;
     }
 
+    public void setRaio(double raio) {
+        this.raio = raio;
+    }
+
+    public abstract void monitorar(Robo robo);
 }

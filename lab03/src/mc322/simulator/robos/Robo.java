@@ -16,7 +16,10 @@
 
 package mc322.simulator.robos;
 
+import java.util.ArrayList;
+
 import mc322.simulator.Ambiente;
+import mc322.simulator.Sensor;
 
 public class Robo{
 
@@ -26,6 +29,8 @@ public class Robo{
     protected int posicaoY;
     protected String direcao;
     protected Ambiente ambiente;
+    // Inclusão de sensores ao robo
+    protected ArrayList<Sensor> sensores = new ArrayList<>();
     
     // Método construtor para inicialização dos atributos da classe Robo
     public Robo(String name, int x, int y, String direcao, Ambiente ambiente){
@@ -34,6 +39,16 @@ public class Robo{
         this.posicaoY = y;
         this.direcao = direcao;
         this.ambiente = ambiente;
+    }
+
+    public void adicionarSensor(Sensor s) {
+        sensores.add(s);
+    }
+    
+    public void usarSensores() {
+        for (Sensor s : sensores) {
+            s.monitorar(this);
+        }
     }
 
     // Função responsável pela movimentação do Robo
@@ -127,4 +142,11 @@ public class Robo{
 
     public void setPosicaoY(int newy){ this.posicaoY = newy; }
 
+    public Ambiente getAmbiente() {
+        return ambiente;
+    }
+    public String getNome() {
+        return nome;
+    }
+    
 }

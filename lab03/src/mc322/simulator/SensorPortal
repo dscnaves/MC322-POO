@@ -1,0 +1,22 @@
+public class SensorPortal extends Sensor {
+    public SensorPortal(double raio) {
+        super(raio);
+    }
+
+    @Override
+    public void monitorar(Robo robo) {
+        System.out.println("🛰️ Sensor de portal ativado por " + robo.getNome());
+        for (Obstaculo obs : robo.getAmbiente().getObstaculos()) {
+            if (obs.getTipo().toString().equals("PORTAL_TELETRANSPORTE") &&
+                distancia(robo.getPosicaoX(), robo.getPosicaoY(), obs.getX1(), obs.getY1()) <= raio) {
+                System.out.println("🌀 Portal detectado próximo em (" + obs.getX1() + ", " + obs.getY1() + ")");
+                return;
+            }
+        }
+        System.out.println("Nenhum portal detectado no raio de " + raio);
+    }
+
+    private double distancia(int x1, int y1, int x2, int y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+}

@@ -1,0 +1,18 @@
+public class SensorFome extends Sensor {
+    public SensorFome(double raio) {
+        super(raio);
+    }
+
+    @Override
+    public void monitorar(Robo robo) {
+        if (robo instanceof RoboProfessor) {
+            RoboProfessor rp = (RoboProfessor) robo;
+            int apples = rp.get_qte_apple();
+            if (apples < 3) {
+                System.out.println("⚠️ " + robo.getNome() + " está com fome! Maçãs no estoque: " + apples);
+            } else {
+                System.out.println("🍎 " + robo.getNome() + " está bem alimentado.");
+            }
+        }
+    }
+}
