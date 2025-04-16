@@ -6,7 +6,7 @@ public class TipoObstaculo {
     APPLE_TREE(5,true,"🌳"),
     //PESSOA_ENFERMA(2,true),   // (?) Vamos colocar isso mesmo? E com esse nome?
     PORTAL_TELETRANSPORTE(3,false,"🕳"),
-    OUTRO(-1, false, "�?");
+    OUTRO(-1, false, "�");
 
     private final int alturaPadrao;
     private final boolean bloqueiaPassagem;

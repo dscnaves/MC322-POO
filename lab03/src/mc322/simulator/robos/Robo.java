@@ -87,7 +87,7 @@ public class Robo{
                 
                 // Atualizar posição do Robo e atualizar do mapa
                 posicaoY = proximoY;
-                ambiente.atualizarMapa(posicaoX, posicaoY, "&");
+                ambiente.atualizarMapa(posicaoX, posicaoY, "🤖");
             }
             
             // Se a posição não estiver livre, Robo irá parar execução do caminhar em Y

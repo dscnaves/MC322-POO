@@ -1,3 +1,5 @@
+package mc322.simulator;
+
 public class SensorPortal extends Sensor {
     public SensorPortal(double raio) {
         super(raio);
@@ -16,7 +18,7 @@ public class SensorPortal extends Sensor {
         System.out.println("Nenhum portal detectado no raio de " + raio);
     }
 
-    private double distancia(int x1, int y1, int x2, int y2) {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    private double distancia(int roboX, int roboY, int obsX, int obsY) {
+        System.out.println("Portal distante de: " Math.abs(obsX-roboX)" na horizontal e " Math.abs(obsY-roboY)" na vertical");
     }
 }

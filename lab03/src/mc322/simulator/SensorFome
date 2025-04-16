@@ -1,3 +1,5 @@
+package mc322.simulator;
+
 public class SensorFome extends Sensor {
     public SensorFome(double raio) {
         super(raio);
