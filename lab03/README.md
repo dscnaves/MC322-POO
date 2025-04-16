@@ -26,7 +26,7 @@ Este projeto em Java simula um ambiente bidimensional com diferentes tipos de ro
 
 ---
 
-## 🧭 Diagrama de Classes
+## 🧱 Diagrama de Classes
 
 O seguinte diagrama mostra as principais classes do simulador, suas heranças, composições e métodos principais.
 
