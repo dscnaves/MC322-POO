@@ -3,6 +3,12 @@
 - Anita Almeida - RA: 173273
 - Daniela Naves - RA: 281141
 
+**Versão do Java Utilizada:**
+- 21.0.5
+
+**Ambiente de Desenvolvimento Integrado Utilizado:**
+- Visual Studio Code
+
 # 🤖 Simulador de Robôs
 
 Este projeto em Java simula um ambiente bidimensional com diferentes tipos de robôs que interagem com obstáculos e realizam ações específicas. Cada robô possui características distintas — como capacidade de voo, empatia, ensino, coleta de lixo ou decodificação de mensagens — e pode se mover por esse ambiente controlado, respeitando limites de movimentação e obstáculos.
