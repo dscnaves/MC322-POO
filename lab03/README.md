@@ -1,4 +1,4 @@
-# Laboratório 02 - MC322 - Programação Orientada a Objetos
+# Laboratório 03 - MC322 - Programação Orientada a Objetos
 **Autores:** 
 - Anita Almeida - RA: 173273
 - Daniela Naves - RA: 281141
