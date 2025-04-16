@@ -1,4 +1,5 @@
 package mc322.simulator;
+import mc322.simulator.robos.Robo;
 
 public abstract class Sensor {
     protected double raio;
