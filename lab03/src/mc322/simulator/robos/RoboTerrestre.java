@@ -13,6 +13,9 @@
  * simulador de robôs, que representa uma classe para robôs que se movem
  * no plano XY com velocidade máxima limitada.
  */
+
+package mc322.simulator.robos;
+
 public class RoboTerrestre extends Robo {
 
     // Atributos necessários para definir a classe RoboTerrestre

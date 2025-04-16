@@ -13,6 +13,11 @@
  * simulador de robôs, que representa uma classe base para todos
  * os robôs, com movimentação.
  */
+
+package mc322.simulator.robos;
+
+import mc322.simulator.Ambiente;
+
 public class Robo{
 
     //Atributos necessários para definir a classe Robo

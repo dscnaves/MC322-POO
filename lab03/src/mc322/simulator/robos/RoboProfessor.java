@@ -13,6 +13,9 @@
  * simulador de robôs, que representa uma classe para robôs capazes de dar
  * aulas com um determinado limite diário.
  */
+
+package mc322.simulator.robos;
+
 public class RoboProfessor extends RoboTerrestre{
 
     // Atributo necessário para definir a classe RoboProfessor

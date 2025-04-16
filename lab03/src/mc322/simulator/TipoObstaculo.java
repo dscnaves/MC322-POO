@@ -1,3 +1,5 @@
+package mc322.simulator;
+
 public class TipoObstaculo {
     PAREDE(10,true,"▓▓"),
     AREA_MOVEDIÇA(0,false),

@@ -8,6 +8,9 @@
  * Autores: Anita Almeida e Daniela Naves
  */
 
+package mc322.simulator;
+
+import mc322.simulator.robos.Robo;
 import java.util.ArrayList;
 
 /*

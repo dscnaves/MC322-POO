@@ -13,6 +13,9 @@
  * de um simulador de robôs, que representa uma classe para robôs que avaliam 
  * o nível de dor de um paciente com base em seu nível de empatia.
  */
+
+package mc322.simulator.robos;
+
 public class RoboAgentePessoalSaude extends RoboAereo {
 
     // Atributo necessário para definir a classe RoboAgentePessoalSaude

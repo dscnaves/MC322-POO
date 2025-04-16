@@ -13,6 +13,9 @@
  * simulador de robôs, responsável por testar e simular o 
  * funcionamento das demais classes envolvidas.
  */
+
+package mc322.simulator;
+
 public class Main{
     public static void main(String[] args){
 

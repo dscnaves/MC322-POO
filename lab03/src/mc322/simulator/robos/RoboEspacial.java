@@ -13,6 +13,9 @@
  * simulador de robôs, que representa uma classe para robôs capazes de 
  * decodificar mensagens com base em letra-chave removível.
  */
+
+package mc322.simulator.robos;
+
 public class RoboEspacial extends RoboAereo {
 
     // Atributo necessário para definir a classe RoboEspacial

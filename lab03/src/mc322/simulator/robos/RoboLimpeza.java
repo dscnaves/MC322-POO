@@ -13,6 +13,9 @@
  * simulador de robôs, que representa uma classe para robôs especializados
  * em coleta e compactação de lixo.
  */
+
+package mc322.simulator.robos;
+
 public class RoboLimpeza extends RoboTerrestre{
 
     // Atributo necessário para definir a classe RoboLimpeza

@@ -1,3 +1,5 @@
+package mc322.simulator;
+
 public class Sensor{
     private int raio;       // Alcance máximo do sensor
 
