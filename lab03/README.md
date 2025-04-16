@@ -26,6 +26,137 @@ Este projeto em Java simula um ambiente bidimensional com diferentes tipos de ro
 
 ---
 
+## 🧭 Diagrama de Classes
+
+O seguinte diagrama mostra as principais classes do simulador, suas heranças, composições e métodos principais.
+
+```mermaid
+classDiagram
+
+class Ambiente {
+  - int largura
+  - int altura
+  - int altitude
+  - ArrayList~Robo~ robosAtivos
+  - ArrayList~Obstaculo~ obstaculos
+  - String[][] mapa
+  - inicializarMapa()
+  + void adicionarRobo(Robo)
+  + void removerRobo(Robo)
+  + void adicionarObstaculo(Obstaculo)
+  + boolean dentroDosLimites(int, int, int)
+  + boolean posicaoLivre(int, int)
+  + void atualizarMapa(int, int, String)
+  + void exibirMapa()
+}
+
+class Robo {
+  # String nome
+  # int posicaoX
+  # int posicaoY
+  # String direcao
+  # Ambiente ambiente
+  # ArrayList~Sensor~ sensores
+  + void adicionarSensor(Sensor s)
+  + void usarSensores()
+  + void mover(int, int)
+  + void identificarObstaculo()
+  - void checarPosicao(int x, int y, String direcao)
+  + void exibirPosicao()
+  + int getPosicaoX()
+  + int getPosicaoY()
+  + void setPosicaoX()
+  + void setPosicaoY()
+  + String getNome()
+  + Ambiente getAmbiente()
+}
+
+class RoboTerrestre {
+  - int velocidadeMaxima
+  + int getVelocidadeMaxima()
+  + void setVelocidadeMaxima(int velocidadeMaxima)
+}
+
+class RoboAereo {
+  - int altitude
+  - int altitudeMaxima
+  + void subir(int metros)
+  + void descer(int metros)
+  + getAltitude()
+  + int getAltitudeMaxima()
+  + void setAltitudeMaxima(int newAltitudeMaxima)
+}
+
+class RoboProfessor {
+  - int aulasMaximasPorDia
+  - int qte_apple
+  + void darAula(int)
+  + void comerApple(int)
+}
+
+class RoboEspacial {
+  - char letraCodificacao
+  + void decodificarMensagem(String)
+}
+
+class RoboLimpeza {
+  - int pesoMaximoLixo
+  + void compactarLixo(int)
+}
+
+class RoboAgentePessoalSaude {
+  - int nivelEmpatia
+  + void fazerCheckup(int nivelDor)
+}
+
+class Obstaculo {
+  - int x1
+  - int y1
+  - int x2
+  - int y2
+  - TipoObstaculo tipo
+  - int alturaPadrao
+  + boolean contemPonto(int, int)
+}
+
+class TipoObstaculo {
+  <<enum>>
+  + int alturaPadrao
+  + boolean bloqueiaPassagem
+  + boolean podeTranspor(int)
+}
+
+class Sensor {
+  # double raio
+  + void monitorar(Robo)
+}
+
+class SensorFome {
+  + void monitorar(Robo)
+}
+
+class SensorPortal {
+  + void monitorar(Robo)
+  - double distancia(int x1, int y1, int x2, int y2)
+}
+
+Ambiente --> "1..*" Robo
+Ambiente --> "1..*" Obstaculo
+Robo --> "0..*" Sensor
+Obstaculo --> TipoObstaculo
+
+Robo <|-- RoboTerrestre
+Robo <|-- RoboAereo
+RoboTerrestre <|-- RoboProfessor
+RoboTerrestre <|-- RoboLimpeza
+RoboAereo <|-- RoboEspacial
+RoboAereo <|-- RoboAgentePessoalSaude
+
+Sensor <|-- SensorFome
+Sensor <|-- SensorPortal
+
+---
+
 ## ▶️ Como Executar
 
 1. Compile todos os arquivos:
