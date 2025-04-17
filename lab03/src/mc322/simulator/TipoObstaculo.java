@@ -1,11 +1,13 @@
 package mc322.simulator;
 
-public class TipoObstaculo {
+public enum TipoObstaculo {
     PAREDE(10,true,"▓▓"),
-    AREA_MOVEDIÇA(0,false),
+    AREA_MOVEDIÇA(0,false,"🥮"),
     APPLE_TREE(5,true,"🌳"),
     //PESSOA_ENFERMA(2,true),   // (?) Vamos colocar isso mesmo? E com esse nome?
-    PORTAL_TELETRANSPORTE(3,false,"🕳"),
+    PORTAL_TELETRANSPORTE(3,false,"🕳️"),
+    
+    // Unicode(emoji) não pôde ser lido corretamente
     OUTRO(-1, false, "�");
 
     private final int alturaPadrao;
