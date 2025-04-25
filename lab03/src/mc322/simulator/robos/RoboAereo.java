@@ -19,7 +19,7 @@ package mc322.simulator.robos;
 public class RoboAereo extends Robo {
 
     // Atributos necessários para definir a classe RoboAereo
-    private int altitude;
+    protected int altitude;
     private int altitudeMaxima;
 
     // Método construtor para inicialização dos atributos da classe RoboAereo
