@@ -14,35 +14,39 @@
  * em coleta e compactação de lixo.
  */
 
-package mc322.simulator.robos;
+ package mc322.simulator.robos;
 
-public class RoboLimpeza extends RoboTerrestre{
-
-    // Atributo necessário para definir a classe RoboLimpeza
-    private int pesoMaximoLixo;
-
-    // Método construtor para inicialização dos atributos da classe RoboLimpeza
-    public RoboLimpeza(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, int pesoMaximoLixo, Ambiente ambiente) {
-        super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
-        this.pesoMaximoLixo = pesoMaximoLixo;
-    }
-    
-    // Funnção para compactar lixo dentros dos limites de peso máximo
-    public void compactarLixo(int pesoLixo) {
-        if (pesoLixo <= pesoMaximoLixo) {
-            int pesoLixoCompactado = Math.max(pesoLixo, 0);
-            System.out.println("Robo " + nome + " compactou " + pesoLixoCompactado + "kg de lixo!");
-        } else {
-            System.out.println("Compactacao nao realizada por excesso de lixo!"); 
-            System.out.println("Robo " + nome + " so pode compactar ate " + pesoMaximoLixo + " kg de lixo.");
-        }
-    }
-
-    // Funções Getters e Setters
-    public int getPesoMaximoLixo(){ return pesoMaximoLixo; }
-
-    public void setPesoMaximoLixo(int newPesoMaximoLixo) {
-        this.pesoMaximoLixo = newPesoMaximoLixo;
-    }
-    
-}
+ import mc322.simulator.Ambiente;
+ import mc322.simulator.Obstaculo;
+ import mc322.simulator.Lixo;
+ import mc322.simulator.SensorReciclagem;
+ import mc322.simulator.TipoObstaculo;
+ 
+ public class RoboLimpeza extends RoboTerrestre {
+ 
+     public RoboLimpeza(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente) {
+         super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
+         this.adicionarSensor(new SensorReciclagem(3.0));
+     }
+ 
+     public void limparLixo() {
+         boolean lixoRemovido = false;
+         for (int i = 0; i < ambiente.getObstaculos().size(); i++) {
+             Obstaculo obst = ambiente.getObstaculos().get(i);
+             if (obst instanceof Lixo && obst.contemPonto(posicaoX, posicaoY, altitude)) {
+                 ambiente.getObstaculos().remove(i);
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
+                 System.out.println("🗑️ Lixo removido com sucesso na posição (" + posicaoX + ", " + posicaoY + ", " + altitude + ")!");
+                 lixoRemovido = true;
+                 break;
+             }
+         }
+ 
+         if (!lixoRemovido) {
+             System.out.println("Nenhum lixo encontrado para limpar na posição atual.");
+         }
+     }
+ }
+ 
+ 
+ 

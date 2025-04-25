@@ -1,14 +1,12 @@
 package mc322.simulator;
 
 public enum TipoObstaculo {
-    PAREDE(10,true,"▓▓"),
-    AREA_MOVEDIÇA(0,false,"🥮"),
-    APPLE_TREE(5,true,"🌳"),
-    //PESSOA_ENFERMA(2,true),   // (?) Vamos colocar isso mesmo? E com esse nome?
-    PORTAL_TELETRANSPORTE(3,false,"🕳️"),
-    
-    // Unicode(emoji) não pôde ser lido corretamente
-    OUTRO(-1, false, "�");
+    PLANTINHA(2, true, "🌱"),
+    LIXO(1, true, "🗑️"),
+    TESOURO(1, true, "💰"),
+    PORTAL(1, true, "🔀"), 
+    ALIENIGENA(2, true, "👽"),
+    PLANETA(3, false, "🌍");
 
     private final int alturaPadrao;
     private final boolean bloqueiaPassagem;
@@ -20,11 +18,21 @@ public enum TipoObstaculo {
         this.icone = icone;
     }
 
-    // Método para verificar se o Robo pode passar através do obstáculo
-    public boolean podeTranspor(int alturaAgente) {
-        return !bloqueiaPassagem || alturaAgente > alturaPadrao;
+    public int getAlturaPadrao() {
+        return alturaPadrao;
     }
 
-    public int getAlturaPadrao() {return alturaPadrao;}
-    public boolean getBloqueiaPassagem() {return bloqueiaPassagem;}
+    public boolean isBloqueiaPassagem() {
+        return bloqueiaPassagem;
+    }
+
+    public String getIcone() {
+        return icone;
+    }
+
+    public boolean podeTranspor(int alturaRobo) {
+        return !bloqueiaPassagem || alturaRobo > alturaPadrao;
+    }
 }
+
+

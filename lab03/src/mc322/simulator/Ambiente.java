@@ -1,23 +1,8 @@
-/*
- * Ambiente.java
- * 
- * Última modificação: 30/03/2025
- * 
- * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
- * 
- * Autores: Anita Almeida e Daniela Naves
- */
-
 package mc322.simulator;
 
 import mc322.simulator.robos.Robo;
 import java.util.ArrayList;
 
-/*
- * Esta classe contém a estrutura de implementação do Ambiente 
- * de um simulador de robôs, responsavel por definir o tamanho
- * do mesmo, possíveis obstáculos e robôs presentes.
- */
 public class Ambiente {
 
     // Dimensões do ambiente
@@ -25,110 +10,111 @@ public class Ambiente {
     private int altura;
     private int altitude;
 
-    // Lista que armazenará os robos existentes dentro desse ambiente
+    // Lista de robôs e obstáculos
     private ArrayList<Robo> robosAtivos;
-
-    // Lista que armazenará os obstáculos existentes dentro desse ambiente
     private ArrayList<Obstaculo> obstaculos;
 
-    // Matriz que representará o plano terrestre do ambiente
-    private String[][] mapa;
+    // Mapa tridimensional [y][x][z]
+    private String[][][] mapa;
 
-    // Método construtor
+    // Construtor
     public Ambiente(int altura, int largura, int altitude) {
         this.largura = largura;
         this.altura = altura;
         this.altitude = altitude;
         this.robosAtivos = new ArrayList<>();
         this.obstaculos = new ArrayList<>();
-        this.mapa = new String[altura][largura];
+        this.mapa = new String[altura][largura][altitude];
         inicializarMapa();
     }
 
-    // Inicialização do mapa com todas as posições livres
+    // Inicializa o mapa
     private void inicializarMapa() {
-        for (int i = 0; i < altura; i++) {
-            for (int j = 0; j < largura; j++) {
-                mapa[i][j] = "_";
+        for (int y = 0; y < altura; y++) {
+            for (int x = 0; x < largura; x++) {
+                for (int z = 0; z < altitude; z++) {
+                    mapa[y][x][z] = "_";
+                }
             }
         }
     }
 
-    // Método para adicionar o robo dentro do ambiente
+    // Adiciona um robô no ambiente
     public void adicionarRobo(Robo robo) {
         robosAtivos.add(robo);
-        if (dentroDosLimites(robo.getPosicaoX(), robo.getPosicaoY(), 0)) {
-            atualizarMapa(robo.getPosicaoX(), robo.getPosicaoY(), "&");
+        if (dentroDosLimites(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
+            atualizarMapa(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude(), "🤖");
         } else {
-            System.out.println("Robo "+robo+" não pode ser adicionado fora dos limites do ambiente.");
-            atualizarMapa(0, 0, "&");
-            System.out.println("Adiocinando na posição (0,0) do ambiente");
+            System.out.println("Robo fora dos limites. Posicionado em (0,0,0).");
+            atualizarMapa(0, 0, 0, "🤖");
         }
     }
 
-    // Método para remover o robo dentro do ambiente
+    // Remove um robô
     public void removerRobo(Robo robo) {
-        if (robosAtivos.contains((robo))) {
-            robosAtivos.remove(robo);
-            atualizarMapa(robo.getPosicaoX(), robo.getPosicaoY(), "_");
-        } else {
-            System.out.println("Robo "+robo+" não pertence a lista");
+        if (robosAtivos.remove(robo)) {
+            atualizarMapa(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude(), "_");
         }
     }
 
-    // Método para adicionar o obstáculo dentro do ambiente 
+    // Adiciona um obstáculo
     public void adicionarObstaculo(Obstaculo obstaculo) {
-        if (dentroDosLimites(obstaculo.getX(), obstaculo.getY(), 0)) {
-            obstaculos.add(obstaculo);
-            atualizarMapa(obstaculo.getX(), obstaculo.getY(), "*");
-        }
-    }
-
-    // Função para verificar se determinada coordenada está dentro dos limites do ambiente
-    public boolean dentroDosLimites(int x, int y, int z) {
-        return ((x >= 0 && x < largura) && 
-               (y >= 0 && y < altura) && 
-               (z >= 0 && z < altitude));
-    }
-
-    // Função para verificar se determinada coordenada está livre dentro dos limites do ambiente
-    public boolean posicaoLivre(int x, int y) {
-        if (!dentroDosLimites(x, y, 0)) return false;
-        return mapa[y][x].equals("_");
-    }
-
-    // Função para atualizar mapa
-    public void atualizarMapa(int x, int y, String simbolo) {
-        if (x >= 0 && x < largura && y >= 0 && y < altura) {
-            mapa[y][x] = simbolo;
-        }
-    }
-
-    // Função para imprimir mapa
-    public void exibirMapa() {
-        for (int i = 0; i < altura; i++) {
-            for (int j = 0; j < largura; j++) {
-                System.out.print(mapa[i][j] + " ");
+        obstaculos.add(obstaculo);
+        for (int y = obstaculo.getY1(); y <= obstaculo.getY2(); y++) {
+            for (int x = obstaculo.getX1(); x <= obstaculo.getX2(); x++) {
+                for (int z = obstaculo.getZ1(); z <= obstaculo.getZ1() + obstaculo.getAltura(); z++) {
+                    if (dentroDosLimites(x, y, z)) {
+                        atualizarMapa(x, y, z, "*");
+                    }
+                }
             }
-            System.out.println();
         }
     }
 
-    // Getters e Setters
-    public void setAmbiente(int newLargura, int newAltura, int newAltitude) {
-        this.largura = newLargura;
-        this.altura = newAltura;
-        this.altitude = newAltitude;
-        this.mapa = new String[newAltura][newLargura];
-        inicializarMapa();
+    // Verifica se coordenadas estão dentro dos limites do ambiente
+    public boolean dentroDosLimites(int x, int y, int z) {
+        return (x >= 0 && x < largura) && (y >= 0 && y < altura) && (z >= 0 && z < altitude);
     }
 
+    // Verifica se a posição está livre
+    public boolean posicaoLivre(int x, int y, int z) {
+        return dentroDosLimites(x, y, z) && mapa[y][x][z].equals("_");
+    }
+
+    // Atualiza o mapa com um símbolo
+    public void atualizarMapa(int x, int y, int z, String simbolo) {
+        if (dentroDosLimites(x, y, z)) {
+            mapa[y][x][z] = simbolo;
+        }
+    }
+
+    // Exibe o mapa por andares
+    public void exibirMapa() {
+        for (int z = 0; z < altitude; z++) {
+            System.out.println("\n[Mapa no andar Z=" + z + "]");
+            for (int y = 0; y < altura; y++) {
+                for (int x = 0; x < largura; x++) {
+                    System.out.print(mapa[y][x][z] + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // Detecta colisões entre robôs e obstáculos
+    public void detectarColisoes() {
+        for (Robo robo : robosAtivos) {
+            for (Obstaculo obstaculo : obstaculos) {
+                if (obstaculo.contemPonto(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
+                    System.out.println("❌ COLISÃO: Robô " + robo.getNome() + " colidiu com um obstáculo.");
+                }
+            }
+        }
+    }
+
+    // Getters
     public int getAmbienteLargura() { return largura; }
-
     public int getAmbienteAltura() { return altura; }
-
     public int getAmbienteAltitude() { return altitude; }
-
-    public String[][] getMapa() { return mapa; }
-
+    public String[][][] getMapa() { return mapa; }
 }

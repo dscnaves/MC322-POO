@@ -1,48 +1,37 @@
-/*
- * RoboEspacial.java
- * 
- * Última modificação: 30/03/2025
- * 
- * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
- * 
- * Autores: Anita Almeida e Daniela Naves
- */
-
-/*
- * Esta classe contém a estrutura de implementação de RoboEspacial de um 
- * simulador de robôs, que representa uma classe para robôs capazes de 
- * decodificar mensagens com base em letra-chave removível.
- */
-
 package mc322.simulator.robos;
+
+import mc322.simulator.Ambiente;
+import mc322.simulator.SensorPortal;
+import mc322.simulator.SensorPovoamento;
+import mc322.simulator.TipoObstaculo;
+import mc322.simulator.Sensor;
 
 public class RoboEspacial extends RoboAereo {
 
-    // Atributo necessário para definir a classe RoboEspacial
-    private char letraCodificacao;
+    private int qtdePlanetasDescobertos;
 
-    // Método construtor para inicialização dos atributos da classe RoboEspacial
-    public RoboEspacial(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, char letraCodificacao, Ambiente ambiente) {
+    public RoboEspacial(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, altitudeMaxima, altitude, ambiente);
-        this.letraCodificacao = letraCodificacao;
+        this.qtdePlanetasDescobertos = 0;
+        // Adicionar sensores ao RoboEspacial
+        this.adicionarSensor(new SensorPortal(3.0));
+        this.adicionarSensor(new SensorPovoamento(3.0));
     }
 
-    // Função para decodificar uma mensagem na língua da letra codificada
-    public void decodificarMensagem(String mensagemCodificada) {
-        System.out.println("*bip-bop-wu-wu* " + nome + " decodificando mensagem...");
-
-        // Retirar letra codificada da palavra recebida
-        System.out.println("Mensagem decodificada: " + mensagemCodificada.replaceAll(Character.toString(letraCodificacao), ""));
-        System.out.println("Mensagem decodificada com sucesso! *wu-wu-bip-bop*");
+    @Override
+    public boolean podeAtravessar(TipoObstaculo tipo) {
+        if (tipo == TipoObstaculo.PORTAL) {
+            return true;
+        }
+        return super.podeAtravessar(tipo);
     }
 
-    // Funções Getters e Setters
-    public char getLetraCodificacao() {
-        return letraCodificacao;
+    public void nomearPlaneta(String nomePlaneta) {
+        System.out.println("🌍 Planeta nomeado como: " + nomePlaneta);
+        qtdePlanetasDescobertos++;
     }
 
-    public void setLetraCodificacao(char newLetraCodificacao) {
-        this.letraCodificacao = newLetraCodificacao;
+    public int getQtdePlanetasDescobertos() {
+        return qtdePlanetasDescobertos;
     }
-    
 }

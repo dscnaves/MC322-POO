@@ -30,7 +30,7 @@ public class Main{
         // Criando robôs
         RoboLimpeza wallE = new RoboLimpeza("Wall-E", 1, 1, "Norte", 3, 5, ambiente);
         RoboProfessor esther = new RoboProfessor("Esther", 2, 2, "Leste", 2, 3, ambiente);
-        RoboAgentePessoalSaude baymax = new RoboAgentePessoalSaude("Baymax", 0, 0, "Sul", 30, 10, 90, ambiente);
+        RoboAgricultor baymax = new RoboAgricultor("Baymax", 0, 0, "Sul", 30, 10, 90, ambiente);
         RoboCientista r2d2 = new RoboCientista("R2-D2", 4, 0, "Oeste", 100, 15, 'p', ambiente);
 
         // Adicionando os Robos na lista de Robos dentro de ambiente

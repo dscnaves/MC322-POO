@@ -1,20 +1,20 @@
 package mc322.simulator;
 
 import mc322.simulator.robos.Robo;
-import mc322.simulator.robos.RoboLimpeza;
+import mc322.simulator.robos.RoboRastreador;
 
-public class SensorReciclagem extends Sensor {
+public class SensorMetal extends Sensor {
 
-    public SensorReciclagem(double raio) {
+    public SensorMetal(double raio) {
         super(raio);
     }
 
     @Override
     public void monitorar(Robo robo) {
-        System.out.println("🧹 " + robo.getNome() + " ativou o Sensor de Reciclagem.");
+        System.out.println("🔍 " + robo.getNome() + " ativou o Sensor de Metal.");
 
-        if (!(robo instanceof RoboLimpeza)) {
-            System.out.println("SensorReciclagem apenas para RoboLimpeza.");
+        if (!(robo instanceof RoboRastreador)) {
+            System.out.println("SensorMetal somente aplicável a RoboRastreador.");
             return;
         }
 
@@ -24,7 +24,7 @@ public class SensorReciclagem extends Sensor {
         int zRobo = robo.getAltitude();
 
         int alcance = (int) Math.ceil(raio);
-        boolean lixoEncontrado = false;
+        boolean encontrado = false;
 
         for (int dx = -alcance; dx <= alcance; dx++) {
             for (int dy = -alcance; dy <= alcance; dy++) {
@@ -35,10 +35,12 @@ public class SensorReciclagem extends Sensor {
 
                     if (ambiente.dentroDosLimites(novoX, novoY, novoZ)) {
                         for (Obstaculo obst : ambiente.getObstaculos()) {
-                            if (obst instanceof Lixo && obst.contemPonto(novoX, novoY, novoZ)) {
-                                Lixo lixo = (Lixo) obst;
-                                System.out.println("🗑️ Lixo de tipo " + lixo.getTipoLixo() + " detectado nas coordenadas (" + novoX + ", " + novoY + ", " + novoZ + ")!");
-                                lixoEncontrado = true;
+                            if (obst.contemPonto(novoX, novoY, novoZ)) {
+                                if (obst.getTipo() == TipoObstaculo.TESOURO || obst.getTipo() == TipoObstaculo.LIXO) {
+                                    ((RoboRastreador) robo).atualizarLocalizacaoTesouro(novoX, novoY, novoZ);
+                                    ((RoboRastreador) robo).classificarMetal(obst);
+                                    encontrado = true;
+                                }
                             }
                         }
                     }
@@ -46,8 +48,8 @@ public class SensorReciclagem extends Sensor {
             }
         }
 
-        if (!lixoEncontrado) {
-            System.out.println("Nenhum lixo detectado dentro do raio.");
+        if (!encontrado) {
+            System.out.println("Nenhum metal detectado dentro do raio.");
         }
     }
 }

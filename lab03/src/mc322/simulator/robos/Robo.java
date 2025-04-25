@@ -29,6 +29,7 @@ public class Robo{
     protected int posicaoY;
     protected String direcao;
     protected Ambiente ambiente;
+    
     // Inclusão de sensores ao robo
     protected ArrayList<Sensor> sensores = new ArrayList<>();
     
