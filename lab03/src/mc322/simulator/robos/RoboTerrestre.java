@@ -15,6 +15,7 @@
  */
 
 package mc322.simulator.robos;
+import mc322.simulator.Ambiente;
 
 public class RoboTerrestre extends Robo {
 
@@ -23,12 +24,14 @@ public class RoboTerrestre extends Robo {
 
     // Método construtor para inicialização dos atributos da classe RoboTerrestre
     public RoboTerrestre(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente){
-        super(nome, posicaoX, posicaoY, direcao, ambiente);
+        super(nome, posicaoX, posicaoY, direcao, ambiente, 0);
         this.velocidadeMaxima = velocidadeMaxima;
     }
 
     @Override
-    public void mover(int deltaX, int deltaY){
+    public void mover(int deltaX, int deltaY, int deltaZ){
+        deltaZ = 0;
+
         // (Pega o menor valor entre o valor absoluto de deltaX e a velocidadeMaxima) multiplica pelo (sinal de movimentação de forma a sabermos o sentido da movimentação)
         int newdeltaX = Math.min(Math.abs(deltaX), velocidadeMaxima) * (deltaX > 0 ? 1 : -1);
         int newdeltaY = Math.min(Math.abs(deltaY), velocidadeMaxima) * (deltaY > 0 ? 1 : -1);
@@ -42,7 +45,7 @@ public class RoboTerrestre extends Robo {
             System.out.println(nome + " tentou andar " + deltaY + " posicoes no eixo Y, mas foi limitado a " + newdeltaY + " posicoes por sua veocidade máxima.");
         }
 
-        super.mover(newdeltaX, newdeltaY);
+        super.mover(newdeltaX, newdeltaY,deltaZ);
     }
 
     // Funções Getters e Setters

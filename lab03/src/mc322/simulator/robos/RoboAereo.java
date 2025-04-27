@@ -15,6 +15,7 @@
  */
 
 package mc322.simulator.robos;
+import mc322.simulator.Ambiente;
 
 public class RoboAereo extends Robo {
 
