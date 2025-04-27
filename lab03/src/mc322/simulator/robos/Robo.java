@@ -14,140 +14,149 @@
  * os robôs, com movimentação.
  */
 
-package mc322.simulator.robos;
+ package mc322.simulator.robos;
 
-import java.util.ArrayList;
-
-import mc322.simulator.Ambiente;
-import mc322.simulator.Sensor;
-
-public class Robo{
-
-    //Atributos necessários para definir a classe Robo
-    protected String nome;
-    protected int posicaoX;
-    protected int posicaoY;
-    protected String direcao;
-    protected Ambiente ambiente;
-    
-    // Inclusão de sensores ao robo
-    protected ArrayList<Sensor> sensores = new ArrayList<>();
-    
-    // Método construtor para inicialização dos atributos da classe Robo
-    public Robo(String name, int x, int y, String direcao, Ambiente ambiente){
-        this.nome = name;
-        this.posicaoX = x;
-        this.posicaoY = y;
-        this.direcao = direcao;
-        this.ambiente = ambiente;
-    }
-
-    public void adicionarSensor(Sensor s) {
-        sensores.add(s);
-    }
-    
-    public void usarSensores() {
-        for (Sensor s : sensores) {
-            s.monitorar(this);
-        }
-    }
-
-    // Função responsável pela movimentação do Robo
-    public void mover(int deltaX, int deltaY){
-        // Movimentação no eixo X primeiro
-        int finalX = posicaoX + deltaX;
-        int passoX = (deltaX > 0 ? 1 : -1);
-        while (posicaoX != finalX) {
-            int proximoX = posicaoX + passoX;
-            // Verificar se a próxima posição está livre para seguir
-            if (ambiente.posicaoLivre(proximoX, posicaoY)) {
-                // Atualizar posição que o Robo deixou como livre
-                ambiente.atualizarMapa(posicaoX, posicaoY, "_");
-                // Atualizar posição do Robo e atualizar do mapa
-                posicaoX = proximoX;
-                ambiente.atualizarMapa(posicaoX, posicaoY, "&");
-            }
-            // Se a posição não estiver livre, Robo irá parar execução do caminhar em X
-            else {
-                System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo X e parou em (" + posicaoX + ", " + posicaoY + ")");
-                break;
-            }
-        }
-        
-        // Movimentação no eixo Y 
-        int finalY = posicaoY + deltaY;
-        int passoY = (deltaY > 0 ? 1 : -1);
-        while (posicaoY != finalY) {
-            int proximoY = posicaoY + passoY;
-            
-            // Verificar se a próxima posição está livre para seguir
-            if (ambiente.posicaoLivre(posicaoX, proximoY)) {
-                
-                // Atualizar posição que o Robo deixou como livre
-                ambiente.atualizarMapa(posicaoX, posicaoY, "_");
-                
-                // Atualizar posição do Robo e atualizar do mapa
-                posicaoY = proximoY;
-                ambiente.atualizarMapa(posicaoX, posicaoY, "🤖");
-            }
-            
-            // Se a posição não estiver livre, Robo irá parar execução do caminhar em Y
-            else {
-                System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo Y e parou em (" + posicaoX + ", " + posicaoY + ")");
-                break;
-            }
-        }
-    }
-
-    // Função para identificar obstáculos ao longo do mapa nas 4 direções cartesinas
-    public void identificarObstaculo(){
-        System.out.println("Verificando obstaculos ao redor do robo " + nome + ":");
-
-        // Checar cada uma das 4 direções
-        checarPosicao(posicaoX + 1, posicaoY, "Leste");
-        checarPosicao(posicaoX - 1, posicaoY, "Oeste");
-        checarPosicao(posicaoX, posicaoY + 1, "Norte");
-        checarPosicao(posicaoX, posicaoY - 1, "Sul");
-    }
-
-    // Função para checar os obstáculos em 1 direção cartesiana por vez
-    private void checarPosicao(int x, int y, String direcao) {
-
-        // Se a posição checada está fora do mapa
-        if (!ambiente.dentroDosLimites(x, y, 0)) {
-            System.err.println("- Fora do mapa ao " + direcao);
-        } 
-        
-        // Se a posição checada contém um obstáculo
-        else if (!ambiente.posicaoLivre(x, y)) {
-            System.out.println("- Obstaculo ao " + direcao + " em (" + x + ", " + y + ")");
-        }
-        
-        // Se a posição checada está livre
-        else {
-            System.out.println("- Sem obstaculo ao " + direcao);
-        }
-    }
-    
-    // Função responsável pela exibição da posição atual do Robo
-    public void exibirPosicao(){
-        System.out.println("Posicao atual do robo " + nome + ": (" + posicaoX + " , " + posicaoY + ")");
-    }
-
-    // Funções Getters e Setting
-    public int getPosicaoX(){ return posicaoX; }
-
-    public int getPosicaoY(){ return posicaoY; }
-
-    public void setPosicaoX(int newx){ this.posicaoX = newx; }
-
-    public void setPosicaoY(int newy){ this.posicaoY = newy; }
-
-    public Ambiente getAmbiente() {
-        return ambiente;
-    }
-    public String getNome() {
-        return nome;
-    }
-    
-}
+ import java.util.ArrayList;
+ 
+ import mc322.simulator.Ambiente;
+ import mc322.simulator.Sensor;
+ import mc322.simulator.Obstaculo;
+ 
+ public class Robo{
+ 
+     //Atributos necessários para definir a classe Robo
+     protected String nome;
+     protected int posicaoX;
+     protected int posicaoY;
+     protected int altitude;
+     protected String direcao;
+     protected Ambiente ambiente;
+     
+     // Inclusão de sensores ao robo
+     protected ArrayList<Sensor> sensores = new ArrayList<>();
+     
+     // Método construtor para inicialização dos atributos da classe Robo
+     public Robo(String name, int x, int y, String direcao, Ambiente ambiente, int altitude){
+         this.nome = name;
+         this.posicaoX = x;
+         this.posicaoY = y;
+         this.direcao = direcao;
+         this.ambiente = ambiente;
+         this.altitude = altitude;
+     }
+ 
+     public void adicionarSensor(Sensor s) {
+         sensores.add(s);
+     }
+     
+     public void usarSensores() {
+         for (Sensor s : sensores) {
+             s.monitorar(this);
+         }
+     }
+ 
+     // Função responsável pela movimentação do Robo
+     public void mover(int deltaX, int deltaY, int deltaZ){
+         // Movimentação no eixo X
+         int finalX = posicaoX + deltaX;
+         int passoX = (deltaX > 0 ? 1 : -1);
+         while (posicaoX != finalX) {
+             int proximoX = posicaoX + passoX;
+             if (ambiente.posicaoLivre(proximoX, posicaoY, altitude)) {
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
+                 posicaoX = proximoX;
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "🤖");
+             } else {
+                 System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo X e parou em (" + posicaoX + ", " + posicaoY + ", " + altitude + ")");
+                 break;
+             }
+         }
+ 
+         // Movimentação no eixo Y
+         int finalY = posicaoY + deltaY;
+         int passoY = (deltaY > 0 ? 1 : -1);
+         while (posicaoY != finalY) {
+             int proximoY = posicaoY + passoY;
+             if (ambiente.posicaoLivre(posicaoX, proximoY, altitude)) {
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
+                 posicaoY = proximoY;
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "🤖");
+             } else {
+                 System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo Y e parou em (" + posicaoX + ", " + posicaoY + ", " + altitude + ")");
+                 break;
+             }
+         }
+ 
+         // Movimentação no eixo Z (altitude)
+         int finalZ = altitude + deltaZ;
+         int passoZ = (deltaZ > 0 ? 1 : -1);
+         while (altitude != finalZ) {
+             int proximoZ = altitude + passoZ;
+             if (ambiente.dentroDosLimites(posicaoX, posicaoY, proximoZ) && ambiente.posicaoLivre(posicaoX, posicaoY, proximoZ)) {
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
+                 altitude = proximoZ;
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "🤖");
+             } else {
+                 System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo Z e parou em (" + posicaoX + ", " + posicaoY + ", " + altitude + ")");
+                 break;
+             }
+         }
+     }
+ 
+     // Função para identificar obstáculos ao longo do mapa nas 3 dimensões (cubo 3x3x3)
+     public void identificarObstaculo(){
+         System.out.println("Verificando obstaculos ao redor do robo " + nome + ":");
+         int raio = 1;
+         boolean encontrou = false;
+ 
+         for (int dx = -raio; dx <= raio; dx++) {
+             for (int dy = -raio; dy <= raio; dy++) {
+                 for (int dz = -raio; dz <= raio; dz++) {
+                     if (dx == 0 && dy == 0 && dz == 0) continue;
+                     int nx = posicaoX + dx;
+                     int ny = posicaoY + dy;
+                     int nz = altitude + dz;
+                     if (ambiente.dentroDosLimites(nx, ny, nz)) {
+                         for (Obstaculo obst : ambiente.getObstaculos()) {
+                             if (obst.contemPonto(nx, ny, nz)) {
+                                 System.out.println("- Obstaculo detectado em (" + nx + ", " + ny + ", " + nz + ") - Tipo: " + obst.getTipo());
+                                 encontrou = true;
+                             }
+                         }
+                     }
+                 }
+             }
+         }
+ 
+         if (!encontrou) {
+             System.out.println("- Nenhum obstaculo detectado nas proximidades.");
+         }
+     }
+ 
+     // Função responsável pela exibição da posição atual do Robo
+     public void exibirPosicao(){
+         System.out.println("Posicao atual do robo " + nome + ": (" + posicaoX + " , " + posicaoY + " , " + altitude + ")");
+     }
+ 
+     // Funções Getters e Setting
+     public int getPosicaoX(){ return posicaoX; }
+ 
+     public int getPosicaoY(){ return posicaoY; }
+ 
+     public int getAltitude(){ return altitude; }
+ 
+     public void setPosicaoX(int newx){ this.posicaoX = newx; }
+ 
+     public void setPosicaoY(int newy){ this.posicaoY = newy; }
+ 
+     public void setAltitude(int newz){ this.altitude = newz; }
+ 
+     public Ambiente getAmbiente() {
+         return ambiente;
+     }
+ 
+     public String getNome() {
+         return nome;
+     }
+ }
+ 

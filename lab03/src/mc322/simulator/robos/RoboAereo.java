@@ -24,15 +24,17 @@ public class RoboAereo extends Robo {
 
     // Método construtor para inicialização dos atributos da classe RoboAereo
     public RoboAereo(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente){
-        super(nome, posicaoX, posicaoY, direcao, ambiente);
+        super(nome, posicaoX, posicaoY, direcao, ambiente,0);
         this.altitudeMaxima = altitudeMaxima;
         
         // Define altitude inicial do robo aereo
         if (altitude >= 0 && altitude <= altitudeMaxima 
         && altitude <= ambiente.getAmbienteAltitude()) {
             this.altitude = altitude;
+            setAltitude(altitude);
         } else {
             this.altitude = 0;
+            setAltitude(0);
             System.out.println("Robo " + nome + " com altitude inicial invalida. Altitude inicial definida como 0.");
         }
     }
@@ -43,10 +45,12 @@ public class RoboAereo extends Robo {
         int limite = Math.min(altitudeMaxima, ambiente.getAmbienteAltitude());
         if (newAltitude <= limite){
             altitude = newAltitude;
+            setAltitude(altitude);
             System.out.println(nome + " subiu " + metros + " metros. Altitude atual: " + altitude);
         } else {
             metros = limite - altitude;
             altitude = limite;
+            setAltitude(altitude);
             System.out.println("Altura maxima do robo ou do ambiente excedida!");
             System.out.println(nome + " subiu " + metros + " metros. Altitude atual: " + altitude);
         }
@@ -57,21 +61,26 @@ public class RoboAereo extends Robo {
         int newAltitude = altitude - metros;
         if (newAltitude >= 0) {
             altitude = newAltitude;
+            setAltitude(altitude);
             System.out.println(nome + " desceu " + metros + " metros. Altitude atual: " + altitude);
         } else {
             altitude = 0;
+            setAltitude(0);
             System.out.println("Altura minima do ambiente excedida!");
             System.out.println(nome + " atingiu o solo");
         }
     }
 
     // Funções Getters e Setters
+    @Override
     public int getAltitude() { return altitude; }
 
     public int getAltitudeMaxima() { return altitudeMaxima; }
 
+    @Override
     public void setAltitude(int newAltitude){
         this.altitude = newAltitude;
+        super.setAltitude(newAltitude);
     }
 
     public void setAltitudeMaxima(int newAltitudeMaxima){

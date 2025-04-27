@@ -1,7 +1,7 @@
 package mc322.simulator;
 
-import mc322.simulator.robos.Robo;
 import java.util.ArrayList;
+import mc322.simulator.robos.Robo;
 
 public class Ambiente {
 
@@ -117,4 +117,5 @@ public class Ambiente {
     public int getAmbienteAltura() { return altura; }
     public int getAmbienteAltitude() { return altitude; }
     public String[][][] getMapa() { return mapa; }
+    public ArrayList<Obstaculo> getObstaculos() { return obstaculos; }
 }

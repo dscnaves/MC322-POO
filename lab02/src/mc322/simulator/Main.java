@@ -42,10 +42,10 @@ public class Main{
         System.out.println();
 
         // Movimentações
-        wallE.mover(2, 1);  // deve parar se encontrar obstáculo
-        esther.mover(0, 3);
-        baymax.mover(-1, 0); // nao deve se mover por sair do ambiente
-        r2d2.mover(0, 4);
+        wallE.mover(2, 1);  // deve parar ao encontrar obstáculo no eixo Y
+        esther.mover(0, 3); // deve parar por limite de velocidade maxima
+        baymax.mover(-1, 0); // nao deve se mover por sair do ambiente (coord. negativas)
+        r2d2.mover(0, 4); // deve parar ao encontrar obstáculo no eixo Y
         System.out.println();
 
         // Teste velocidade máxima do Wall-E (terrestre)
