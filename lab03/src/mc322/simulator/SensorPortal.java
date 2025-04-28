@@ -37,7 +37,29 @@ public class SensorPortal extends Sensor {
         }
     }
 
-        // função check
+    // Método para monitorar o ambiente em busca de portais
+    public Portal checkPortal(Robo robo) {
+
+        // Obter o ambiente e a posição do robô
+        Ambiente ambiente = robo.getAmbiente();
+        int xRobo = robo.getPosicaoX();
+        int yRobo = robo.getPosicaoY();
+        int zRobo = robo.getAltitude();
+
+        // Verificar cada obstáculo no ambiente
+        for (Obstaculo obst : ambiente.getObstaculos()) {
+
+            // Verificar se o obstáculo é um portal e se está dentro do alcance do sensor
+            if (obst.getTipo() == TipoObstaculo.PORTAL && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+                
+                Portal portal  = (Portal) obst;
+
+                // Retorna o portal encontrado no raio de alcance
+                return portal;
+            }
+        } 
+        return null;
+    }
 }
 
 

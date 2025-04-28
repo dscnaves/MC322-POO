@@ -6,12 +6,12 @@ public class SensorMetal extends Sensor {
 
     @Override
     public void monitorar(Robo robo) {
-        System.out.println("🔍 " + robo.getNome() + " ativou o Sensor de Metal.");
-
         if (!(robo instanceof RoboRastreador)) {
             System.out.println("SensorMetal somente aplicável a RoboRastreador.");
             return;
         }
+
+        System.out.println("🔍 " + robo.getNome() + " ativou o Sensor de Metal.");
 
         Ambiente ambiente = robo.getAmbiente();
         int xRobo = robo.getPosicaoX();
@@ -44,7 +44,6 @@ public class SensorMetal extends Sensor {
         }
     }
 
-    // função check
 }
 
 

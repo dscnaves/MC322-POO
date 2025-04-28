@@ -40,7 +40,7 @@
          // Adiciona Obstáculos
          ambiente.adicionarObstaculo(new Plantinha(5, 5, 0, 5, 5, 0, "Tomate"));
          ambiente.adicionarObstaculo(new Lixo(3, 3, 0, 3, 3, 0, "Plastico"));
-         ambiente.adicionarObstaculo(new Tesouro(7, 7, 0));
+         //ambiente.adicionarObstaculo(new Tesouro(7, 7, 7, 7, 0));
          ambiente.adicionarObstaculo(new Portal(8, 8, 0, 8, 8, 0, 1, 1, 0));
  
          // Testes obrigatórios fora do menu
@@ -72,6 +72,7 @@
              System.out.println("7. Colher Plantinha");
              System.out.println("8. Limpar e Classificar Lixo");
              System.out.println("9. Nomear Planeta");
+             System.out.println("10. Visualizar 1 andar de Ambiente");
              System.out.println("0. Sair");
              System.out.print("Escolha uma opção: ");
  
@@ -121,9 +122,12 @@
                      roboLimpeza.classificarELimparLixo();
                      break;
                  case 9:
-                     System.out.print("Digite o nome do novo planeta: ");
-                     String nomePlaneta = sc.nextLine();
-                     roboEspacial.nomearPlaneta(nomePlaneta);
+                     roboEspacial.nomearPlaneta();
+                     break;
+                 case 10:
+                     System.out.print("Escolha um andar de " + 0 + " a " + ambiente.getAmbienteAltitude() + ": ");
+                     int plano = sc.nextInt();
+                     ambiente.exibirPlanoXMapa(plano);
                      break;
                  case 0:
                      System.out.println("Encerrando o simulador...");

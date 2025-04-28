@@ -188,13 +188,33 @@ class Sensor {
   + boolean dentroDoAlcance(int, int, int, int, int, int)
 }
 
-class SensorColheita
-class SensorIrrigacao
-class SensorSaude
-class SensorMetal
-class SensorPortal
-class SensorPovoamento
-class SensorReciclagem
+class SensorColheita {
+  + boolean detectar(Obstaculo)
+}
+
+class SensorIrrigacao {
+  + boolean detectar(Obstaculo)
+}
+
+class SensorSaude {
+  + boolean detectar(Obstaculo)
+}
+
+class SensorMetal {
+  + boolean detectar(Obstaculo)
+}
+
+class SensorPortal {
+  + boolean detectar(Obstaculo)
+}
+
+class SensorPovoamento {
+  + boolean detectar(Obstaculo)
+}
+
+class SensorReciclagem {
+  + String classificarLixo(Obstaculo)
+}
 
 Ambiente --> "1..*" Robo
 Ambiente --> "1..*" Obstaculo

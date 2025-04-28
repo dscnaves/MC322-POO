@@ -4,6 +4,7 @@ public class RoboRastreador extends RoboTerrestre {
     private int tesouroY;
     private int tesouroZ;
     private int qtdeTesouro;
+    private SensorMetal sensorMetal = new SensorMetal(3.0);
 
     public RoboRastreador(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
@@ -13,7 +14,7 @@ public class RoboRastreador extends RoboTerrestre {
         this.qtdeTesouro = 0;
 
         // Adiciona o Sensor de Metal
-        this.adicionarSensor(new SensorMetal(3.0));
+        this.adicionarSensor(sensorMetal);
     }
 
     public void atualizarLocalizacaoTesouro(int x, int y, int z) {
@@ -25,10 +26,10 @@ public class RoboRastreador extends RoboTerrestre {
 
     public void classificarMetal(Obstaculo obstaculo) {
         if (obstaculo.getTipo() == TipoObstaculo.TESOURO) {
-            System.out.println("💰 Tesouro identificado!");
+            System.out.println("💰 Tesouro identificado e capturado!");
             qtdeTesouro++;
         } else if (obstaculo.getTipo() == TipoObstaculo.LIXO) {
-            System.out.println("🗑️ Metal lixo encontrado. Mensagem enviada ao RoboLimpeza.");
+            System.out.println("🗑️ Metal lixo encontrado.");
         } else {
             System.out.println("❌ Objeto encontrado não é metal conhecido.");
         }

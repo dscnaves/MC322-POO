@@ -98,6 +98,17 @@ public class Ambiente {
         }
     }
 
+    // Exibe o mapa por andares
+    public void exibirPlanoXMapa(int z) {
+        System.out.println("\n[Mapa no andar Z=" + z + "]");
+        for (int y = 0; y < altura; y++) {
+            for (int x = 0; x < largura; x++) {
+                System.out.print(mapa[y][x][z] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     // Detecta colisões entre robôs e obstáculos
     public void detectarColisoes() {
         for (Robo robo : robosAtivos) {
