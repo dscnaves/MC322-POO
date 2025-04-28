@@ -1,5 +1,3 @@
-package mc322.simulator;
-
 public class Plantinha extends Obstaculo {
 
     private String especie;

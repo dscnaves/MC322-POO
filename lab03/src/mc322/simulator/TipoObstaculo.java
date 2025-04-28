@@ -1,5 +1,3 @@
-package mc322.simulator;
-
 public enum TipoObstaculo {
     PLANTINHA(2, true, "🌱"),
     LIXO(1, true, "🗑️"),

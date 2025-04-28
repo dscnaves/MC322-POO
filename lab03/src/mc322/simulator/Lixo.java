@@ -1,5 +1,3 @@
-package mc322.simulator;
-
 public class Lixo extends Obstaculo {
 
     private String tipoLixo;

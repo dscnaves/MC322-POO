@@ -14,13 +14,7 @@
  * os robôs, com movimentação.
  */
 
- package mc322.simulator.robos;
-
  import java.util.ArrayList;
- 
- import mc322.simulator.Ambiente;
- import mc322.simulator.Sensor;
- import mc322.simulator.Obstaculo;
  
  public class Robo{
 

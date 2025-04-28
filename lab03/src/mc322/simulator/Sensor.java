@@ -1,8 +1,5 @@
-package mc322.simulator;
-import mc322.simulator.robos.Robo;
-
 public abstract class Sensor {
-    protected double raio;
+    protected static double raio;
 
     public Sensor(double raio) {
         this.raio = raio;
@@ -11,13 +8,7 @@ public abstract class Sensor {
     public abstract void monitorar(Robo robo);
 
     // Método para verificar alcance de utilização do sensor
-    public boolean dentroDoAlcance(int xLixo, int yLixo, int zLixo, int xRobo, int yRobo, int zRobo){
-        
-        // Obtendo o ambiente e a posição do robo
-        Ambiente ambiente = robo.getAmbiente();
-        int xRobo = robo.getPosicaoX();
-        int yRobo = robo.getPosicaoY();
-        int zRobo = robo.getAltitude();
+    public static boolean dentroDoAlcance(int xLixo, int yLixo, int zLixo, int xRobo, int yRobo, int zRobo){
 
         // Convertendo a variável raio para o número de quadrados em volta do robo
         int alcance = (int) Math.ceil(raio);

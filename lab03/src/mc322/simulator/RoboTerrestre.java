@@ -13,9 +13,6 @@
  * simulador de robôs, que representa uma classe para robôs que se movem
  * no plano XY com velocidade máxima limitada.
  */
-
- package mc322.simulator.robos;
- import mc322.simulator.Ambiente;
  
  public class RoboTerrestre extends Robo {
  

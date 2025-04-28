@@ -1,7 +1,3 @@
-package mc322.simulator;
-
-import mc322.simulator.robos.Robo;
-
 public class SensorIrrigacao extends Sensor {
 
     public SensorIrrigacao(double raio) {
@@ -45,8 +41,6 @@ public class SensorIrrigacao extends Sensor {
         int xRobo = robo.getPosicaoX();
         int yRobo = robo.getPosicaoY();
         int zRobo = robo.getAltitude();
-
-        boolean plantinhaPronta = false;
 
         for (Obstaculo obst : ambiente.getObstaculos()) {
             if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {

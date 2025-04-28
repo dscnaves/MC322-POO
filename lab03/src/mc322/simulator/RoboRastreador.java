@@ -1,10 +1,3 @@
-package mc322.simulator.robos;
-
-import mc322.simulator.Ambiente;
-import mc322.simulator.Obstaculo;
-import mc322.simulator.SensorMetal;
-import mc322.simulator.TipoObstaculo;
-
 public class RoboRastreador extends RoboTerrestre {
 
     private int tesouroX;

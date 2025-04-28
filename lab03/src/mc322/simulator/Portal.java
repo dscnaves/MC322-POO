@@ -1,5 +1,3 @@
-package mc322.simulator;
-
 public class Portal extends Obstaculo {
 
     private int destinoX;

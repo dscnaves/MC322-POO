@@ -14,14 +14,14 @@
  * funcionamento das demais classes envolvidas.
  */
 
- package mc322.simulator;
+
 
  import java.util.Scanner;
  
- import mc322.simulator.robos.*;
+
  
- public class Main {
-     public static void main(String[] args) {
+public class Main {
+    public static void main(String[] args) {
          Scanner sc = new Scanner(System.in);
  
          // Criação do Ambiente

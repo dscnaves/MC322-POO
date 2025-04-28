@@ -1,8 +1,3 @@
-package mc322.simulator;
-
-import mc322.simulator.robos.Robo;
-import mc322.simulator.robos.RoboRastreador;
-
 public class SensorMetal extends Sensor {
 
     public SensorMetal(double raio) {

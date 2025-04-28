@@ -13,9 +13,6 @@
  * simulador de robôs, que representa uma classe para robôs que se movem
  * em X, Y e altitude (Z).
  */
-
- package mc322.simulator.robos;
- import mc322.simulator.Ambiente;
  
  public class RoboAereo extends Robo {
  

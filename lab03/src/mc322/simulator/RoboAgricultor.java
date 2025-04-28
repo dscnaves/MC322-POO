@@ -1,11 +1,3 @@
-package mc322.simulator.robos;
-
-import mc322.simulator.Ambiente;
-import mc322.simulator.Obstaculo;
-import mc322.simulator.Plantinha;
-import mc322.simulator.SensorColheita;
-import mc322.simulator.SensorSaude;
-
 public class RoboAgricultor extends RoboAereo {
 
     private String tipoPlantinha;
@@ -15,6 +7,7 @@ public class RoboAgricultor extends RoboAereo {
         this.tipoPlantinha = tipoPlantinha;
         this.adicionarSensor(new SensorColheita(3.0));
         this.adicionarSensor(new SensorSaude(3.0));
+        this.adicionarSensor(new SensorIrrigacao(3.0));
     }
 
     // Método para regar uma plantinha
@@ -22,7 +15,7 @@ public class RoboAgricultor extends RoboAereo {
         boolean regou = false;
         
         // Obtém plantinha pelo sensor de colheita
-        Plantinha plantinha = sensorIrrigacao.checarIrrigacao(this);
+        Plantinha plantinha = SensorIrrigacao.checarIrrigacao(this);
 
         // Verifica se encontrou uma plantinha pronta para irrigar
         if (plantinha != null){
@@ -42,7 +35,7 @@ public class RoboAgricultor extends RoboAereo {
         boolean tratou = false;
         
         // Obtém plantinha pelo sensor de colheita
-        Plantinha plantinha = sensorSaude.checkup(this);
+        Plantinha plantinha = SensorSaude.checkup(this);
 
         // Verifica se encontrou uma plantinha pronta para colheita
         if (plantinha != null){
@@ -76,7 +69,7 @@ public class RoboAgricultor extends RoboAereo {
             // Verifica se a plantinha é do tipo que o agricultor cuida
             if (plantinha.getEspecie() == tipoPlantinha) {
                 System.out.println("🌿 Plantinha " + plantinha.getEspecie() + " colhida com sucesso!");
-                ambiente.getObstaculos().remove(obst);
+                ambiente.getObstaculos().remove(plantinha);
                 colheu = true;
                 break;
             }

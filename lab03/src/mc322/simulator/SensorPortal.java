@@ -1,7 +1,3 @@
-package mc322.simulator;
-
-import mc322.simulator.robos.Robo;
-
 public class SensorPortal extends Sensor {
 
     public SensorPortal(double raio) {

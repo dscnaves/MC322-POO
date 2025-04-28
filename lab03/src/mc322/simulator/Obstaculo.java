@@ -1,16 +1,14 @@
-package mc322.simulator;
-
 public class Obstaculo {
 
     // Atributos de posição do obstáculo dentro do mapa
-    private int x1;
-    private int y1;
-    private int z1;
-    private int x2;
-    private int y2;
-    private int altura; // Altura relativa a z1
+    protected int x1;
+    protected int y1;
+    protected int z1;
+    protected int x2;
+    protected int y2;
+    protected int altura; // Altura relativa a z1
 
-    private TipoObstaculo tipo;
+    protected TipoObstaculo tipo;
 
     // Construtor
     public Obstaculo(int x1, int y1, int z1, int x2, int y2, int altura, TipoObstaculo tipo) {

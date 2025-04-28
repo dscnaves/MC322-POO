@@ -1,7 +1,3 @@
-package mc322.simulator;
-
-import mc322.simulator.robos.Robo;
-
 public class SensorSaude extends Sensor {
 
     public SensorSaude(double raio) {
@@ -25,10 +21,10 @@ public class SensorSaude extends Sensor {
         for (Obstaculo obst : ambiente.getObstaculos()) {
 
             // Verifica se o obstáculo é uma plantinha e se está dentro do alcance do sensor
-            if (obst instanceof Plantinha && sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+            if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
                 Plantinha plantinha = (Plantinha) obst;
                 if (!plantinha.isSaudavel()) {
-                    System.out.println("🌱 Plantinha " + plantinha.getTipo() + " doente detectada nas coordenadas (" + novoX + ", " + novoY + ", " + novoZ + ")!");
+                    System.out.println("🌱 Plantinha " + plantinha.getTipo() + " doente detectada nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")!");
                     doenteEncontrado = true;
                 }
             }
@@ -48,13 +44,10 @@ public class SensorSaude extends Sensor {
         int yRobo = robo.getPosicaoY();
         int zRobo = robo.getAltitude();
 
-        boolean doenteEncontrado = false;
-
-
         for (Obstaculo obst : ambiente.getObstaculos()) {
 
             // Verifica se o obstáculo é uma plantinha e se está dentro do alcance do sensor
-            if (obst instanceof Plantinha && sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+            if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
                 Plantinha plantinha = (Plantinha) obst;
 
                 // Verifica se a plantinha está doente

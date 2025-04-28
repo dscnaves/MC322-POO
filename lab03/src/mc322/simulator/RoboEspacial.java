@@ -1,11 +1,3 @@
-package mc322.simulator.robos;
-
-import mc322.simulator.Ambiente;
-import mc322.simulator.SensorPortal;
-import mc322.simulator.SensorPovoamento;
-import mc322.simulator.TipoObstaculo;
-import mc322.simulator.Sensor;
-
 public class RoboEspacial extends RoboAereo {
 
     // Atributo para armazenar a quantidade de planetas descobertos

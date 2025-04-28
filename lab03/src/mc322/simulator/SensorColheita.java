@@ -1,7 +1,3 @@
-package mc322.simulator;
-
-import mc322.simulator.robos.Robo;
-
 public class SensorColheita extends Sensor {
 
     public SensorColheita(double raio) {
@@ -23,7 +19,7 @@ public class SensorColheita extends Sensor {
         boolean plantinhaPronta = false;        
 
         for (Obstaculo obst : ambiente.getObstaculos()) {
-            if (obst instanceof Plantinha && sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+            if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
                 Plantinha plantinha = (Plantinha) obst;
                 if (plantinha.podeColher()) {
                     System.out.println("🌿 Plantinha " + plantinha.getTipo() + " pronta para colheita nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")!");
@@ -45,10 +41,8 @@ public class SensorColheita extends Sensor {
         int yRobo = robo.getPosicaoY();
         int zRobo = robo.getAltitude();
 
-        boolean plantinhaPronta = false;
-
         for (Obstaculo obst : ambiente.getObstaculos()) {
-            if (obst instanceof Plantinha && sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+            if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
                 Plantinha plantinha = (Plantinha) obst;
 
                 // Verifica se a plantinha está pronta para colheita

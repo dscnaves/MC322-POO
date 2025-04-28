@@ -14,14 +14,6 @@
  * em coleta e compactação de lixo.
  */
 
- package mc322.simulator.robos;
-
- import mc322.simulator.Ambiente;
- import mc322.simulator.Obstaculo;
- import mc322.simulator.Lixo;
- import mc322.simulator.SensorReciclagem;
- import mc322.simulator.TipoObstaculo;
- 
  public class RoboLimpeza extends RoboTerrestre {
 
     private SensorReciclagem sensorReciclagem;
@@ -36,7 +28,7 @@
          boolean lixoRemovido = false;
          for (int i = 0; i < ambiente.getObstaculos().size(); i++) {
              Obstaculo obst = ambiente.getObstaculos().get(i);
-             if (obst instanceof Lixo && sensor.dentroDoAlcance(obst.getX(), obst.getY(), obst.getAltitude(), posicaoX, posicaoY, altitude)) {
+             if (obst instanceof Lixo && Sensor.dentroDoAlcance(obst.getX1(), obst.getY1(), obst.getZ1(), posicaoX, posicaoY, altitude)) {
                  ambiente.getObstaculos().remove(i);
                  ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
                  System.out.println("🗑️ Lixo removido com sucesso na posição (" + posicaoX + ", " + posicaoY + ", " + altitude + ")!");
@@ -55,7 +47,7 @@
             
             // Verifica se o obstáculo é um lixo e se está dentro do raio de alcance do sensor ()
             if (obst instanceof Lixo) {
-                if (dentroDoAlcance(obst.x1, obst.y1, obst.z1, posicaoX, posicaoY, altitude)){
+                if (Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, posicaoX, posicaoY, altitude)){
                     Lixo lixo = (Lixo) obst;
                     sensorReciclagem.classificarLixo(lixo.getTipoLixo());
                     ambiente.getObstaculos().remove(obst);

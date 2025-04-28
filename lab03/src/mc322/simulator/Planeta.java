@@ -1,5 +1,3 @@
-package mc322.simulator;
-
 public class Planeta extends Obstaculo {
 
     private String nome;

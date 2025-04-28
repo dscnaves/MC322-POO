@@ -1,7 +1,4 @@
-package mc322.simulator;
-
 import java.util.ArrayList;
-import mc322.simulator.robos.Robo;
 
 public class Ambiente {
 
