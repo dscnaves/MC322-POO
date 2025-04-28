@@ -94,16 +94,48 @@ class Robo {
 
 class RoboTerrestre {
   - int velocidadeMaxima
+  + void mover(int, int, int)
+  + int getVelocidadeMaxima()
+  + void setVelocidadeMaxima(int)
 }
 
 class RoboAereo {
   - int altitudeMaxima
+  + void subir(int)
+  + void descer(int)
+  + int getAltitude()
+  + int getAltitudeMaxima()
 }
 
-class RoboLimpeza
-class RoboAgricultor
-class RoboEspacial
-class RoboRastreador
+class RoboLimpeza {
+  - SensorReciclagem sensorReciclagem
+  + void limparLixo()
+  + void classificarELimparLixo()
+}
+
+class RoboAgricultor {
+  - String tipoPlantinha
+  - SensorIrrigacao sensorIrrigacao
+  + void regarPlantinha()
+  + void tratarPlantaDoente()
+  + void colherPlantinha()
+}
+
+class RoboEspacial {
+  - int qtdePlanetasDescobertos
+  + void nomearPlaneta(String)
+  + void atravessarPortal(Portal)
+}
+
+class RoboRastreador {
+  - int tesouroX
+  - int tesouroY
+  - int tesouroZ
+  - int qtdeTesouro
+  + void atualizarLocalizacaoTesouro(int, int, int)
+  + void classificarMetal(Obstaculo)
+  + void checkCriptomoeda()
+}
 
 class Obstaculo {
   - int x1
@@ -113,15 +145,47 @@ class Obstaculo {
   - int y2
   - int altura
   - TipoObstaculo tipo
+  + boolean contemPonto(int, int, int)
 }
 
-class Plantinha
-class Lixo
-class Portal
-class Planeta
+class Plantinha {
+  - String especie
+  - double crescimento
+  - boolean saudavel
+  + void regar()
+  + void tratar()
+  + boolean podeColher()
+}
+
+class Lixo {
+  - String tipoLixo
+  + String getTipoLixo()
+}
+
+class Portal {
+  - int destinoX
+  - int destinoY
+  - int destinoZ
+  + int getDestinoX()
+  + int getDestinoY()
+  + int getDestinoZ()
+}
+
+class Planeta {
+  - String nome
+  + void setNome(String)
+}
+
+class TipoObstaculo {
+  <<enum>>
+  + int getAlturaPadrao()
+  + boolean isBloqueiaPassagem()
+  + String getIcone()
+}
 
 class Sensor {
   # double raio
+  + boolean dentroDoAlcance(int, int, int, int, int, int)
 }
 
 class SensorColheita
@@ -156,7 +220,7 @@ Sensor <|-- SensorMetal
 Sensor <|-- SensorPortal
 Sensor <|-- SensorPovoamento
 Sensor <|-- SensorReciclagem
-```
+'''
 
 ---
 
