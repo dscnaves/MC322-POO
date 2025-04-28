@@ -2,31 +2,49 @@ public class RoboEspacial extends RoboAereo {
 
     // Atributo para armazenar a quantidade de planetas descobertos
     private int qtdePlanetasDescobertos;
-
-    private SensorPortal sensorPortal = new SensorPortal(6.0);
-    private SensorPovoamento sensorPovoamento = new SensorPovoamento(7.0);
+    private SensorPortal sensorPortal;
+    private SensorPovoamento sensorPovoamento;
+    private Planeta planetaAtual;
 
     // Construtor da classe RoboEspacial
     public RoboEspacial(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, altitudeMaxima, altitude, ambiente);
         this.qtdePlanetasDescobertos = 0;
+        this.planetaAtual = null;
         
         // Adicionar sensores ao RoboEspacial
+        this.sensorPortal = new SensorPortal(6.0);
+        this.sensorPovoamento = new SensorPovoamento(7.0);
         this.adicionarSensor(sensorPortal);
         this.adicionarSensor(sensorPovoamento);
     }
 
+    // Método para usar sensores individualmente
+    public void usarSensorPortal() {
+        sensorPortal.monitorar(this);
+        Portal portal = sensorPortal.checkPortal(this);
+        if (portal != null) {
+            System.out.println("🌀 Portal detectado em (" + portal.getX1() + "," + portal.getY1() + "," + portal.getZ1() + ")");
+            System.out.println("Use a opção 13 para atravessar este portal!");
+        }
+    }
+
+    public void usarSensorPovoamento() {
+        sensorPovoamento.monitorar(this);
+        planetaAtual = sensorPovoamento.checkPovo(this);
+        if (planetaAtual != null) {
+            System.out.println("🪐 Planeta descoberto e pronto para ser nomeado!");
+            System.out.println("Use a opção 14 para nomear este planeta!");
+        }
+    }
+
     // Método para atravessar um portal
     public void atravessarPortal(){
-
-        boolean atravessou = false;
-
         // Obtém portal pelo sensor de portal
         Portal portal = sensorPortal.checkPortal(this);
 
         // Verifica se encontrou um portal
-        if(portal != null){
-        
+        if(portal != null){        
             System.out.println("🌌 Atravessando portal...");
 
             // Atualiza o mapa que o robo deicou sua posição inicial
@@ -39,31 +57,40 @@ public class RoboEspacial extends RoboAereo {
 
             // Atualiza o mapa com a nova posição do robo
             ambiente.atualizarMapa(portal.getDestinoX(), portal.getDestinoY(), portal.getDestinoZ(), "🤖");
-            System.out.println("🌌 Portal atravessado com sucesso!");
-        } 
-        if(!atravessou){
-            System.out.println("Nenhum portal para atravessar encontrado.");
+            System.out.println("🌌 Portal atravessado com sucesso! Nova posição: (" + 
+                             posicaoX + "," + posicaoY + "," + altitude + ")");
+            
+            // Verifica se chegou em um novo planeta
+            usarSensorPovoamento();
+        } else {
+            System.out.println("❌ Nenhum portal próximo para atravessar.");
         }
     }
 
     // Método para nomear um planeta
-    public void nomearPlaneta() {
-
-        // Obtém planeta pelo sensor de portal
-        Planeta planeta = sensorPovoamento.checkPovo(this);
-
-        // Verifica se encontrou um planeta não povoado
-        if(planeta != null){
-            planeta.setNome("Planeta" + qtdePlanetasDescobertos);
-            System.out.println("🌍 Planeta nomeado como: Planeta" + qtdePlanetasDescobertos);
-            qtdePlanetasDescobertos++;
+    public void nomearPlaneta(String nome) {
+        if (planetaAtual != null) {
+            if (planetaAtual.getNome().isEmpty()) {
+                planetaAtual.setNome(nome);
+                qtdePlanetasDescobertos++;
+                System.out.println("🌍 Planeta nomeado como: " + nome);
+                System.out.println("Total de planetas descobertos: " + qtdePlanetasDescobertos);
+                planetaAtual = null; // Reseta após nomear
+            } else {
+                System.out.println("Este planeta já possui um nome: " + planetaAtual.getNome());
+            }
         } else {
-            System.out.println("Nenhum planeta nomeado! Tente se aproximar de um planeta não povoado!");
+            System.out.println("Nenhum planeta disponível para nomear. Use o sensor de povoamento primeiro.");
         }
     }
 
     // Método para verificar a quantidade de planetas descobertos
     public int getQtdePlanetasDescobertos() {
+        System.out.println("🪐 Total de planetas descobertos e nomeados: " + qtdePlanetasDescobertos);
         return qtdePlanetasDescobertos;
+    }
+    
+    public boolean estaEmPlaneta() {
+        return planetaAtual != null;
     }
 }

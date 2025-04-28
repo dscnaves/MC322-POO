@@ -8,33 +8,26 @@ public class SensorPortal extends Sensor {
     // Método para monitorar o ambiente em busca de portais
     public void monitorar(Robo robo) {
         System.out.println("🔎 " + robo.getNome() + " ativou o Sensor de Portal.");
-
-        // Obter o ambiente e a posição do robô
-        Ambiente ambiente = robo.getAmbiente();
-        int xRobo = robo.getPosicaoX();
-        int yRobo = robo.getPosicaoY();
-        int zRobo = robo.getAltitude();
-
-        // Calcular o alcance do sensor
-        int alcance = (int) Math.ceil(raio);
-
-        boolean encontrado = false;     
-
-        // Verificar cada obstáculo no ambiente
-        for (Obstaculo obst : ambiente.getObstaculos()) {
-            
-            // Verificar se o obstáculo é um portal e se está dentro do alcance do sensor
-            if (obst.getTipo() == TipoObstaculo.PORTAL && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
-                System.out.println("🌀 Portal detectado nas coordenadas: (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")");
-                encontrado = true;
-            }
-        } 
-        
-        // Se nenhum portal foi encontrado, informar ao usuário
-        if (!encontrado) {
-            System.out.println("Nenhum portal encontrado dentro do raio.");
-            return;
+        Portal portal = checkPortal(robo);
+        if (portal != null) {
+            System.out.println("🌀 Portal detectado em (" + 
+                portal.getX1() + "," + portal.getY1() + "," + portal.getZ1() + ")");
+            System.out.println("Destino: (" + 
+                portal.getDestinoX() + "," + portal.getDestinoY() + "," + portal.getDestinoZ() + ")");
+        } else {
+            System.out.println("Nenhum portal encontrado no alcance.");
         }
+    }
+
+    public Portal checkPortal(Robo robo) {
+        for (Obstaculo obst : robo.getAmbiente().getObstaculos()) {
+            if (obst.getTipo() == TipoObstaculo.PORTAL && 
+                Sensor.dentroDoAlcance(obst.getX1(), obst.getY1(), obst.getZ1(), 
+                                      robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
+                return (Portal) obst;
+            }
+        }
+        return null;
     }
 
     // Método para monitorar o ambiente em busca de portais

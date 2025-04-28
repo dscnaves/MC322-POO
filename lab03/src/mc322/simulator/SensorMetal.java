@@ -48,6 +48,11 @@ public class SensorMetal extends Sensor {
 
     // Criar função para detectar tesouros
     public Obstaculo detectorTesouros(Robo robo){
+        if (!(robo instanceof RoboRastreador)) {
+            System.out.println("Este sensor só funciona com RoboRastreador");
+            return null;
+        }
+
         Ambiente ambiente = robo.getAmbiente();
         boolean tesouroEncontrado = false;
         for (Obstaculo obst : ambiente.getObstaculos()) {

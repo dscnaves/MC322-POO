@@ -57,12 +57,17 @@
          ambiente.adicionarObstaculo(new Portal(8, 8, 0, 8, 8, 0, 1, 1, 6));
          ambiente.adicionarObstaculo(new Planeta(1, 1, 6, 4, 4, 0));
 
+         // Adiciona Tesouros para o RoboRastreador
+         ambiente.adicionarObstaculo(new Obstaculo(7, 7, 0, 7, 7, 0, TipoObstaculo.TESOURO));
+         ambiente.adicionarObstaculo(new Obstaculo(3, 5, 0, 3, 5, 0, TipoObstaculo.TESOURO));
+         ambiente.adicionarObstaculo(new Obstaculo(9, 2, 0, 9, 2, 0, TipoObstaculo.TESOURO));
+
          // Testes obrigatórios fora do menu
          roboLimpeza.exibirPosicao();
          roboAgricultor.exibirPosicao();
          roboEspacial.exibirPosicao();
          roboRastreador.exibirPosicao();
-         roboRastreador.checkCriptomoeda();
+         roboRastreador.checkBauDeTesouros();
          roboLimpeza.usarSensores();
          roboAgricultor.usarSensores();
          roboEspacial.usarSensores();
@@ -88,6 +93,13 @@
              System.out.println("9. Nomear Planeta");
              System.out.println("10. Visualizar 1 andar de Ambiente");
              System.out.println("11. Usar Sensor de Detector de metais");
+             System.out.println("11. Extrair Tesouro (Rastreador)");
+             System.out.println("12. Verificar Tesouros Coletados");
+             System.out.println("13. Atravessar Portal (Robo Espacial)");
+            System.out.println("14. Nomear Planeta (Robo Espacial)");
+            System.out.println("15. Usar Sensor de Portal (Robo Espacial)");
+            System.out.println("16. Usar Sensor de Povoamento (Robo Espacial)");
+            System.out.println("17. Ver Planetas Descobertos");
              System.out.println("0. Sair");
              System.out.print("Escolha uma opção: ");
              System.out.print("\n");
@@ -127,7 +139,12 @@
                      if (escolha4 == 1) roboLimpeza.usarSensores();
                      else if (escolha4 == 2) roboAgricultor.usarSensores();
                      else if (escolha4 == 3) roboEspacial.usarSensores();
-                     else if (escolha4 == 4) roboRastreador.usarSensores();
+                     else if (escolha4 == 4){
+                        roboRastreador.usarSensores();
+                        if (roboRastreador.temTesouroLocalizado()) {
+                            System.out.println("Use a opção 11 para extrair o tesouro detectado!");
+                        }
+                     }
                      break;
                  case 5:
                      roboAgricultor.regarPlantinha();
@@ -148,6 +165,38 @@
                      System.out.print("Escolha um andar de " + 0 + " a " + ambiente.getAmbienteAltitude() + ": ");
                      int plano = sc.nextInt();
                      ambiente.exibirPlanoXMapa(plano);
+                     break;
+                 case 11:
+                     System.out.println("Extraindo tesouro com Robo Rastreador...");
+                     roboRastreador.extrairTesouro();
+                     break;
+                 case 12:
+                     roboRastreador.checkBauDeTesouros();
+                     break;
+                 case 13: // Atravessar Portal
+                     roboEspacial.atravessarPortal();
+                     break;
+                     
+                 case 14: // Nomear Planeta
+                     if (roboEspacial.estaEmPlaneta()) {
+                         System.out.print("Digite o nome para o planeta: ");
+                         String nomePlaneta = sc.nextLine();
+                         roboEspacial.nomearPlaneta(nomePlaneta);
+                     } else {
+                         System.out.println("Nenhum planeta disponível para nomear. Use o sensor de povoamento primeiro.");
+                     }
+                     break;
+                     
+                 case 15: // Usar Sensor de Portal
+                     roboEspacial.usarSensorPortal();
+                     break;
+                     
+                 case 16: // Usar Sensor de Povoamento
+                     roboEspacial.usarSensorPovoamento();
+                     break;
+                     
+                 case 17: // Ver Planetas Descobertos
+                     roboEspacial.getQtdePlanetasDescobertos();
                      break;
                  case 0:
                      System.out.println("Encerrando o simulador...");
