@@ -1,4 +1,4 @@
-# Laboratório 03 - MC322 - Programação Orientada a Objetos
+# 🚀 Laboratório 03 - MC322 - Programação Orientada a Objetos
 **Autores:** 
 - Anita Almeida - RA: 173273
 - Daniela Naves - RA: 281141
@@ -7,28 +7,42 @@
 - 21.0.5
 
 **Ambiente de Desenvolvimento Integrado Utilizado:**
-- Visual Studio Code
+- Visual Studio Code -> versão 1.99
 
 # 🤖 Simulador de Robôs
 
-Este projeto em Java simula um ambiente bidimensional com diferentes tipos de robôs que interagem com obstáculos e realizam ações específicas. Cada robô possui características distintas — como capacidade de voo, empatia, ensino, coleta de lixo ou decodificação de mensagens — e pode se mover por esse ambiente controlado, respeitando limites de movimentação e obstáculos.
+Este projeto em Java implementa um **simulador de robôs em um ambiente tridimensional** com diferentes tipos de robôs que interagem com obstáculos e realizam ações específicas. Cada robô possui características distintas - coletar lixo, cuidar de plantas, encontrar tesouros e explorar planetas - e pode se mover por esse ambiente controlado, respeitando limites de movimentação e obstáculos como **lixo**, **plantas**, **tesouros** e **portais**. Cada robô possui sensores específicos para detectar ou interagir com esses elementos.
 
 ---
 
 ## 📁 Estrutura de Arquivos
 
-| Arquivo                       | Descrição                                             |
-|-------------------------------|-------------------------------------------------------|
-| `Main.java`                   | Classe principal com simulações e testes              |
-| `Ambiente.java`               | Define o ambiente (tamanho, obstáculos, robôs)        |
-| `Obstaculo.java`              | Representa obstáculos fixos no ambiente               |
-| `Robo.java`                   | Classe base para todos os robôs, com movimentação     |
-| `RoboTerrestre.java`          | Robôs que se movem no plano com velocidade limitada   |
-| `RoboAereo.java`              | Robôs com movimentação em X, Y e altitude             |
-| `RoboLimpeza.java`            | Robô especializado em coleta e compactação de lixo    |
-| `RoboProfessor.java`          | Robô capaz de dar aulas com limite diário             |
-| `RoboAgentePessoalSaude.java` | Robô que avalia o nível de dor com base em empatia    |
-| `RoboCientista.java`          | Robô que decodifica mensagens com base em letra-chave |
+| Arquivo                       | Descrição                                              |
+|--------------------------------|--------------------------------------------------------|
+| `Main.java`                   | Classe principal com testes e menu interativo          |
+| `Ambiente.java`               | Gerencia robôs e obstáculos no ambiente 3D             |
+| `Obstaculo.java`              | Classe base para obstáculos                           |
+| `Plantinha.java`              | Obstáculo do tipo plantinha                            |
+| `Lixo.java`                   | Obstáculo do tipo lixo                                 |
+| `Portal.java`                 | Obstáculo do tipo portal de teletransporte             |
+| `Planeta.java`                | Obstáculo do tipo planeta                             |
+| `TipoObstaculo.java`          | Enumeração de tipos de obstáculos                     |
+| `Robo.java`                   | Classe base para robôs                                |
+| `RoboTerrestre.java`          | Robôs que se movem apenas no plano XY                  |
+| `RoboAereo.java`              | Robôs que se movem em XYZ (altitude incluída)          |
+| `RoboLimpeza.java`            | Robô que coleta e classifica lixo                     |
+| `RoboAgricultor.java`         | Robô que cuida e colhe plantinhas                     |
+| `RoboEspacial.java`           | Robô que nomeia planetas e atravessa portais           |
+| `RoboRastreador.java`         | Robô que localiza e identifica metais e tesouros       |
+| `Sensor.java`                 | Classe base para sensores                             |
+| `SensorColheita.java`         | Sensor que detecta plantinhas prontas para colheita    |
+| `SensorIrrigacao.java`         | Sensor que detecta plantinhas que precisam de água     |
+| `SensorSaude.java`            | Sensor que detecta plantinhas doentes                  |
+| `SensorMetal.java`            | Sensor que detecta metais no ambiente                 |
+| `SensorPortal.java`           | Sensor que detecta portais                            |
+| `SensorPovoamento.java`       | Sensor que detecta se planetas estão povoados          |
+| `SensorReciclagem.java`       | Sensor para identificar tipo de lixo para reciclagem   |
+
 
 ---
 
@@ -45,106 +59,139 @@ class Ambiente {
   - int altitude
   - ArrayList~Robo~ robosAtivos
   - ArrayList~Obstaculo~ obstaculos
-  - String[][] mapa
-  - inicializarMapa()
+  - String[][][] mapa
   + void adicionarRobo(Robo)
   + void removerRobo(Robo)
   + void adicionarObstaculo(Obstaculo)
   + boolean dentroDosLimites(int, int, int)
-  + boolean posicaoLivre(int, int)
-  + void atualizarMapa(int, int, String)
+  + boolean posicaoLivre(int, int, int)
+  + void atualizarMapa(int, int, int, String)
   + void exibirMapa()
+  + void detectarColisoes()
 }
 
 class Robo {
   # String nome
   # int posicaoX
   # int posicaoY
+  # int altitude
   # String direcao
   # Ambiente ambiente
   # ArrayList~Sensor~ sensores
-  + void adicionarSensor(Sensor s)
+  + void adicionarSensor(Sensor)
   + void usarSensores()
-  + void mover(int, int)
+  + void mover(int, int, int)
   + void identificarObstaculo()
-  - void checarPosicao(int x, int y, String direcao)
   + void exibirPosicao()
   + int getPosicaoX()
   + int getPosicaoY()
-  + void setPosicaoX()
-  + void setPosicaoY()
-  + String getNome()
-  + Ambiente getAmbiente()
+  + int getAltitude()
 }
 
 class RoboTerrestre {
   - int velocidadeMaxima
+  + void mover(int, int, int)
   + int getVelocidadeMaxima()
-  + void setVelocidadeMaxima(int velocidadeMaxima)
+  + void setVelocidadeMaxima(int)
 }
 
 class RoboAereo {
   - int altitude
   - int altitudeMaxima
-  + void subir(int metros)
-  + void descer(int metros)
-  + getAltitude()
+  + void subir(int)
+  + void descer(int)
+  + int getAltitude()
   + int getAltitudeMaxima()
-  + void setAltitudeMaxima(int newAltitudeMaxima)
-}
-
-class RoboProfessor {
-  - int aulasMaximasPorDia
-  - int qte_apple
-  + void darAula(int)
-  + void comerApple(int)
-}
-
-class RoboEspacial {
-  - char letraCodificacao
-  + void decodificarMensagem(String)
 }
 
 class RoboLimpeza {
-  - int pesoMaximoLixo
-  + void compactarLixo(int)
+  - SensorReciclagem sensorReciclagem
+  + void limparLixo()
+  + void classificarELimparLixo()
 }
 
-class RoboAgentePessoalSaude {
-  - int nivelEmpatia
-  + void fazerCheckup(int nivelDor)
+class RoboAgricultor {
+  - String tipoPlantinha
+  - SensorIrrigacao sensorIrrigacao
+  + void regarPlantinha()
+  + void tratarPlantaDoente()
+  + void colherPlantinha()
+}
+
+class RoboEspacial {
+  - int qtdePlanetasDescobertos
+  + void nomearPlaneta(String)
+  + void atravessarPortal(Portal)
+}
+
+class RoboRastreador {
+  - int tesouroX
+  - int tesouroY
+  - int tesouroZ
+  - int qtdeTesouro
+  + void atualizarLocalizacaoTesouro(int, int, int)
+  + void classificarMetal(Obstaculo)
+  + void checkCriptomoeda()
 }
 
 class Obstaculo {
   - int x1
   - int y1
+  - int z1
   - int x2
   - int y2
+  - int altura
   - TipoObstaculo tipo
-  - int alturaPadrao
-  + boolean contemPonto(int, int)
+  + boolean contemPonto(int, int, int)
+}
+
+class Plantinha {
+  - String especie
+  - double crescimento
+  - boolean saudavel
+  + void regar()
+  + void tratar()
+  + boolean podeColher()
+}
+
+class Lixo {
+  - String tipoLixo
+  + String getTipoLixo()
+}
+
+class Portal {
+  - int destinoX
+  - int destinoY
+  - int destinoZ
+  + int getDestinoX()
+  + int getDestinoY()
+  + int getDestinoZ()
+}
+
+class Planeta {
+  - String nome
+  + void setNome(String)
 }
 
 class TipoObstaculo {
   <<enum>>
-  + int alturaPadrao
-  + boolean bloqueiaPassagem
-  + boolean podeTranspor(int)
+  + int getAlturaPadrao()
+  + boolean isBloqueiaPassagem()
+  + String getIcone()
 }
 
 class Sensor {
   # double raio
-  + void monitorar(Robo)
+  + boolean dentroDoAlcance(int, int, int, int, int, int)
 }
 
-class SensorFome {
-  + void monitorar(Robo)
-}
-
-class SensorPortal {
-  + void monitorar(Robo)
-  - double distancia(int x1, int y1, int x2, int y2)
-}
+class SensorColheita
+class SensorIrrigacao
+class SensorSaude
+class SensorMetal
+class SensorPortal
+class SensorPovoamento
+class SensorReciclagem
 
 Ambiente --> "1..*" Robo
 Ambiente --> "1..*" Obstaculo
@@ -153,13 +200,19 @@ Obstaculo --> TipoObstaculo
 
 Robo <|-- RoboTerrestre
 Robo <|-- RoboAereo
-RoboTerrestre <|-- RoboProfessor
 RoboTerrestre <|-- RoboLimpeza
+RoboTerrestre <|-- RoboRastreador
+RoboAereo <|-- RoboAgricultor
 RoboAereo <|-- RoboEspacial
-RoboAereo <|-- RoboAgentePessoalSaude
 
-Sensor <|-- SensorFome
+Sensor <|-- SensorColheita
+Sensor <|-- SensorIrrigacao
+Sensor <|-- SensorSaude
+Sensor <|-- SensorMetal
 Sensor <|-- SensorPortal
+Sensor <|-- SensorPovoamento
+Sensor <|-- SensorReciclagem
+
 
 ```
 
@@ -178,34 +231,64 @@ Sensor <|-- SensorPortal
    ```
 
 ---
+## � Menu Interativo
+
+Após a execução, você poderá:
+
+| Opção | Ação                          |
+|-------|-------------------------------|
+| 1     | Mover um robô                 |
+| 2     | Visualizar status dos robôs   |
+| 3     | Visualizar o ambiente tridimensional |
+| 4     | Usar sensores dos robôs       |
+| 5     | Regar uma plantinha           |
+| 6     | Tratar uma plantinha doente   |
+| 7     | Colher uma plantinha          |
+| 8     | Classificar e limpar lixo     |
+| 9     | Nomear um planeta             |
+| 0     | Encerrar o simulador          |
+
+**Observação:** As classes são todas instanciadas no início do programa. O menu serve apenas para realizar as interações.
+
+---
 
 ## 🌍 Funcionamento do Ambiente
 
-O ambiente é uma grade bidimensional composta por:
+### 🧊 Estrutura Básica
+- 🟦 Modelado como matriz 3D com:  
+  • 📏 **Eixo X** (largura)  
+  • 📐 **Eixo Y** (altura)  
+  • 🪂 **Eixo Z** (altitude/profundidade)  
 
-- **Posições livres**: representadas por `"_"`  
-- **Robôs ativos**: representados por `"&"`  
-- **Obstáculos**: representados por `"*"`  
+### 🏗️ Elementos no Espaço
+- ⚠️ **Obstáculos** têm coordenadas fixas  
+- 🤖 **Robôs** ocupam posições dinâmicas  
+- 📍 Todos os objetos têm localização (x,y,z) precisa  
 
-O ambiente possui três dimensões:
-- `largura` (X)
-- `altura` (Y)
-- `altitude` (Z, para robôs aéreos)
+### 🚦 Movimentação
+- 🔄 Cada robô se move conforme:  
+  - ✅ Capacidades técnicas  
+  - 🛑 Restrições ambientais  
+  - 📶 Eixos habilitados (terrestres: X,Y | aéreos: X,Y,Z)
 
 ---
 
 ## 🤖 Regras de Movimentação
 
-A movimentação é feita através do método `mover(int deltaX, int deltaY)`. Cada robô se move primeiro no eixo X e, em seguida, no eixo Y.
+A movimentação é feita através do método `mover(int deltaX, int deltaY, int deltaZ)`. Cada robô se move primeiro no eixo X, em seguida, no eixo Y e, por fim, no eixo Z.
 
 > **Importante:** O atributo `direcao` (como "Norte", "Sul", etc.) é **apenas decorativo** e **não influencia o movimento** real do robô.
 
 ### 🧭 Interpretação dos Parâmetros
 
-- `deltaX > 0`: o robô tenta se mover para a **direita**
-- `deltaX < 0`: o robô tenta se mover para a **esquerda**
-- `deltaY > 0`: o robô tenta se mover para **baixo** (no eixo vertical)
-- `deltaY < 0`: o robô tenta se mover para **cima**
+O ambiente é bem entendido em um sistema de coordenadas x,y,z. Na qual defini-se o eixo z, como o produto vetorial x por y. Este ambiente é representado por uma matriz "cúbica".
+
+- `deltaX > 0`: o robô tenta se mover para o **sentido positivo** de **X** (Horizontal)
+- `deltaX < 0`: o robô tenta se mover para a o **sentido negativo** de **X**
+- `deltaY > 0`: o robô tenta se mover para o **sentido positivo** de **Y** (Vertical)
+- `deltaY < 0`: o robô tenta se mover para **sentido negativo** de **Y**
+- `deltaZ > 0`: o robô tenta se mover para o **sentido positivo** de **Z** (Altitude)
+- `deltaZ < 0`: o robô tenta se mover para **sentido negativo** de **Z**
 
 ### ⛔ Interação com Obstáculos
 
@@ -213,7 +296,7 @@ Se o robô encontrar um obstáculo no caminho, ele:
 - Para imediatamente na posição anterior ao obstáculo
 - Exibe uma mensagem informando a colisão
 
-> **Importante:** Caso seja encontrado um obstaculo no eixo X, o robô encerra sua movimentação nesse eixo, mas inicia a movimentação no eixo Y, encerrando completamentamente a movimentação apenas após se mover no eixo Y também.
+> **Importante:** Caso seja encontrado um obstaculo no eixo X, o robô encerra sua movimentação nesse eixo, mas inicia a movimentação no eixo Y, encerrando completamentamente a movimentação apenas após se mover no eixo Y também. Comportamento análogo, é observado no eixo Z. 
 
 ---
 
@@ -226,7 +309,7 @@ Se `|deltaX|` ou `|deltaY|` forem maiores que a velocidade máxima, o movimento 
 
 ## ✈️ Altitude (aplicável aos robôs aéreos)
 
-Robôs aéreos (`RoboAereo`, `RoboCientista`, `RoboAgentePessoalSaude`) também possuem altitude, que pode ser ajustada com:
+Robôs aéreos (`RoboAereo`, `RoboEspacial`, `RoboAgricultor`) também possuem altitude, que pode ser ajustada com:
 
 - `subir(int metros)`
 - `descer(int metros)`
@@ -240,24 +323,25 @@ A altitude respeita os seguintes limites:
 
 ## 🧠 Ações Específicas por Tipo de Robô
 
-| Classe                   | Método Especial       | Função                                      |
-|--------------------------|-----------------------|---------------------------------------------|
-| `RoboLimpeza`            | `compactarLixo(peso)` | Compacta lixo até um limite máximo          |
-| `RoboProfessor`          | `darAula(qtd)`        | Dá aulas, respeitando um número máximo      |
-|                          |                            por dia                                  |
-| `RoboAgentePessoalSaude` | `fazerCheckup(nivelDor)` | Responde com empatia ao nível de dor     |
-|                          |                                informado                            | 
-| `RoboCientista`          | `decodificarMensagem(msg)` | Remove uma letra específica da mensagem| 
-|                          |                                codificada                           |
-
-> **Importante:** A classe `RoboCientista` estende `RoboAereo` e representa um robô especializado em decodificação de mensagens. Além das funcionalidades herdadas, ele possui um atributo `letraCodificacao`, que define o caractere a ser removido das mensagens criptografadas. O método `decodificarMensagem(String mensagemCodificada)` exibe uma mensagem simulando o processo de decodificação e remove a letra codificada da string recebida.
-
-> Uma limitação dessa abordagem de decodificação é que ela simplesmente remove todas as ocorrências da letra codificada da mensagem, sem considerar o contexto ou um padrão mais sofisticado de substituição. Por exemplo, se a mensagem original for "papagaio" e a letra de codificação for 'p', o resultado será "aagaio", o que pode tornar a mensagem difícil de interpretar ou até mesmo irreconhecível, especialmente se palavras diferentes compartilharem a mesma letra codificada.
+| Classe Robô           | Método Especial                                      |
+|----------------|-----------------------------------------------------|
+| RoboLimpeza    | Detecta e classifica tipos de lixo (papel, plástico, vidro, metal, orgânico) |
+| RoboAgricultor | Irriga, trata e colhe plantinhas específicas        |
+| RoboRastreador | Detecta tesouros e diferencia metais                |
+| RoboEspacial   | Nomeia planetas e atravessa portais                 |
 
 ---
+## 📚 Regras Gerais
 
-## 🔍 Funções Auxiliares
+1. **Movimentação**
+   - Terrestres: Velocidade máxima limitada
+   - Aéreos: Altitude controlada (limites ambientais e técnicos)
 
-Todos os robôs podem:
-- Exibir sua posição atual com `exibirPosicao()`
-- Identificar obstáculos ao redor com `identificarObstaculo()`
+2. **Sensores**  
+   Alcance limitado para detecção de:  
+   • Obstáculos • Plantas • Lixo  
+   • Tesouros • Portais
+
+3. **Obstáculos**  
+   Parada imediata no eixo de colisão
+---

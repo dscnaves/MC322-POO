@@ -15,27 +15,18 @@ public class SensorPortal extends Sensor {
 
         int alcance = (int) Math.ceil(raio);
 
-        boolean encontrado = false;
-        for (int dx = -alcance; dx <= alcance; dx++) {
-            for (int dy = -alcance; dy <= alcance; dy++) {
-                for (int dz = -alcance; dz <= alcance; dz++) {
-                    int novoX = xRobo + dx;
-                    int novoY = yRobo + dy;
-                    int novoZ = zRobo + dz;
+        boolean encontrado = false;     
 
-                    if (ambiente.dentroDosLimites(novoX, novoY, novoZ)) {
-                        for (Obstaculo obst : ambiente.getObstaculos()) {
-                            if (obst.contemPonto(novoX, novoY, novoZ) && obst.getTipo() == TipoObstaculo.PORTAL) {
-                                System.out.println("🌀 Portal detectado nas coordenadas: (" + novoX + ", " + novoY + ", " + novoZ + ")");
-                                encontrado = true;
-                            }
-                        }
-                    }
-                }
+        for (Obstaculo obst : ambiente.getObstaculos()) {
+            if (obst.contemPonto(obst.x1, obst.y1, obst.z1) && obst.getTipo() == TipoObstaculo.PORTAL && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+                System.out.println("🌀 Portal detectado nas coordenadas: (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")");
+                encontrado = true;
             }
-        }
+        }                    
+                
         if (!encontrado) {
             System.out.println("Nenhum portal encontrado dentro do raio.");
+            return;
         }
     }
 }

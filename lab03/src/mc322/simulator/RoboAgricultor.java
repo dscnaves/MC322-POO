@@ -1,13 +1,16 @@
 public class RoboAgricultor extends RoboAereo {
 
     private String tipoPlantinha;
+    private SensorColheita sensorColheita = new SensorColheita(3.0);
+    private SensorSaude sensorSaude = new SensorSaude(3.0);
+    private SensorIrrigacao sensorIrrigacao = new SensorIrrigacao(3.0);
 
     public RoboAgricultor(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, String tipoPlantinha, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, altitudeMaxima, altitude, ambiente);
         this.tipoPlantinha = tipoPlantinha;
-        this.adicionarSensor(new SensorColheita(3.0));
-        this.adicionarSensor(new SensorSaude(3.0));
-        this.adicionarSensor(new SensorIrrigacao(3.0));
+        this.adicionarSensor(sensorColheita);
+        this.adicionarSensor(sensorSaude);
+        this.adicionarSensor(sensorIrrigacao);
     }
 
     // Método para regar uma plantinha
@@ -15,7 +18,7 @@ public class RoboAgricultor extends RoboAereo {
         boolean regou = false;
         
         // Obtém plantinha pelo sensor de colheita
-        Plantinha plantinha = SensorIrrigacao.checarIrrigacao(this);
+        Plantinha plantinha = sensorIrrigacao.checarIrrigacao(this);
 
         // Verifica se encontrou uma plantinha pronta para irrigar
         if (plantinha != null){
@@ -35,7 +38,7 @@ public class RoboAgricultor extends RoboAereo {
         boolean tratou = false;
         
         // Obtém plantinha pelo sensor de colheita
-        Plantinha plantinha = SensorSaude.checkup(this);
+        Plantinha plantinha = sensorSaude.checkup(this);
 
         // Verifica se encontrou uma plantinha pronta para colheita
         if (plantinha != null){
@@ -71,7 +74,6 @@ public class RoboAgricultor extends RoboAereo {
                 System.out.println("🌿 Plantinha " + plantinha.getEspecie() + " colhida com sucesso!");
                 ambiente.getObstaculos().remove(plantinha);
                 colheu = true;
-                break;
             }
         }
         if (!colheu) {
