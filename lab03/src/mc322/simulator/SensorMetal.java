@@ -5,6 +5,8 @@ public class SensorMetal extends Sensor {
     }
 
     @Override
+
+    // Método para monitorar o ambiente e detectar metais
     public void monitorar(Robo robo) {
         if (!(robo instanceof RoboRastreador)) {
             System.out.println("SensorMetal somente aplicável a RoboRastreador.");
@@ -37,13 +39,29 @@ public class SensorMetal extends Sensor {
                 }
             }
         }
-                    
+
         // Se nenhum metal foi encontrado, informar ao usuário
         if (!encontrado) {
             System.out.println("Nenhum metal detectado dentro do raio.");
         }
     }
 
+    // Criar função para detectar tesouros
+    public Obstaculo detectorTesouros(Robo robo){
+        Ambiente ambiente = robo.getAmbiente();
+        boolean tesouroEncontrado = false;
+        for (Obstaculo obst : ambiente.getObstaculos()) {
+            if (obst.getTipo() == TipoObstaculo.TESOURO) {
+                if (Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())){
+                    tesouroEncontrado = true;
+                    return obst;
+                }
+            }
+        } 
+        if (!tesouroEncontrado){
+            System.out.println("❌ Não há tesouro para extrair.")
+            return null;
+        }
+    }
+
 }
-
-

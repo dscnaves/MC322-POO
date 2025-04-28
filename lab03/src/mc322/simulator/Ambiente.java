@@ -68,6 +68,20 @@ public class Ambiente {
         }
     }
 
+    // Remove um obstáculo
+    public void removerObstaculo(Obstaculo obstaculo){
+        obstaculos.remove(obstaculo);
+        for (int y = obstaculo.getY1(); y <= obstaculo.getY2(); y++){
+            for (int x = obstaculo.getX1(); x <= obstaculo.getX2(); x++){
+                for (int z = obstaculo.getZ1(); z <= obstaculo.getZ1() + obstaculo.getAltura(); z++){
+                    if (dentroDosLimites(x, y, z)){
+                        atualizarMapa(x, y, z, "_");
+                    }
+                }
+            }
+        }
+    }
+
     // Verifica se coordenadas estão dentro dos limites do ambiente
     public boolean dentroDosLimites(int x, int y, int z) {
         return (x >= 0 && x < largura) && (y >= 0 && y < altura) && (z >= 0 && z < altitude);
