@@ -17,50 +17,72 @@ public class RoboAgricultor extends RoboAereo {
         this.adicionarSensor(new SensorSaude(3.0));
     }
 
+    // Método para regar uma plantinha
     public void regarPlantinha() {
         boolean regou = false;
-        for (Obstaculo obst : ambiente.getObstaculos()) {
-            if (obst instanceof Plantinha && obst.contemPonto(posicaoX, posicaoY, altitude)) {
-                ((Plantinha) obst).regar();
+        
+        // Obtém plantinha pelo sensor de colheita
+        Plantinha plantinha = sensorIrrigacao.checarIrrigacao(this);
+
+        // Verifica se encontrou uma plantinha pronta para irrigar
+        if (plantinha != null){
+            // Verifica se a plantinha é do tipo que o agricultor cuida
+            if(plantinha.getEspecie() == tipoPlantinha){
+                plantinha.regar();
                 regou = true;
-            }
+            } 
         }
         if (!regou) {
-            System.out.println("Nenhuma plantinha encontrada para regar.");
+            System.out.println("Nenhuma plantinha da especie" + tipoPlantinha + " encontrada para regar.");
         }
     }
 
+    // Método para tratar uma plantinha doente
     public void tratarPlantaDoente() {
         boolean tratou = false;
-        for (Obstaculo obst : ambiente.getObstaculos()) {
-            if (obst instanceof Plantinha && obst.contemPonto(posicaoX, posicaoY, altitude)) {
-                Plantinha plantinha = (Plantinha) obst;
+        
+        // Obtém plantinha pelo sensor de colheita
+        Plantinha plantinha = sensorSaude.checkup(this);
+
+        // Verifica se encontrou uma plantinha pronta para colheita
+        if (plantinha != null){
+            // Verifica se a plantinha é do tipo que o agricultor cuida
+            if(plantinha.getEspecie() == tipoPlantinha){
+                
+                // Trata a plantinha se ela estiver doente
                 if (!plantinha.isSaudavel()) {
                     plantinha.tratar();
                     tratou = true;
                 }
             }
         }
+        
+        // Verifica se alguma plantinha foi tratada
         if (!tratou) {
-            System.out.println("Nenhuma plantinha doente encontrada para tratar.");
+            System.out.println("Nenhuma plantinha doente da especie " + tipoPlantinha + " encontrada para tratar.");
         }
     }
 
+    // Método para colher uma plantinha pronta para colheita
     public void colherPlantinha() {
         boolean colheu = false;
-        for (Obstaculo obst : ambiente.getObstaculos()) {
-            if (obst instanceof Plantinha && obst.contemPonto(posicaoX, posicaoY, altitude)) {
-                Plantinha plantinha = (Plantinha) obst;
-                if (plantinha.podeColher()) {
-                    System.out.println("🌿 Plantinha " + plantinha.getTipo() + " colhida com sucesso!");
-                    ambiente.getObstaculos().remove(obst);
-                    colheu = true;
-                    break;
-                }
+
+        // Obtém plantinha pelo sensor de colheita
+        Plantinha plantinha = sensorColheita.checarColheita(this);
+
+        // Verifica se encontrou uma plantinha pronta para colheita
+        if (plantinha != null){
+
+            // Verifica se a plantinha é do tipo que o agricultor cuida
+            if (plantinha.getEspecie() == tipoPlantinha) {
+                System.out.println("🌿 Plantinha " + plantinha.getEspecie() + " colhida com sucesso!");
+                ambiente.getObstaculos().remove(obst);
+                colheu = true;
+                break;
             }
         }
         if (!colheu) {
-            System.out.println("Nenhuma plantinha pronta para colheita encontrada.");
+            System.out.println("Nenhuma plantinha da especie " + tipoPlantinha + " pronta para colheita encontrada.");
         }
     }
 

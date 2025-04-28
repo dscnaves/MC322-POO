@@ -23,7 +23,7 @@
  import mc322.simulator.Obstaculo;
  
  public class Robo{
- 
+
      //Atributos necessários para definir a classe Robo
      protected String nome;
      protected int posicaoX;

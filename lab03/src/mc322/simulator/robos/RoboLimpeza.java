@@ -36,7 +36,7 @@
          boolean lixoRemovido = false;
          for (int i = 0; i < ambiente.getObstaculos().size(); i++) {
              Obstaculo obst = ambiente.getObstaculos().get(i);
-             if (obst instanceof Lixo && obst.contemPonto(posicaoX, posicaoY, altitude)) {
+             if (obst instanceof Lixo && sensor.dentroDoAlcance(obst.getX(), obst.getY(), obst.getAltitude(), posicaoX, posicaoY, altitude)) {
                  ambiente.getObstaculos().remove(i);
                  ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
                  System.out.println("🗑️ Lixo removido com sucesso na posição (" + posicaoX + ", " + posicaoY + ", " + altitude + ")!");
@@ -50,38 +50,19 @@
          }
      }
 
-     public void irAteLixoProximo() {
-        int lixoX = sensorReciclagem.getLixoX();
-        int lixoY = sensorReciclagem.getLixoY();
-        int lixoZ = sensorReciclagem.getLixoZ();
-
-        if (lixoX == -1 || lixoY == -1 || lixoZ == -1) {
-            System.out.println("Nenhum lixo detectado para se mover.");
-            return;
-        }
-
-        while (posicaoX != lixoX || posicaoY != lixoY || altitude != lixoZ) {
-            if (posicaoX < lixoX) mover(1, 0, 0);
-            else if (posicaoX > lixoX) mover(-1, 0, 0);
-            else if (posicaoY < lixoY) mover(0, 1, 0);
-            else if (posicaoY > lixoY) mover(0, -1, 0);
-            else if (altitude < lixoZ) mover(0, 0, 1);
-            else if (altitude > lixoZ) mover(0, 0, -1);
-            else break;
-        }
-
-        System.out.println("🗑️ RoboLimpeza chegou ao lixo!");
-    }
-
     public void classificarELimparLixo() {
         for (Obstaculo obst : ambiente.getObstaculos()) {
-            if (obst instanceof Lixo && obst.contemPonto(posicaoX, posicaoY, altitude)) {
-                Lixo lixo = (Lixo) obst;
-                sensorReciclagem.classificarLixo(lixo.getTipoLixo());
-                ambiente.getObstaculos().remove(obst);
-                ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
-                System.out.println("🗑️ Lixo classificado e removido da posição atual.");
-                return;
+            
+            // Verifica se o obstáculo é um lixo e se está dentro do raio de alcance do sensor ()
+            if (obst instanceof Lixo) {
+                if (dentroDoAlcance(obst.x1, obst.y1, obst.z1, posicaoX, posicaoY, altitude)){
+                    Lixo lixo = (Lixo) obst;
+                    sensorReciclagem.classificarLixo(lixo.getTipoLixo());
+                    ambiente.getObstaculos().remove(obst);
+                    ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
+                    System.out.println("🗑️ Lixo classificado e removido da posição atual.");
+                    return;
+                }                
             }
         }
 

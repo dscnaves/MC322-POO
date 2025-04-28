@@ -41,7 +41,7 @@ public class Plantinha extends Obstaculo {
         return saudavel;
     }
 
-    public void setTipo(String especie) {
+    public void setEspecie(String especie) {
         this.especie = especie;
     }
 

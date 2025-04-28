@@ -9,35 +9,27 @@ public class SensorSaude extends Sensor {
     }
 
     @Override
+
+    // Método para monitorar o ambiente em busca de plantinhas doentes
     public void monitorar(Robo robo) {
         System.out.println("🫠 " + robo.getNome() + " ativou o Sensor de Saúde.");
 
+        // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();
         int xRobo = robo.getPosicaoX();
         int yRobo = robo.getPosicaoY();
         int zRobo = robo.getAltitude();
 
-        int alcance = (int) Math.ceil(raio);
         boolean doenteEncontrado = false;
 
-        for (int dx = -alcance; dx <= alcance; dx++) {
-            for (int dy = -alcance; dy <= alcance; dy++) {
-                for (int dz = -alcance; dz <= alcance; dz++) {
-                    int novoX = xRobo + dx;
-                    int novoY = yRobo + dy;
-                    int novoZ = zRobo + dz;
+        for (Obstaculo obst : ambiente.getObstaculos()) {
 
-                    if (ambiente.dentroDosLimites(novoX, novoY, novoZ)) {
-                        for (Obstaculo obst : ambiente.getObstaculos()) {
-                            if (obst instanceof Plantinha && obst.contemPonto(novoX, novoY, novoZ)) {
-                                Plantinha plantinha = (Plantinha) obst;
-                                if (!plantinha.isSaudavel()) {
-                                    System.out.println("🌱 Plantinha " + plantinha.getTipo() + " doente detectada nas coordenadas (" + novoX + ", " + novoY + ", " + novoZ + ")!");
-                                    doenteEncontrado = true;
-                                }
-                            }
-                        }
-                    }
+            // Verifica se o obstáculo é uma plantinha e se está dentro do alcance do sensor
+            if (obst instanceof Plantinha && sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+                Plantinha plantinha = (Plantinha) obst;
+                if (!plantinha.isSaudavel()) {
+                    System.out.println("🌱 Plantinha " + plantinha.getTipo() + " doente detectada nas coordenadas (" + novoX + ", " + novoY + ", " + novoZ + ")!");
+                    doenteEncontrado = true;
                 }
             }
         }
@@ -45,6 +37,34 @@ public class SensorSaude extends Sensor {
         if (!doenteEncontrado) {
             System.out.println("Nenhuma plantinha doente detectada dentro do raio.");
         }
+    }
+
+    // Método para checar se há uma plantinha doente dentro do alcance do sensor
+    public Plantinha checkup(Robo robo) {
+
+        // Obtendo o ambiente e a posição do robo
+        Ambiente ambiente = robo.getAmbiente();
+        int xRobo = robo.getPosicaoX();
+        int yRobo = robo.getPosicaoY();
+        int zRobo = robo.getAltitude();
+
+        boolean doenteEncontrado = false;
+
+
+        for (Obstaculo obst : ambiente.getObstaculos()) {
+
+            // Verifica se o obstáculo é uma plantinha e se está dentro do alcance do sensor
+            if (obst instanceof Plantinha && sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+                Plantinha plantinha = (Plantinha) obst;
+
+                // Verifica se a plantinha está doente
+                if (!plantinha.isSaudavel()) {
+                    // Retorna a plantinha doente
+                    return plantinha;
+                }
+            }
+        }        
+        return null;
     }
 }
 

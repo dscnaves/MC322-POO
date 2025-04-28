@@ -9,7 +9,6 @@ public class SensorReciclagem extends Sensor {
     private int lixoY;
     private int lixoZ;
 
-
     public SensorReciclagem(double raio) {
         super(raio);
         lixoX = -1;
@@ -20,6 +19,7 @@ public class SensorReciclagem extends Sensor {
     @Override
     public void monitorar(Robo robo) {
 
+        // Verifica se o robo é do tipo RoboLimpeza
         if (!(robo instanceof RoboLimpeza)) {
             System.out.println("SensorReciclagem apenas para RoboLimpeza.");
             return;
@@ -27,6 +27,7 @@ public class SensorReciclagem extends Sensor {
 
         System.out.println("🧹 " + robo.getNome() + " ativou o Sensor de Reciclagem.");
 
+        // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();
         int xRobo = robo.getPosicaoX();
         int yRobo = robo.getPosicaoY();
