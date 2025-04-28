@@ -4,7 +4,7 @@ public class RoboRastreador extends RoboTerrestre {
     private int tesouroY;
     private int tesouroZ;
     private int qtdeTesouro;
-    private SensorMetal sensorMetal = new SensorMetal(3.0);
+    private SensorMetal sensorMetal = new SensorMetal(7.0);
 
     public RoboRastreador(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);

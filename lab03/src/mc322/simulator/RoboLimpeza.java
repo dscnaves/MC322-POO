@@ -20,7 +20,7 @@
  
      public RoboLimpeza(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente) {
          super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
-         this.sensorReciclagem = new SensorReciclagem(3.0);
+         this.sensorReciclagem = new SensorReciclagem(5.0);
          this.adicionarSensor(sensorReciclagem);
      }
  

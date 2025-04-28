@@ -27,7 +27,7 @@
  
          // Criação dos Robôs
          RoboLimpeza roboLimpeza = new RoboLimpeza("Wall-E", 1, 1, "Norte", 3, ambiente);
-         RoboAgricultor roboAgricultor = new RoboAgricultor("Chupacabra", 2, 2, "Leste", 10, 2, "Tomate", ambiente);
+         RoboAgricultor roboAgricultor = new RoboAgricultor("Agricultor_Dust", 2, 2, "Leste", 10, 2, "Tomate", ambiente);
          RoboEspacial roboEspacial = new RoboEspacial("R2-D2", 4, 4, "Sul", 10, 3, ambiente);
          RoboRastreador roboRastreador = new RoboRastreador("Pirata", 0, 0, "Oeste", 3, ambiente);
  
@@ -37,12 +37,26 @@
          ambiente.adicionarRobo(roboEspacial);
          ambiente.adicionarRobo(roboRastreador);
  
-         // Adiciona Obstáculos
+         // Adiciona Plantinhas
          ambiente.adicionarObstaculo(new Plantinha(5, 5, 0, 5, 5, 0, "Tomate"));
+         ambiente.adicionarObstaculo(new Plantinha(3, 7, 0, 3, 7, 0, "Tomate"));
+         ambiente.adicionarObstaculo(new Plantinha(10, 3, 0, 10, 3, 0, "Tomate"));
+         
+         // Adiciona Lixos
          ambiente.adicionarObstaculo(new Lixo(3, 3, 0, 3, 3, 0, "Plastico"));
-         //ambiente.adicionarObstaculo(new Tesouro(7, 7, 7, 7, 0));
-         ambiente.adicionarObstaculo(new Portal(8, 8, 0, 8, 8, 0, 1, 1, 0));
- 
+         ambiente.adicionarObstaculo(new Lixo(2, 3, 0, 2, 3, 4, "Plastico"));
+         ambiente.adicionarObstaculo(new Lixo(8, 8, 0, 8, 8, 0, "Vidro"));
+         ambiente.adicionarObstaculo(new Lixo(7, 4, 0, 7, 4, 3, "Vidro"));
+         ambiente.adicionarObstaculo(new Lixo(4, 8, 0, 4, 8, 0, "Metal"));
+         ambiente.adicionarObstaculo(new Lixo(2, 5, 0, 2, 5, 7, "Metal"));
+         ambiente.adicionarObstaculo(new Lixo(2, 2, 0, 2, 2, 5, "Metal"));
+
+         // ambiente.adicionarObstaculo(new Tesouro(7, 7, 7, 7, 0));
+
+         // Adicionando Planeta e respectivo portal
+         ambiente.adicionarObstaculo(new Portal(8, 8, 0, 8, 8, 0, 1, 1, 6));
+         ambiente.adicionarObstaculo(new Planeta(1, 1, 6, 4, 4, 0));
+
          // Testes obrigatórios fora do menu
          roboLimpeza.exibirPosicao();
          roboAgricultor.exibirPosicao();
@@ -73,8 +87,10 @@
              System.out.println("8. Limpar e Classificar Lixo");
              System.out.println("9. Nomear Planeta");
              System.out.println("10. Visualizar 1 andar de Ambiente");
+             System.out.println("11. Usar Sensor de Detector de metais");
              System.out.println("0. Sair");
              System.out.print("Escolha uma opção: ");
+             System.out.print("\n");
  
              opcao = sc.nextInt();
              sc.nextLine();
@@ -82,17 +98,18 @@
              switch (opcao) {
                  case 1:
                      System.out.print("Escolha o robô (1-Limpeza, 2-Agricultor, 3-Espacial, 4-Rastreador): ");
-                     int escolha = sc.nextInt();
+                     System.out.print("\n");
+                     int escolha1 = sc.nextInt();
                      System.out.print("Delta X: ");
                      int dx = sc.nextInt();
                      System.out.print("Delta Y: ");
                      int dy = sc.nextInt();
                      System.out.print("Delta Z: ");
                      int dz = sc.nextInt();
-                     if (escolha == 1) roboLimpeza.mover(dx, dy, dz);
-                     else if (escolha == 2) roboAgricultor.mover(dx, dy, dz);
-                     else if (escolha == 3) roboEspacial.mover(dx, dy, dz);
-                     else if (escolha == 4) roboRastreador.mover(dx, dy, dz);
+                     if (escolha1 == 1) roboLimpeza.mover(dx, dy, dz);
+                     else if (escolha1 == 2) roboAgricultor.mover(dx, dy, dz);
+                     else if (escolha1 == 3) roboEspacial.mover(dx, dy, dz);
+                     else if (escolha1 == 4) roboRastreador.mover(dx, dy, dz);
                      break;
                  case 2:
                      roboLimpeza.exibirPosicao();
@@ -104,10 +121,13 @@
                      ambiente.exibirMapa();
                      break;
                  case 4:
-                     roboLimpeza.usarSensores();
-                     roboAgricultor.usarSensores();
-                     roboEspacial.usarSensores();
-                     roboRastreador.usarSensores();
+                     System.out.print("Escolha o robô (1-Limpeza, 2-Agricultor, 3-Espacial, 4-Rastreador): ");
+                     System.out.print("\n");
+                     int escolha4 = sc.nextInt();
+                     if (escolha4 == 1) roboLimpeza.usarSensores();
+                     else if (escolha4 == 2) roboAgricultor.usarSensores();
+                     else if (escolha4 == 3) roboEspacial.usarSensores();
+                     else if (escolha4 == 4) roboRastreador.usarSensores();
                      break;
                  case 5:
                      roboAgricultor.regarPlantinha();

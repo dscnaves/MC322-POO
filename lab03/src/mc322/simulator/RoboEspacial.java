@@ -3,8 +3,8 @@ public class RoboEspacial extends RoboAereo {
     // Atributo para armazenar a quantidade de planetas descobertos
     private int qtdePlanetasDescobertos;
 
-    private SensorPortal sensorPortal = new SensorPortal(3.0);
-    private SensorPovoamento sensorPovoamento = new SensorPovoamento(3.0);
+    private SensorPortal sensorPortal = new SensorPortal(6.0);
+    private SensorPovoamento sensorPovoamento = new SensorPovoamento(7.0);
 
     // Construtor da classe RoboEspacial
     public RoboEspacial(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente) {

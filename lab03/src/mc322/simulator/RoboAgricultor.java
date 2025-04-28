@@ -1,9 +1,9 @@
 public class RoboAgricultor extends RoboAereo {
 
     private String tipoPlantinha;
-    private SensorColheita sensorColheita = new SensorColheita(3.0);
-    private SensorSaude sensorSaude = new SensorSaude(3.0);
-    private SensorIrrigacao sensorIrrigacao = new SensorIrrigacao(3.0);
+    private SensorColheita sensorColheita = new SensorColheita(7.0);
+    private SensorSaude sensorSaude = new SensorSaude(8.0);
+    private SensorIrrigacao sensorIrrigacao = new SensorIrrigacao(5.0);
 
     public RoboAgricultor(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, String tipoPlantinha, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, altitudeMaxima, altitude, ambiente);
