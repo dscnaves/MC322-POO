@@ -220,7 +220,7 @@ Sensor <|-- SensorMetal
 Sensor <|-- SensorPortal
 Sensor <|-- SensorPovoamento
 Sensor <|-- SensorReciclagem
-'''
+```
 
 ---
 
