@@ -21,32 +21,30 @@ public class SensorMetal extends Sensor {
         int alcance = (int) Math.ceil(raio);
         boolean encontrado = false;
 
-        for (int dx = -alcance; dx <= alcance; dx++) {
-            for (int dy = -alcance; dy <= alcance; dy++) {
-                for (int dz = -alcance; dz <= alcance; dz++) {
-                    int novoX = xRobo + dx;
-                    int novoY = yRobo + dy;
-                    int novoZ = zRobo + dz;
+        // Verifica cada obstáculo no ambiente
+        for (Obstaculo obst : ambiente.getObstaculos()) {
 
-                    if (ambiente.dentroDosLimites(novoX, novoY, novoZ)) {
-                        for (Obstaculo obst : ambiente.getObstaculos()) {
-                            if (obst.contemPonto(novoX, novoY, novoZ)) {
-                                if (obst.getTipo() == TipoObstaculo.TESOURO || obst.getTipo() == TipoObstaculo.LIXO) {
-                                    ((RoboRastreador) robo).atualizarLocalizacaoTesouro(novoX, novoY, novoZ);
-                                    ((RoboRastreador) robo).classificarMetal(obst);
-                                    encontrado = true;
-                                }
-                            }
-                        }
-                    }
+            // Verifica se o obstáculo é um metal e se está dentro do alcance do sensor
+            if (Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+
+                // Verifica se o obstáculo é um tesouro ou lixo
+                if (obst.getTipo() == TipoObstaculo.TESOURO || obst.getTipo() == TipoObstaculo.LIXO) {
+
+                    // Atualiza a localização do tesouro e classifica o metal
+                    ((RoboRastreador) robo).atualizarLocalizacaoTesouro(obst.x1, obst.y1, obst.z1);
+                    ((RoboRastreador) robo).classificarMetal(obst);
+                    encontrado = true;
                 }
             }
         }
-
+                    
+        // Se nenhum metal foi encontrado, informar ao usuário
         if (!encontrado) {
             System.out.println("Nenhum metal detectado dentro do raio.");
         }
     }
+
+    // função check
 }
 
 

@@ -30,40 +30,26 @@ public class SensorReciclagem extends Sensor {
 
         // Convertendo a variável raio para o número de quadrados em volta do robo
         int alcance = (int) Math.ceil(raio);
-        boolean lixoEncontrado = false;
+        boolean lixoEncontrado = false;        
 
-        // Percorremos os quadradinhos dentro do cubo de (lado = alcance) onde o robo se encontra no centro de forma a encontrarmos ObstáculosLixo em volta do robo
-        for (int dx = -alcance; dx <= alcance; dx++) {                  // Percorre em x
-            for (int dy = -alcance; dy <= alcance; dy++) {                  // Percorre em y
-                for (int dz = -alcance; dz <= alcance; dz++) {                  // Percorre em z
-                    int novoX = xRobo + dx;
-                    int novoY = yRobo + dy;
-                    int novoZ = zRobo + dz;
+        // Percorrer a lista de obstáculo dentro do Ambiente
+        for (Obstaculo obst : ambiente.getObstaculos()) {
 
-                    // Verificar se a posição que estamos verificando está dentro dos limites do mapa
-                    if (ambiente.dentroDosLimites(novoX, novoY, novoZ)) {
-
-                        // Percorrer a lista de obstáculo dentro do Ambiente
-                        for (Obstaculo obst : ambiente.getObstaculos()) {
-
-                            // Verificar se o obstáculo é do tipo lixo e se o obstáculo ocupa a posição que estamos verificando
-                            if (obst instanceof Lixo && obst.contemPonto(novoX, novoY, novoZ)) {
-                                
-                                // Converter obstáculo obst em obstáculo do tipo lixo
-                                Lixo lixo = (Lixo) obst;
-                                System.out.println("🗑️ Lixo de tipo " + lixo.getTipoLixo() + " detectado nas coordenadas (" + novoX + ", " + novoY + ", " + novoZ + ")!");
-                                lixoX = novoX;
-                                lixoY = novoY;
-                                lixoZ = novoZ;
-                                lixoEncontrado = true;
-                                break;
-                            }
-                        }
-                    }
-                }
+            // Verificar se o obstáculo é do tipo lixo e se o obstáculo ocupa a posição que estamos verificando
+            if (obst instanceof Lixo && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+                
+                // Converter obstáculo obst em obstáculo do tipo lixo
+                Lixo lixo = (Lixo) obst;
+                System.out.println("🗑️ Lixo de tipo " + lixo.getTipoLixo() + " detectado nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " +obst.z1 + ")!");
+                lixoX = obst.x1;
+                lixoY = obst.y1;
+                lixoZ =obst.z1;
+                lixoEncontrado = true;
+                break;
             }
         }
-
+    
+        // Se nenhum lixo foi encontrado, informar ao usuário
         if (!lixoEncontrado) {
             System.out.println("Nenhum lixo detectado dentro do raio.");
         }
@@ -91,6 +77,7 @@ public class SensorReciclagem extends Sensor {
         }
     }
 
+    // não precisa da função checkup pq ele já guarda a posição do lixo
 
     // Funções Getters
     public int getLixoX() {
