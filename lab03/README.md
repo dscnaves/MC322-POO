@@ -64,6 +64,7 @@ class Ambiente {
   - ArrayList~Robo~ robosAtivos
   - ArrayList~Obstaculo~ obstaculos
   - String[][][] mapa
+  + void inicializarMapa()
   + void adicionarRobo(Robo)
   + void removerRobo(Robo)
   + void adicionarObstaculo(Obstaculo)
@@ -71,7 +72,13 @@ class Ambiente {
   + boolean posicaoLivre(int, int, int)
   + void atualizarMapa(int, int, int, String)
   + void exibirMapa()
+  + void exibirPlanoXMapa(int)
   + void detectarColisoes()
+  + int getAmbienteLargura()
+  + int getAmbienteAltura()
+  + int getAmbienteAltitude()
+  + String[][][] getMapa()
+  + ArrayList<Obstaculo> getObstaculos()
 }
 
 class Robo {
@@ -155,11 +162,15 @@ class Plantinha {
   + void regar()
   + void tratar()
   + boolean podeColher()
+  + String getEspecie()
+  + double getCrescimento()
+  + boolean isSaudavel()
 }
 
 class Lixo {
   - String tipoLixo
   + String getTipoLixo()
+  + void setTipoLixo(String)
 }
 
 class Portal {
@@ -174,6 +185,7 @@ class Portal {
 class Planeta {
   - String nome
   + void setNome(String)
+  + String getNome()
 }
 
 class TipoObstaculo {
@@ -189,30 +201,41 @@ class Sensor {
 }
 
 class SensorColheita {
-  + boolean detectar(Obstaculo)
+  + void monitorar(Robo)
+  + Plantinha checarColheita(Robo)
 }
 
 class SensorIrrigacao {
-  + boolean detectar(Obstaculo)
+  + void monitorar(Robo)
+  + Plantinha checarIrrigacao(Robo)
 }
 
 class SensorSaude {
-  + boolean detectar(Obstaculo)
+  + void monitorar(Robo)
+  + Plantinha checkup(Robo)
 }
 
 class SensorMetal {
-  + boolean detectar(Obstaculo)
+  + void monitorar(Robo)
+  + Obstaculo detectorTesouros(Robo)
 }
 
 class SensorPortal {
-  + boolean detectar(Obstaculo)
+  + void monitorar(Robo)
+  + Portal checarPortal(Robo)
 }
 
 class SensorPovoamento {
-  + boolean detectar(Obstaculo)
+  + void monitorar(Robo)
+  + Planeta checkPovo(Robo)
+  + boolean planetaJaPovoado(Ambiente, Planeta)
 }
 
 class SensorReciclagem {
+  - int lixoX
+  - int lixoY
+  - int lixoZ
+  + void monitorar(Robo)
   + String classificarLixo(Obstaculo)
 }
 
