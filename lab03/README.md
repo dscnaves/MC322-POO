@@ -271,12 +271,12 @@ Sensor <|-- SensorReciclagem
 
 1. Compile todos os arquivos:
 ```bash
-javac *.java
+javac -d bin src/mc322/Simulator/*.java
 ```
 
 2. Execute a simulação:
 ```bash
-java Main
+java -cp bin Main
 ```
 
 ---
@@ -286,19 +286,28 @@ java Main
 Após a execução, você poderá:
 
 | Opção | Ação |
-|------|------------------------------------|
-| 1    | Mover um robô                      |
-| 2    | Visualizar status dos robôs        |
-| 3    | Visualizar o ambiente tridimensional |
-| 4    | Usar sensores dos robôs            |
-| 5    | Regar uma plantinha                |
-| 6    | Tratar uma plantinha doente        |
-| 7    | Colher uma plantinha               |
-| 8    | Classificar e limpar lixo          |
-| 9    | Nomear um planeta                  |
-| 0    | Encerrar o simulador               |
+|------|-------------------------------------------------|
+| 1    | Mover um robô                                   |
+| 2    | Visualizar status dos robôs                     |
+| 3    | Visualizar o ambiente tridimensional completo   |
+| 4    | Usar sensores dos robôs                         |
+| 5    | Regar uma plantinha                             |
+| 6    | Tratar uma plantinha doente                     |
+| 7    | Colher uma plantinha                            |
+| 8    | Classificar e limpar lixo                       |
+| 9    | Visualizar 1 andar específico do ambiente       |
+| 10   | Usar sensor de metal (Rastreador)               |
+| 11   | Extrair tesouro (Rastreador)                    |
+| 12   | Verificar tesouros coletados (Rastreador)       |
+| 13   | Atravessar portal (Espacial)                    |
+| 14   | Nomear planeta (Espacial)                       |
+| 15   | Usar sensor de portal (Espacial)                |
+| 16   | Usar sensor de povoamento (Espacial)            |
+| 17   | Ver planetas descobertos (Espacial)             |
+| 0    | Encerrar o simulador                            |
 
 **Observação:** As classes são instanciadas no início do programa. O menu apenas realiza interações.
+
 
 ---
 
