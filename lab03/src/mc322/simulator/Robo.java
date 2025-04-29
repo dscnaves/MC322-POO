@@ -147,11 +147,11 @@
      public void setAltitude(int newz){ this.altitude = newz; }
  
      public Ambiente getAmbiente() {
-         return ambiente;
+        return ambiente;
      }
  
      public String getNome() {
-         return nome;
+        return nome;
      }
  }
  
