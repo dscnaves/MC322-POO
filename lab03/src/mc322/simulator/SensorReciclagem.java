@@ -38,7 +38,7 @@ public class SensorReciclagem extends Sensor {
             return;
         }
 
-        System.out.println("🧹 " + robo.getNome() + " ativou o Sensor de Reciclagem.");
+        System.out.println(robo.getNome() + " ativou o Sensor de Reciclagem.");
 
         // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();
@@ -58,7 +58,7 @@ public class SensorReciclagem extends Sensor {
                 
                 // Converter obstáculo obst em obstáculo do tipo lixo
                 Lixo lixo = (Lixo) obst;
-                System.out.println("🗑️ Lixo de tipo " + lixo.getTipoLixo() + " detectado nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " +obst.z1 + ")!");
+                System.out.println("Lixo de tipo " + lixo.getTipoLixo() + " detectado nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " +obst.z1 + ")!");
                 lixoX = obst.x1;
                 lixoY = obst.y1;
                 lixoZ =obst.z1;

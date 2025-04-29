@@ -55,10 +55,10 @@ public class Ambiente {
         
         // Verifica se o robô está dentro dos limites do ambiente
         if (dentroDosLimites(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
-            atualizarMapa(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude(), "🤖");
+            atualizarMapa(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude(), "R");
         } else {
             System.out.println("Robo fora dos limites. Posicionado em (0,0,0).");
-            atualizarMapa(0, 0, 0, "🤖");
+            atualizarMapa(0, 0, 0, "R");
         }
     }
 
@@ -149,7 +149,7 @@ public class Ambiente {
         for (Robo robo : robosAtivos) {
             for (Obstaculo obstaculo : obstaculos) {
                 if (obstaculo.contemPonto(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
-                    System.out.println("❌ COLISÃO: Robô " + robo.getNome() + " colidiu com um obstáculo.");
+                    System.out.println("COLISÃO: Robô " + robo.getNome() + " colidiu com um obstáculo.");
                 }
             }
         }

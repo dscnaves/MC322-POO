@@ -39,7 +39,7 @@ public class RoboRastreador extends RoboTerrestre {
         this.tesouroX = x;
         this.tesouroY = y;
         this.tesouroZ = z;
-        System.out.println("📌 Tesouro detectado nas coordenadas: (" + x + ", " + y + ", " + z + ")");
+        System.out.println("Tesouro detectado nas coordenadas: (" + x + ", " + y + ", " + z + ")");
     }
 
     // Método para classificar o metal entre puro ou impiruro
@@ -52,14 +52,14 @@ public class RoboRastreador extends RoboTerrestre {
         // Classificação do metal
         switch(obstaculo.getTipo()) {
             case TESOURO:
-                System.out.println("💰 Tesouro identificado e capturado!");
+                System.out.println("Tesouro identificado e capturado!");
                 qtdeTesouro++;
                 break;
             case LIXO:
-                System.out.println("🗑️ Metal lixo encontrado.");
+                System.out.println("Metal lixo encontrado.");
                 break;
             default:
-                System.out.println("❌ Objeto encontrado não é metal conhecido.");
+                System.out.println("Objeto encontrado não é metal conhecido.");
         }
     }
 
@@ -74,13 +74,13 @@ public class RoboRastreador extends RoboTerrestre {
             tesouroY = -1;
             tesouroZ = -1;         
         } else {
-            System.out.println("❌ Não há tesouro para extrair.");
+            System.out.println("Não há tesouro para extrair.");
         }
     }
 
     // Método para verificar a quantidade de tesouros encontrados
     public void checkBauDeTesouros() {
-        System.out.println("💎 Tesouros encontrados até agora: " + qtdeTesouro);
+        System.out.println("Tesouros encontrados até agora: " + qtdeTesouro);
     }
 
     public boolean temTesouroLocalizado() {

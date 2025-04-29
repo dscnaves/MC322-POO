@@ -13,12 +13,12 @@
 */
 
 public enum TipoObstaculo {
-    PLANTINHA(2, true, "🌱"),
-    LIXO(1, true, "🗑️"),
-    TESOURO(1, true, "💰"),
-    PORTAL(1, true, "🔀"), 
-    ALIENIGENA(2, true, "👽"),
-    PLANETA(3, false, "🌍");
+    PLANTINHA(2, true, "P"),
+    LIXO(1, true, "L"),
+    TESOURO(1, true, "T"),
+    PORTAL(1, true, "O"), 
+    ALIENIGENA(2, true, "A"),
+    PLANETA(3, false, "W");
 
     // Atributos
     private final int alturaPadrao;

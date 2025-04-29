@@ -30,9 +30,9 @@ public class SensorPovoamento extends Sensor {
             
             // Verifica se o planeta está povoado ou não
             if (planetaJaPovoado(robo.getAmbiente(), planeta)) {
-                System.out.println("👽 Planeta povoado detectado!");
+                System.out.println("Planeta povoado detectado!");
             } else {
-                System.out.println("🪐 Planeta desabitado detectado! Pode ser nomeado.");
+                System.out.println("Planeta desabitado detectado! Pode ser nomeado.");
             }
         } else {
             System.out.println("Nenhum planeta encontrado na posição atual.");

@@ -22,7 +22,7 @@ public class Plantinha extends Obstaculo {
     // Construtor
     public Plantinha(int x1, int y1, int z1, int x2, int y2, int altura, String tipo) {
         super(x1, y1, z1, x2, y2, altura, TipoObstaculo.PLANTINHA);
-        this.especie = especie;
+        this.especie = tipo;
         this.crescimento = 0.0;
         this.saudavel = true;
     }
@@ -31,14 +31,14 @@ public class Plantinha extends Obstaculo {
     public void regar() {
         if (crescimento < 100) {
             crescimento = Math.min(100, crescimento + 10);
-            System.out.println("🌱 " + especie + " regada! Crescimento atual: " + crescimento + "%");
+            System.out.println(especie + " regada! Crescimento atual: " + crescimento + "%");
         }
     }
 
     // Método para tratar a plantinha
     public void tratar() {
         saudavel = true;
-        System.out.println("🌱 " + especie + " foi tratada e está saudável!");
+        System.out.println(especie + " foi tratada e está saudável!");
     }
 
     // Método para verificar se a plantinha pode ser colhida

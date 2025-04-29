@@ -23,7 +23,7 @@ public class SensorIrrigacao extends Sensor {
 
     // Método para monitorar o ambiente em busca de plantinhas prontas para Irrigacao
     public void monitorar(Robo robo) {
-        System.out.println("🌿 " + robo.getNome() + " ativou o Sensor de Irrigacao.");
+        System.out.println(robo.getNome() + " ativou o Sensor de Irrigacao.");
 
         // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();
@@ -38,7 +38,7 @@ public class SensorIrrigacao extends Sensor {
             if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
                 Plantinha plantinha = (Plantinha) obst;
                 if (plantinha.getCrescimento() < 100) {
-                    System.out.println("🌿 Plantinha " + plantinha.getTipo() + " pronta para irrigacao nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")!");
+                    System.out.println("Plantinha " + plantinha.getTipo() + " pronta para irrigacao nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")!");
                     plantinhaPronta = true;
                 }
             }

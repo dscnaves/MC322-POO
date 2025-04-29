@@ -27,7 +27,7 @@ public class SensorMetal extends Sensor {
             return;
         }
 
-        System.out.println("🔍 " + robo.getNome() + " ativou o Sensor de Metal.");
+        System.out.println(robo.getNome() + " ativou o Sensor de Metal.");
 
         Ambiente ambiente = robo.getAmbiente();
         int xRobo = robo.getPosicaoX();
@@ -83,7 +83,7 @@ public class SensorMetal extends Sensor {
             }
         } 
         if (!tesouroEncontrado){
-            System.out.println("❌ Não há tesouro para extrair.");
+            System.out.println("Não há tesouro para extrair.");
             return null;
         }
         return null;

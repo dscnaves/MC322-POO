@@ -60,7 +60,7 @@
              if (ambiente.posicaoLivre(proximoX, posicaoY, altitude)) {
                  ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
                  posicaoX = proximoX;
-                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "🤖");
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "R");
              } else {
                  System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo X e parou em (" + posicaoX + ", " + posicaoY + ", " + altitude + ")");
                  break;
@@ -75,7 +75,7 @@
              if (ambiente.posicaoLivre(posicaoX, proximoY, altitude)) {
                  ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
                  posicaoY = proximoY;
-                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "🤖");
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "R");
              } else {
                  System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo Y e parou em (" + posicaoX + ", " + posicaoY + ", " + altitude + ")");
                  break;
@@ -90,7 +90,7 @@
              if (ambiente.dentroDosLimites(posicaoX, posicaoY, proximoZ) && ambiente.posicaoLivre(posicaoX, posicaoY, proximoZ)) {
                  ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
                  altitude = proximoZ;
-                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "🤖");
+                 ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "R");
              } else {
                  System.out.println(nome + " encontrou obstaculo ou fim do ambiente ao andar no eixo Z e parou em (" + posicaoX + ", " + posicaoY + ", " + altitude + ")");
                  break;

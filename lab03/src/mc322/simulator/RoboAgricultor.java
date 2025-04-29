@@ -88,7 +88,7 @@ public class RoboAgricultor extends RoboAereo {
 
             // Verifica se a plantinha é do tipo que o agricultor cuida
             if (plantinha.getEspecie() == tipoPlantinha) {
-                System.out.println("🌿 Plantinha " + plantinha.getEspecie() + " colhida com sucesso!");
+                System.out.println("Plantinha " + plantinha.getEspecie() + " colhida com sucesso!");
                 ambiente.getObstaculos().remove(plantinha);
                 colheu = true;
             }

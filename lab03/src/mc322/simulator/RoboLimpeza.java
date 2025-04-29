@@ -38,7 +38,7 @@
                  ambiente.getObstaculos().remove(i);
                  // Atualiza o mapa removendo o lixo
                  ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
-                 System.out.println("🗑️ Lixo removido com sucesso na posição (" + posicaoX + ", " + posicaoY + ", " + altitude + ")!");
+                 System.out.println("Lixo removido com sucesso na posição (" + posicaoX + ", " + posicaoY + ", " + altitude + ")!");
                  lixoRemovido = true;
                  break;
              }
@@ -63,7 +63,7 @@
                     ambiente.getObstaculos().remove(obst);
                     // Atualiza o mapa removendo o lixo
                     ambiente.atualizarMapa(posicaoX, posicaoY, altitude, "_");
-                    System.out.println("🗑️ Lixo classificado e removido da posição atual.");
+                    System.out.println("Lixo classificado e removido da posição atual.");
                     return;
                 }                
             }

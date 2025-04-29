@@ -22,7 +22,7 @@ public class SensorSaude extends Sensor {
 
     // Método para monitorar o ambiente em busca de plantinhas doentes
     public void monitorar(Robo robo) {
-        System.out.println("🫠 " + robo.getNome() + " ativou o Sensor de Saúde.");
+        System.out.println(robo.getNome() + " ativou o Sensor de Saúde.");
 
         // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();
@@ -38,7 +38,7 @@ public class SensorSaude extends Sensor {
             if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
                 Plantinha plantinha = (Plantinha) obst;
                 if (!plantinha.isSaudavel()) {
-                    System.out.println("🌱 Plantinha " + plantinha.getTipo() + " doente detectada nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")!");
+                    System.out.println("Plantinha " + plantinha.getTipo() + " doente detectada nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")!");
                     doenteEncontrado = true;
                 }
             }
