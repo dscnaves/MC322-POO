@@ -1,3 +1,17 @@
+/*
+* RoboRastreador.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de RoboRastreador
+*/
+
 public class RoboRastreador extends RoboTerrestre {
 
     // Atributos
@@ -35,6 +49,7 @@ public class RoboRastreador extends RoboTerrestre {
             return;
         }
 
+        // Classificação do metal
         switch(obstaculo.getTipo()) {
             case TESOURO:
                 System.out.println("💰 Tesouro identificado e capturado!");

@@ -1,9 +1,25 @@
+/*
+* SensorReciclagem.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de um sensor de reciclagem.
+*/
+
 public class SensorReciclagem extends Sensor {
 
+    // Atributos para armazenar a posição do lixo encontrado
     private int lixoX;
     private int lixoY;
     private int lixoZ;
 
+    // Construtor
     public SensorReciclagem(double raio) {
         super(raio);
         lixoX = -1;
@@ -12,6 +28,8 @@ public class SensorReciclagem extends Sensor {
     }
 
     @Override
+
+    // Função para monitorar o ambiente em busca de lixo
     public void monitorar(Robo robo) {
 
         // Verifica se o robo é do tipo RoboLimpeza

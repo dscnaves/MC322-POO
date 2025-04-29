@@ -1,5 +1,20 @@
+/*
+* SensorColheita.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de um sensor de colheita.
+*/
+
 public class SensorColheita extends Sensor {
 
+    // Construtor
     public SensorColheita(double raio) {
         super(raio);
     }
@@ -18,9 +33,13 @@ public class SensorColheita extends Sensor {
 
         boolean plantinhaPronta = false;        
 
+        // Verifica se há uma plantinha pronta para colheita dentro do alcance do sensor
         for (Obstaculo obst : ambiente.getObstaculos()) {
+            // Verifica se o obstáculo é uma plantinha e se está dentro do alcance do sensor
             if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
+                // Verifica se a plantinha está pronta para colheita
                 Plantinha plantinha = (Plantinha) obst;
+                // Verifica se a plantinha está pronta para colheita
                 if (plantinha.podeColher()) {
                     System.out.println("🌿 Plantinha " + plantinha.getTipo() + " pronta para colheita nas coordenadas (" + obst.x1 + ", " + obst.y1 + ", " + obst.z1 + ")!");
                     plantinhaPronta = true;
@@ -42,6 +61,7 @@ public class SensorColheita extends Sensor {
         int zRobo = robo.getAltitude();
 
         for (Obstaculo obst : ambiente.getObstaculos()) {
+            // Verifica se o obstáculo é uma plantinha e se está dentro do alcance do sensor
             if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
                 Plantinha plantinha = (Plantinha) obst;
 

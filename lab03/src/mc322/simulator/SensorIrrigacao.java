@@ -1,5 +1,20 @@
+/*
+* SensorIrrigacao.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de um sensor de irrigacao.
+*/
+
 public class SensorIrrigacao extends Sensor {
 
+    // Construtor
     public SensorIrrigacao(double raio) {
         super(raio);
     }
@@ -43,6 +58,7 @@ public class SensorIrrigacao extends Sensor {
         int zRobo = robo.getAltitude();
 
         for (Obstaculo obst : ambiente.getObstaculos()) {
+            // Verifica se o obstáculo é uma plantinha e está dentro do alcance do sensor
             if (obst instanceof Plantinha && Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
                 Plantinha plantinha = (Plantinha) obst;
 

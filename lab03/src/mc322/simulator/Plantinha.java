@@ -1,9 +1,25 @@
+/*
+* Plantinha.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de uma plantinha, que é um tipo de obstáculo.
+*/
+
 public class Plantinha extends Obstaculo {
 
+    // Atributos específicos de Plantinha
     private String especie;
     private double crescimento;
     private boolean saudavel;
 
+    // Construtor
     public Plantinha(int x1, int y1, int z1, int x2, int y2, int altura, String tipo) {
         super(x1, y1, z1, x2, y2, altura, TipoObstaculo.PLANTINHA);
         this.especie = especie;
@@ -11,6 +27,7 @@ public class Plantinha extends Obstaculo {
         this.saudavel = true;
     }
 
+    // Métodos específicos de Plantinha
     public void regar() {
         if (crescimento < 100) {
             crescimento = Math.min(100, crescimento + 10);
@@ -18,15 +35,18 @@ public class Plantinha extends Obstaculo {
         }
     }
 
+    // Método para tratar a plantinha
     public void tratar() {
         saudavel = true;
         System.out.println("🌱 " + especie + " foi tratada e está saudável!");
     }
 
+    // Método para verificar se a plantinha pode ser colhida
     public boolean podeColher() {
         return saudavel && crescimento >= 80;
     }
 
+    // Getters e Setters
     public String getEspecie() {
         return especie;
     }
@@ -35,6 +55,7 @@ public class Plantinha extends Obstaculo {
         return crescimento;
     }
 
+    // Método para verificar se a plantinha está saudável
     public boolean isSaudavel() {
         return saudavel;
     }

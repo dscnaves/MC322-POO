@@ -1,3 +1,17 @@
+/*
+* SensorSaude.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de um sensor de saúde, que é um tipo de sensor.
+*/
+
 public class SensorSaude extends Sensor {
 
     public SensorSaude(double raio) {

@@ -1,4 +1,20 @@
+/*
+* SensorPortal.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de um sensor de portal.
+*/
+
 public class SensorPortal extends Sensor {
+
+    // Construtor
     public SensorPortal(double raio) {
         super(raio);
     }
@@ -9,6 +25,8 @@ public class SensorPortal extends Sensor {
     public void monitorar(Robo robo) {
         System.out.println("🔎 " + robo.getNome() + " ativou o Sensor de Portal.");
         Portal portal = checkPortal(robo);
+
+        // Verifica se encontrou um portal
         if (portal != null) {
             System.out.println("🌀 Portal detectado em (" + 
                 portal.getX1() + "," + portal.getY1() + "," + portal.getZ1() + ")");
@@ -19,8 +37,12 @@ public class SensorPortal extends Sensor {
         }
     }
 
+    // Método para verificar se há um portal no alcance do sensor
     public Portal checkPortal(Robo robo) {
+        
+        // Percorre a lista de obstáculos do ambiente
         for (Obstaculo obst : robo.getAmbiente().getObstaculos()) {
+            // Verifica se o obstáculo é um portal e se está dentro do alcance do sensor
             if (obst.getTipo() == TipoObstaculo.PORTAL && 
                 Sensor.dentroDoAlcance(obst.getX1(), obst.getY1(), obst.getZ1(), 
                                       robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {

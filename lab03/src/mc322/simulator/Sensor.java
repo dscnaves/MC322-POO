@@ -1,10 +1,27 @@
+/*
+* Sensor.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de um sensor, que é um componente dos robôs.
+*/
+
 public abstract class Sensor {
+    
+    // Atributo de alcance do sensor
     protected static double raio;
 
     public Sensor(double raio) {
         this.raio = raio;
     }
 
+    // Método abstrato para monitorar o ambiente
     public abstract void monitorar(Robo robo);
 
     // Método para verificar alcance de utilização do sensor

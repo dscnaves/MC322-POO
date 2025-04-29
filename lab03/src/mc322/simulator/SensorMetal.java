@@ -1,3 +1,17 @@
+/*
+* SensorMetal.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de um sensor de metal.
+*/
+
 public class SensorMetal extends Sensor {
 
     public SensorMetal(double raio) {
@@ -52,11 +66,16 @@ public class SensorMetal extends Sensor {
             System.out.println("Este sensor só funciona com RoboRastreador");
             return null;
         }
-
+        
+        
         Ambiente ambiente = robo.getAmbiente();
         boolean tesouroEncontrado = false;
+
+        // Verifica cada obstáculo no ambiente
         for (Obstaculo obst : ambiente.getObstaculos()) {
+            // Verifica se o obstáculo é um tesouro e se está dentro do alcance do sensor
             if (obst.getTipo() == TipoObstaculo.TESOURO) {
+                // Verifica se o obstáculo é um tesouro e se está dentro do alcance do sensor
                 if (Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())){
                     tesouroEncontrado = true;
                     return obst;
@@ -64,9 +83,10 @@ public class SensorMetal extends Sensor {
             }
         } 
         if (!tesouroEncontrado){
-            System.out.println("❌ Não há tesouro para extrair.")
+            System.out.println("❌ Não há tesouro para extrair.");
             return null;
         }
+        return null;
     }
 
 }

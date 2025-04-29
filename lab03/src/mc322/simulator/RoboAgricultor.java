@@ -1,10 +1,27 @@
+/*
+* RoboAgricultor.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de RoboAgricultor
+* o RoboAgricultor é um robô aéreo que cuida de plantinhas.
+*/
+
 public class RoboAgricultor extends RoboAereo {
 
+    // Atributos específicos do RoboAgricultor
     private String tipoPlantinha;
     private SensorColheita sensorColheita = new SensorColheita(7.0);
     private SensorSaude sensorSaude = new SensorSaude(8.0);
     private SensorIrrigacao sensorIrrigacao = new SensorIrrigacao(5.0);
 
+    // Construtor
     public RoboAgricultor(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, String tipoPlantinha, Ambiente ambiente) {
         super(nome, posicaoX, posicaoY, direcao, altitudeMaxima, altitude, ambiente);
         this.tipoPlantinha = tipoPlantinha;
@@ -81,6 +98,7 @@ public class RoboAgricultor extends RoboAereo {
         }
     }
 
+    // Getters e Setters
     public String getTipoPlantinha() {
         return tipoPlantinha;
     }

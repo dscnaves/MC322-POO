@@ -1,3 +1,18 @@
+/*
+* Obstáculo.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de um obstáculo.
+*/
+
+
 public class Obstaculo {
 
     // Atributos de posição do obstáculo dentro do mapa

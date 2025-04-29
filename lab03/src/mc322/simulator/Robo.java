@@ -1,13 +1,12 @@
 /*
  * Robo.java
  * 
- * Última modificação: 30/03/2025
+ * Última modificação: 28/04/2025
  * 
- * Classe componente do Lab02 da disciplina MC322 - Programação Orientada a Objetos
+ * Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
  * 
  * Autores: Anita Almeida e Daniela Naves
- */
-
+*/
 /*
  * Esta classe contém a estrutura de implementação de Robo de um
  * simulador de robôs, que representa uma classe base para todos
@@ -38,12 +37,14 @@
          this.ambiente = ambiente;
          this.altitude = altitude;
      }
- 
+
+     // Função para adicionar sensores ao robo
      public void adicionarSensor(Sensor s) {
          sensores.add(s);
      }
-     
-     public void usarSensores() {
+
+    // Função para usar os sensores do robo
+    public void usarSensores() {
          for (Sensor s : sensores) {
              s.monitorar(this);
          }

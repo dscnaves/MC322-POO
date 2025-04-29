@@ -1,7 +1,7 @@
 /*
 * Main.java
 * 
-* Última modificação: 30/03/2025
+* Última modificação: 28/04/2025
 * 
 * Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
 * 
@@ -13,8 +13,6 @@
 * simulador de robôs, responsável por testar e simular o 
 * funcionamento das demais classes envolvidas.
 */
-
-
 
 import java.util.Scanner;
 
@@ -39,8 +37,12 @@ public class Main {
 
         // Adiciona Plantinhas
         ambiente.adicionarObstaculo(new Plantinha(5, 5, 0, 5, 5, 0, "Tomate"));
-        ambiente.adicionarObstaculo(new Plantinha(3, 7, 0, 3, 7, 0, "Tomate"));
-        ambiente.adicionarObstaculo(new Plantinha(10, 3, 0, 10, 3, 0, "Tomate"));
+        Plantinha tomateDoente = new Plantinha(3, 7, 0, 3, 7, 0, "Tomate");
+        ambiente.adicionarObstaculo(tomateDoente);
+        tomateDoente.setSaudavel(false);
+        Plantinha tomateCrescido = new Plantinha(6, 3, 0, 6, 3, 0, "Tomate");
+        ambiente.adicionarObstaculo(tomateCrescido);
+        tomateCrescido.setCrescimento(80);
         
         // Adiciona Lixos
         ambiente.adicionarObstaculo(new Lixo(3, 3, 0, 3, 3, 0, "Plastico"));
@@ -67,11 +69,17 @@ public class Main {
         roboAgricultor.exibirPosicao();
         roboEspacial.exibirPosicao();
         roboRastreador.exibirPosicao();
+        System.out.println("\n");
         roboRastreador.checkBauDeTesouros();
+        System.out.println("\n");
         roboLimpeza.usarSensores();
+        System.out.print("\n");
         roboAgricultor.usarSensores();
+        System.out.print("\n");
         roboEspacial.usarSensores();
+        System.out.print("\n");
         roboRastreador.usarSensores();
+        System.out.println("\n");
         roboLimpeza.limparLixo();
         roboAgricultor.regarPlantinha();
         roboAgricultor.tratarPlantaDoente();
@@ -81,7 +89,8 @@ public class Main {
         int opcao = -1;
 
         while (opcao != 0) {
-            System.out.println("\n--- MENU INTERATIVO ---");
+            // Exibe o menu interativo
+            System.out.println("\n============= MENU INTERATIVO =============");
             System.out.println("1. Mover Robô");
             System.out.println("2. Visualizar Status dos Robôs");
             System.out.println("3. Visualizar Ambiente");
@@ -101,9 +110,6 @@ public class Main {
             System.out.println("17. Ver Planetas Descobertos");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
-
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
             System.out.print("\n");
 
             opcao = sc.nextInt();
@@ -111,6 +117,7 @@ public class Main {
 
             switch (opcao) {
                 case 1:
+                    // Mover Robô
                     System.out.print("Escolha o robô (1-Limpeza, 2-Agricultor, 3-Espacial, 4-Rastreador): ");
                     System.out.print("\n");
                     int escolha1 = sc.nextInt();
@@ -126,85 +133,128 @@ public class Main {
                     else if (escolha1 == 4) roboRastreador.mover(dx, dy, dz);
                     break;
                 case 2:
+                    // Visualizar Status dos Robôs
                     roboLimpeza.exibirPosicao();
                     roboAgricultor.exibirPosicao();
                     roboEspacial.exibirPosicao();
                     roboRastreador.exibirPosicao();
                     break;
                 case 3:
+                    // Visualizar Ambiente
                     ambiente.exibirMapa();
                     break;
                 case 4:
+                    // Usar Sensores
                     System.out.print("Escolha o robô (1-Limpeza, 2-Agricultor, 3-Espacial, 4-Rastreador): ");
-                    System.out.print("\n");
                     int escolha4 = sc.nextInt();
-                    if (escolha4 == 1) roboLimpeza.usarSensores();
-                    else if (escolha4 == 2) roboAgricultor.usarSensores();
-                    else if (escolha4 == 3) roboEspacial.usarSensores();
-                    else if (escolha4 == 4){
-                    roboRastreador.usarSensores();
-                    if (roboRastreador.temTesouroLocalizado()) {
-                        System.out.println("Use a opção 11 para extrair o tesouro detectado!");
-                    }
+                    System.out.print("\n");
+
+                    if (escolha4 == 1) {
+                        roboLimpeza.usarSensores();
+                        
+                        // Exemplo: se um lixo for encontrado, sugerir limpar
+                        System.out.println("Caso tenha lixo detectado, utilize a opção 8 para limpar!");
+                        System.out.print("\n");
+                    } else if (escolha4 == 2) {
+                        roboAgricultor.usarSensores();
+                        
+                        // Se detectar plantinha, sugerir regar/tratar/colher
+                        System.out.println("Se encontrou plantinhas, use as opções 5, 6 ou 7 para interagir com elas!");
+                        System.out.print("\n");
+                    } else if (escolha4 == 3) {
+                        roboEspacial.usarSensores();
+                        
+                        // Se um portal ou planeta for detectado, dar dica
+                        System.out.println("Se detectou um portal, use a opção 13 para atravessar ou 15/16 para analisar!");
+                        System.out.print("\n");
+                    } else if (escolha4 == 4) {
+                        roboRastreador.usarSensores();
+                        
+                        // Se um tesouro for detectado, sugerir extrair
+                        if (roboRastreador.temTesouroLocalizado()) {
+                            System.out.println("Tesouro localizado! Use a opção 11 para extrair o tesouro detectado!");
+                            System.out.print("\n");
+                        }
+                    } else {
+                        System.out.println("Escolha inválida!");
                     }
                     break;
                 case 5:
+                    // Regar Plantinha
                     roboAgricultor.regarPlantinha();
                     break;
                 case 6:
+                    // Tratar Plantinha Doente
                     roboAgricultor.tratarPlantaDoente();
                     break;
                 case 7:
+                    // Colher Plantinha
                     roboAgricultor.colherPlantinha();
                     break;
                 case 8:
+                    // Limpar e Classificar Lixo
                     roboLimpeza.classificarELimparLixo();
                     break;
                 case 9:
+                    // Visualizar 1 andar de Ambiente
                     System.out.print("Escolha um andar de " + 0 + " a " + ambiente.getAmbienteAltitude() + ": ");
+                    System.out.print("\n");
                     int plano = sc.nextInt();
                     ambiente.exibirPlanoXMapa(plano);
                     break;
                 case 10:
+                    // Usar Sensor de Metal (Rastreador)
                     System.out.println("Extraindo tesouro com Robo Rastreador...");
+                    System.out.print("\n");
                     roboRastreador.extrairTesouro();
                     break;
                 case 11:
+                    // Extrair Tesouro (Rastreador)
                     roboRastreador.extrairTesouro();
                     break;
                 case 12:
+                    // Verificar Tesouros Coletados
                     roboRastreador.checkBauDeTesouros();
                     break;
-                case 13: // Atravessar Portal
+                case 13: 
+                    // Atravessar Portal
                     roboEspacial.atravessarPortal();
                     break;  
                                       
-                case 14: // Nomear Planeta
+                case 14: 
+                    // Nomear Planeta
                     if (roboEspacial.estaEmPlaneta()) {
                         System.out.print("Digite o nome para o planeta: ");
                         String nomePlaneta = sc.nextLine();
                         roboEspacial.nomearPlaneta(nomePlaneta);
                     } else {
                         System.out.println("Nenhum planeta disponível para nomear. Use o sensor de povoamento primeiro.");
+                        System.out.print("\n");
                     }
                     break;
 
-                case 15: // Usar Sensor de Portal
+                case 15: 
+                    // Usar Sensor de Portal
                     roboEspacial.usarSensorPortal();
                     break;
                     
-                case 16: // Usar Sensor de Povoamento
+                case 16: 
+                    // Usar Sensor de Povoamento
                     roboEspacial.usarSensorPovoamento();
                     break;
                     
-                case 17: // Ver Planetas Descobertos
+                case 17: 
+                    // Ver Planetas Descobertos
                     roboEspacial.getQtdePlanetasDescobertos();
                     break;
                 case 0:
+                    // Sair
                     System.out.println("Encerrando o simulador...");
                     break;
                 default:
+                    // Opção inválida
                     System.out.println("Opção inválida!");
+                    System.out.print("\n");
             }
         }
 

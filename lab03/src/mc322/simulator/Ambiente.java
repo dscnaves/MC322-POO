@@ -1,3 +1,16 @@
+/*
+* Ambiente.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+*/
+
 import java.util.ArrayList;
 
 public class Ambiente {
@@ -39,6 +52,8 @@ public class Ambiente {
     // Adiciona um robô no ambiente
     public void adicionarRobo(Robo robo) {
         robosAtivos.add(robo);
+        
+        // Verifica se o robô está dentro dos limites do ambiente
         if (dentroDosLimites(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
             atualizarMapa(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude(), "🤖");
         } else {
@@ -57,6 +72,8 @@ public class Ambiente {
     // Adiciona um obstáculo
     public void adicionarObstaculo(Obstaculo obstaculo) {
         obstaculos.add(obstaculo);
+        
+        // Atualiza o mapa com o obstáculo
         for (int y = obstaculo.getY1(); y <= obstaculo.getY2(); y++) {
             for (int x = obstaculo.getX1(); x <= obstaculo.getX2(); x++) {
                 for (int z = obstaculo.getZ1(); z <= obstaculo.getZ1() + obstaculo.getAltura(); z++) {
@@ -71,6 +88,8 @@ public class Ambiente {
     // Remove um obstáculo
     public void removerObstaculo(Obstaculo obstaculo){
         obstaculos.remove(obstaculo);
+        
+        // Atualiza o mapa removendo o obstáculo
         for (int y = obstaculo.getY1(); y <= obstaculo.getY2(); y++){
             for (int x = obstaculo.getX1(); x <= obstaculo.getX2(); x++){
                 for (int z = obstaculo.getZ1(); z <= obstaculo.getZ1() + obstaculo.getAltura(); z++){
@@ -101,6 +120,8 @@ public class Ambiente {
 
     // Exibe o mapa por andares
     public void exibirMapa() {
+
+        // Exibe o mapa por andares
         for (int z = 0; z < altitude; z++) {
             System.out.println("\n[Mapa no andar Z=" + z + "]");
             for (int y = 0; y < altura; y++) {

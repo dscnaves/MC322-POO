@@ -1,3 +1,18 @@
+/*
+* RoboEspacial.java
+* 
+* Última modificação: 28/04/2025
+* 
+* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+/*
+* Esta classe contém a estrutura de implementação de RoboEspacial
+* o RoboEspacial é um robô aéreo que explora o espaço.
+*/
+
 public class RoboEspacial extends RoboAereo {
 
     // Atributo para armazenar a quantidade de planetas descobertos
@@ -29,6 +44,7 @@ public class RoboEspacial extends RoboAereo {
         }
     }
 
+    // Método para usar sensor de povoamento
     public void usarSensorPovoamento() {
         sensorPovoamento.monitorar(this);
         planetaAtual = sensorPovoamento.checkPovo(this);
