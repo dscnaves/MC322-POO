@@ -12,7 +12,8 @@
 * Esta classe contém a estrutura de implementação de RoboRastreador
 */
 
-public class RoboRastreador extends RoboTerrestre {
+public class RoboRastreador extends RoboTerrestre implements 
+    Sensoreavel, Comunicavel, Diagnosticavel, Recarregavel, Autodesligavel {
 
     // Atributos
     private int tesouroX;
@@ -50,7 +51,7 @@ public class RoboRastreador extends RoboTerrestre {
         }
 
         // Classificação do metal
-        switch(obstaculo.getTipo()) {
+        switch(obstaculo.getTipoObstaculo()) {
             case TESOURO:
                 System.out.println("Tesouro identificado e capturado!");
                 qtdeTesouro++;
@@ -68,8 +69,10 @@ public class RoboRastreador extends RoboTerrestre {
         Obstaculo obstaculo = sensorMetal.detectorTesouros(this);
         if (obstaculo != null){
             classificarMetal(obstaculo);
-            ambiente.atualizarMapa(obstaculo.getX1(), obstaculo.getY1(), obstaculo.getZ1(), "_");
-            ambiente.removerObstaculo(obstaculo);   
+            ambiente.atualizarMapa(obstaculo.getX1(), obstaculo.getY1(), obstaculo.getZ1(), TipoEntidade.VAZIO);
+            ambiente.removerEntidade(obstaculo);
+            consumirBateria(10);
+            desligarSeBateriaBaixa();
             tesouroX = -1; // Reseta a localização após extração
             tesouroY = -1;
             tesouroZ = -1;         
@@ -85,6 +88,51 @@ public class RoboRastreador extends RoboTerrestre {
 
     public boolean temTesouroLocalizado() {
         return tesouroX != -1 && tesouroY != -1 && tesouroZ != -1;
+    }
+
+    // Implementação de Sensoreavel
+    @Override
+    public void acionarSensores() {
+        System.out.println("Robo " + getId() + " acionando sensor de metais...");
+        usarSensores();
+        consumirBateria(10);
+        desligarSeBateriaBaixa();
+    }
+
+    // Implementação de Comunicavel
+    @Override
+    public void enviarMensagem(Comunicavel destinatario, String mensagem) {
+        System.out.println("Robo " + getId() + " enviando mensagem: '" + mensagem + "' para robo " + ((Robo) destinatario).getId());
+    }
+
+    @Override
+    public void receberMensagem(String mensagem) {
+        System.out.println("Robo " + getId() + " recebeu mensagem: '" + mensagem + "'");
+    }
+
+    // Implementação de Diagnosticavel
+    @Override
+    public void realizarDiagnostico() {
+        System.out.println("Robo " + getId() + " realizando diagnóstico:");
+        System.out.println("- Bateria: " + bateria + "%");
+        System.out.println("- Tesouros encontrados: " + qtdeTesouro);
+        System.out.println("- Sistema: " + estado);
+    }
+
+    // Implementação de Recarregavel
+    @Override
+    public void recarregar() {
+        this.bateria = 100;
+        System.out.println("Robo " + getId() + " recarregou totalmente.");
+    }
+
+    // Implementação de Autodesligavel
+    @Override
+    public void desligarSeBateriaBaixa() {
+        if (bateria <= 10) {
+            this.estado = EstadoRobo.DESLIGADO;
+            System.out.println("Robo " + getId() + " está com bateria muito baixa e foi desligado automaticamente.");
+        }
     }
 
     // Getters e Setters

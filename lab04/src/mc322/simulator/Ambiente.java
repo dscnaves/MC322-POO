@@ -129,6 +129,13 @@ public class Ambiente {
         }
     }
 
+    // Atualiza o mapa 
+    public void atualizarMapa(int x, int y, int z, TipoEntidade tipo) {
+        if (dentroDosLimites(x, y, z)) {
+            mapa[y][x][z] = tipo;
+        }
+    }
+
     // Detecta colisões entre robôs e obstáculos
     public void detectarColisoes() {
         for (Entidade e : entidades) {
@@ -156,4 +163,14 @@ public class Ambiente {
     public int getAmbienteAltitude() { return altitude; }
     public TipoEntidade[][][] getMapa() { return mapa; }
     public ArrayList<Entidade> getEntidades() { return entidades; }
+
+    public ArrayList<Obstaculo> getObstaculos() {
+        ArrayList<Obstaculo> obstaculos = new ArrayList<>();
+        for (Entidade e : entidades) {
+            if (e instanceof Obstaculo) {
+                obstaculos.add((Obstaculo) e);
+            }
+        }
+        return obstaculos;
+    }
 }

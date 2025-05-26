@@ -30,6 +30,8 @@
      protected Ambiente ambiente;
 
      protected EstadoRobo estado;
+
+     protected int bateria;
      
      private TipoEntidade tipoEntidade = TipoEntidade.ROBO;
      
@@ -43,6 +45,8 @@
          this.posicaoY = y;
          this.ambiente = ambiente;
          this.altitude = altitude;
+         this.bateria = 100;
+         this.estado = EstadoRobo.DESLIGADO;
      }
 
      // Função para adicionar sensores ao robo
@@ -58,6 +62,11 @@
          for (Sensor s : sensores) {
              s.monitorar(this);
          }
+     }
+
+     public void consumirBateria(int consumo) {
+        bateria -= consumo;
+        if (bateria < 0) bateria = 0;
      }
  
      // Função responsável pela movimentação do Robo
@@ -199,6 +208,10 @@
  
      public String getId() {
         return id;
+     }
+
+     public int getBateria() {
+        return bateria;
      }
  }
  

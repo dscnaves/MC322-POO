@@ -13,7 +13,8 @@
 * o RoboAgricultor é um robô aéreo que cuida de plantinhas.
 */
 
-public class RoboAgricultor extends RoboAereo {
+public class RoboAgricultor extends RoboAereo implements 
+    Sensoreavel, Comunicavel, Diagnosticavel, Recarregavel {
 
     // Atributos específicos do RoboAgricultor
     private String tipoPlantinha;
@@ -43,6 +44,7 @@ public class RoboAgricultor extends RoboAereo {
             if(plantinha.getEspecie() == tipoPlantinha){
                 plantinha.regar();
                 regou = true;
+                consumirBateria(10);
             } 
         }
         if (!regou) {
@@ -66,6 +68,7 @@ public class RoboAgricultor extends RoboAereo {
                 if (!plantinha.isSaudavel()) {
                     plantinha.tratar();
                     tratou = true;
+                    consumirBateria(10);
                 }
             }
         }
@@ -89,13 +92,50 @@ public class RoboAgricultor extends RoboAereo {
             // Verifica se a plantinha é do tipo que o agricultor cuida
             if (plantinha.getEspecie() == tipoPlantinha) {
                 System.out.println("Plantinha " + plantinha.getEspecie() + " colhida com sucesso!");
-                ambiente.getObstaculos().remove(plantinha);
+                ambiente.removerEntidade(plantinha);
+                ambiente.atualizarMapa(plantinha.getX1(), plantinha.getY1(), plantinha.getZ1(), TipoEntidade.VAZIO);
                 colheu = true;
+                consumirBateria(10);
             }
         }
         if (!colheu) {
             System.out.println("Nenhuma plantinha da especie " + tipoPlantinha + " pronta para colheita encontrada.");
         }
+    }
+
+    // Implementação de Sensoreavel
+    @Override
+    public void acionarSensores() {
+        System.out.println("Robo " + getId() + " acionando sensores agrícolas...");
+        usarSensores();
+        consumirBateria(10);
+    }
+
+    // Implementação de Comunicavel
+    @Override
+    public void enviarMensagem(Comunicavel destinatario, String mensagem) {
+        System.out.println("Robo " + getId() + " enviando mensagem: '" + mensagem + "' para robo " + ((Robo) destinatario).getId());
+    }
+
+    @Override
+    public void receberMensagem(String mensagem) {
+        System.out.println("Robo " + getId() + " recebeu mensagem: '" + mensagem + "'");
+    }
+
+    // Implementação de Diagnosticavel
+    @Override
+    public void realizarDiagnostico() {
+        System.out.println("Robo " + getId() + " realizando diagnóstico:");
+        System.out.println("- Bateria: " + bateria + "%");
+        System.out.println("- Sistema: " + estado);
+        System.out.println("- Especialidade: Plantas do tipo " + tipoPlantinha);
+    }
+
+    // Implementação de Recarregavel
+    @Override
+    public void recarregar() {
+        this.bateria = 100;
+        System.out.println("Robo " + getId() + " recarregou totalmente.");
     }
 
     // Getters e Setters

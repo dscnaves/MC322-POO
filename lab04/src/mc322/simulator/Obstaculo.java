@@ -73,7 +73,7 @@ public class Obstaculo implements Entidade{
     public char getRepresentacao() { return 'O'; }
 
     public int getAltura() { return altura; }
-    public TipoObstaculo getTipo() { return tipo; }
+    public TipoObstaculo getTipoObstaculo() { return tipo; }
 
     // Setters
     public void setX1(int newX) { this.x1 = newX; }
