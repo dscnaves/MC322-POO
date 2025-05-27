@@ -14,19 +14,20 @@
  * no plano XY com velocidade máxima limitada.
  */
  
- public class RoboTerrestre extends Robo {
+ public class RoboTerrestre extends Entidade implements 
+    Sensoreavel, Comunicavel, Diagnosticavel, Recarregavel, Autodesligavel{
  
     // Atributos necessários para definir a classe RoboTerrestre
     private int velocidadeMaxima;
 
     // Método construtor para inicialização dos atributos da classe RoboTerrestre
     public RoboTerrestre(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente){
-        super(nome, posicaoX, posicaoY, direcao, ambiente,0);
+        super(nome, posicaoX, posicaoY, direcao,0, ambiente);
         this.velocidadeMaxima = velocidadeMaxima;
     }
 
     @Override
-    public void mover(int deltaX, int deltaY, int deltaZ){
+    public void moverPara(int deltaX, int deltaY, int deltaZ){
         // Movimentação no eixo Z não é permitida para robôs terrestres
         deltaZ = 0;
 

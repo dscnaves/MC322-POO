@@ -17,6 +17,7 @@
  
  public abstract class Robo implements Entidade {
 
+    // Enumeração para representar os estados do Robo
     public enum EstadoRobo {
         LIGADO,
         DESLIGADO

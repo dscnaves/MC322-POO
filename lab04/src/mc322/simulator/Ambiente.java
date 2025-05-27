@@ -8,9 +8,6 @@
 * Autores: Anita Almeida e Daniela Naves
 */
 
-/*
-*/
-
 import java.util.ArrayList;
 
 public class Ambiente {
@@ -51,14 +48,21 @@ public class Ambiente {
     public void adicionarEntidade(Entidade e){
         entidades.add(e);
 
+        // Se a entidade é um obstáculo
         if (e instanceof Obstaculo) {
+
+            //Converte a entidade em obstáculo de forma acessar os atributos de Obstaculo
             Obstaculo o = (Obstaculo) e;
+
+            // Atualiza o mapa com o obstáculo
             for (int y = o.getY1(); y <= o.getY2(); y++) {
                 for (int x = o.getX1(); x <= o.getX2(); x++) {
                     mapa[y][x][o.getZ1()] = o.getTipo();
                 }
             }
-        } else {
+        } 
+        // Se a entidade é um robô
+        else {
             mapa[e.getX()][e.getY()][e.getZ()] = e.getTipo();
         }
     }
@@ -67,14 +71,22 @@ public class Ambiente {
     public void removerEntidade(Entidade e) {
         entidades.remove(e);
 
+        // Se a entidade é um obstáculo
         if (e instanceof Obstaculo) {
+
+            // Converte a entidade em obstáculo de forma acessar os atributos de Obstaculo
             Obstaculo o = (Obstaculo) e;
+
+            // Atualiza o mapa retirando o obstáculo
             for (int y = o.getY1(); y <= o.getY2(); y++) {
                 for (int x = o.getX1(); x <= o.getX2(); x++) {
                     mapa[y][x][o.getZ1()] = TipoEntidade.VAZIO;
                 }
             }
-        } else {
+        } 
+        
+        // Se a entidade é um robô
+        else {
             mapa[e.getX()][e.getY()][e.getZ()] = TipoEntidade.VAZIO;
         }
     }
@@ -153,6 +165,7 @@ public class Ambiente {
         }
     }
 
+    // Verifica se uma posição está ocupada
     public boolean estaOcupado(int x, int y, int z) {
         return mapa[x][y][z] != TipoEntidade.VAZIO;
     }

@@ -20,6 +20,48 @@ Cada robô possui sensores específicos para detectar ou interagir com esses ele
 
 ---
 
+## 🎮 Menu Interativo 
+
+```mermaid
+
+flowchart TD
+    A[Início] --> B{opcao != 0?}
+    B -->|Sim| C[Mostrar menu principal]
+    C --> D[Usuário escolhe opção]
+    D --> E{switch opcao}
+
+    E --> E1[1: Listar robôs]
+    E --> E2[2: Selecionar robô]
+    E --> E3[3: Exibir status]
+    E --> E4[4: Exibir mapa 2D]
+    E --> E5[5: Listar mensagens]
+    E --> E0[0: Sair]
+
+    E2 --> F{Robô válido?}
+    F -->|Sim| G[Mostrar submenu de interação]
+    F -->|Não| G0[Exibir erro]
+    
+    G --> G1[1: Mover robô]
+    G --> G2[2: Ligar robô]
+    G --> G3[3: Desligar robô]
+    G --> G4[4: Executar tarefa]
+
+    G --> H{Verifica interfaces do robô}
+    
+    H -->|Sensoreavel| G5[5: Acionar sensores]
+    H -->|Comunicavel| G6[6: Enviar mensagem]
+    H -->|Monitoravel| G7[7: Monitorar ambiente]
+    H -->|Movimentavel| G8[8: Realizar manobra]
+    H -->|Operacional| G9[9: Executar manutenção]
+
+    G --> G0[0: Voltar ao menu principal]
+
+    E0 --> Z[Fim]
+    B -->|Não| Z
+
+```
+---
+
 ## 📁 Estrutura de Arquivos
 
 | Arquivo                       | Descrição                                              |
