@@ -53,7 +53,7 @@
          }
      }
 
-     // Método para classificar e limpar lixo
+     // Método para classificar e limpar lixo => para isso gasta-se 10% da bateria
     public void classificarELimparLixo() {
         for (Obstaculo obst : ambiente.getObstaculos()) {
             
@@ -78,26 +78,28 @@
         System.out.println("Nenhum lixo para classificar na posição atual.");
     }
 
-    // Implementação de Sensoreavel
     @Override
+    // Essa função ativa os sensores de detecção de lixo do RoboLimpeza e gasta 10% da bateria
     public void acionarSensores() {
         System.out.println(getId() + " acionando sensores de detecção de lixo...");
         usarSensores();
+        consumirBateria(10);
     }
 
-    // Implementação de Comunicavel
     @Override
+    // Essa função enviar mensagens para outros robôs
     public void enviarMensagem(Comunicavel destinatario, String mensagem) {
         System.out.println(getId() + " enviando mensagem: '" + mensagem + "' para robo " + ((Robo) destinatario).getId());
     }
 
     @Override
+    // Essa função recebe mensagens de outros robôs
     public void receberMensagem(String mensagem) {
         System.out.println("Robo " + getId() + " recebeu mensagem: '" + mensagem + "'");
     }
 
-    // Implementação de Diagnosticavel
     @Override
+    // Essa função realiza diagnóstico do robô incluindo a bateria, o estado do sistema e os sensores
     public void realizarDiagnostico() {
         System.out.println("Robo " + getId() + " realizando diagnóstico:");
         System.out.println("- Bateria: " + bateria + "%");
@@ -105,15 +107,15 @@
         System.out.println("- Sistema: " + estado);
     }
 
-    // Implementação de Recarregavel
     @Override
+    // Essa função recarrega a bateria do robô
     public void recarregar() {
         this.bateria = 100;
         System.out.println("Robo " + getId() + " recarregou totalmente.");
     }
 
-    // Implementação de AutoDesligavel
     @Override
+    // Essa função desliga o robô automaticamente se a bateria estiver baixa
     public void desligarSeBateriaBaixa() {
         if (bateria <= 10) {
             this.estado = EstadoRobo.DESLIGADO;

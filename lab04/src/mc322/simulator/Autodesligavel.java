@@ -8,7 +8,7 @@
 * Autores: Anita Almeida e Daniela Naves
 */
 
-// Esta interface define o comportamento de objetos que podem se desligar automaticamente
+// Esta interface define o comportamento de objetos que podem se desligar automaticamente se a bateria estiver baixa
 public interface Autodesligavel {
     void desligarSeBateriaBaixa();
 }

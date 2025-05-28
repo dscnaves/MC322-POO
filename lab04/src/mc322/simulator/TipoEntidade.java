@@ -8,9 +8,7 @@
 * Autores: Anita Almeida e Daniela Naves
 */
 
-/*
-* Esta classe contém a estrutura de implementação de um tipo de entidade
-*/
+// // Interface a qual representará todos os tipos de elementos dentro de ambiente
 
 public enum TipoEntidade {
     VAZIO,

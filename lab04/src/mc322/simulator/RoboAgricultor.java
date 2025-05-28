@@ -103,27 +103,29 @@ public class RoboAgricultor extends RoboAereo implements
         }
     }
 
-    // Implementação de Sensoreavel
     @Override
+    // Método para utiliza sensores do RoboAgricultor incluindo sensores de colheita, saúde e irrigação => para isso, é necessário gastar 10% da bateria
     public void acionarSensores() {
         System.out.println("Robo " + getId() + " acionando sensores agrícolas...");
         usarSensores();
         consumirBateria(10);
     }
 
-    // Implementação de Comunicavel
     @Override
+    // Essa função é chamada quando o robô enviar mensagens para outros robôs
     public void enviarMensagem(Comunicavel destinatario, String mensagem) {
         System.out.println("Robo " + getId() + " enviando mensagem: '" + mensagem + "' para robo " + ((Robo) destinatario).getId());
     }
 
     @Override
+    // Essa função é chamada quando o robô recebe mensagens de outros robôs
     public void receberMensagem(String mensagem) {
         System.out.println("Robo " + getId() + " recebeu mensagem: '" + mensagem + "'");
     }
 
-    // Implementação de Diagnosticavel
+
     @Override
+    // Essa função realiza um diagnóstico do estado do robo, incluindo a bateria, o estado do sistema e a especialidade
     public void realizarDiagnostico() {
         System.out.println("Robo " + getId() + " realizando diagnóstico:");
         System.out.println("- Bateria: " + bateria + "%");
@@ -131,8 +133,8 @@ public class RoboAgricultor extends RoboAereo implements
         System.out.println("- Especialidade: Plantas do tipo " + tipoPlantinha);
     }
 
-    // Implementação de Recarregavel
     @Override
+    // Método para recarregar a bateria do robo, definindo a bateria como 100%
     public void recarregar() {
         this.bateria = 100;
         System.out.println("Robo " + getId() + " recarregou totalmente.");

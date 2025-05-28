@@ -106,6 +106,7 @@ public class RoboEspacial extends RoboAereo implements
     }
 
     @Override
+    // Método para usar sensores incluindo sensores de portal e povoamento => para isso, é necessário gastar 10% da bateria
     public void acionarSensores() {
         System.out.println("Robo " + getId() + " acionando sensores espaciais...");
         usarSensores();
@@ -113,16 +114,19 @@ public class RoboEspacial extends RoboAereo implements
     }
 
     @Override
+    // Método para enviar mensagem para outro robo
     public void enviarMensagem(Comunicavel destinatario, String mensagem) {
         System.out.println("Robo " + getId() + " enviando mensagem: '" + mensagem + "' para robo " + ((Robo) destinatario).getId());
     }
 
     @Override
+    // Método para receber mensagem de outro robo
     public void receberMensagem(String mensagem) {
         System.out.println("Robo " + getId() + " recebeu mensagem: '" + mensagem + "'");
     }
 
     @Override
+    // Método para realizar diagnóstico do robo incluindo a bateria, o estado do sistema e a quantidade de planetas descobertos
     public void realizarDiagnostico() {
         System.out.println("Robo " + getId() + " realizando diagnóstico:");
         System.out.println("- Bateria: " + bateria + "%");
@@ -131,6 +135,7 @@ public class RoboEspacial extends RoboAereo implements
     }
 
     @Override
+    // Método para recarregar a bateria do robo, definindo a bateria como 100%
     public void recarregar() {
         this.bateria = 100;
         System.out.println("Robo " + getId() + " recarregou totalmente.");
@@ -142,6 +147,7 @@ public class RoboEspacial extends RoboAereo implements
         return qtdePlanetasDescobertos;
     }
     
+    // Método para verificar se o robo está em um planeta
     public boolean estaEmPlaneta() {
         return planetaAtual != null;
     }
