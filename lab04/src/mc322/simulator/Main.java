@@ -32,39 +32,39 @@ public class Main {
         RoboRastreador roboRastreador = new RoboRastreador("Pirata", 0, 0, "Oeste", 3, ambiente);
 
         // Adiciona robôs ao Ambiente
-        ambiente.adicionarRobo(roboLimpeza);
-        ambiente.adicionarRobo(roboAgricultor);
-        ambiente.adicionarRobo(roboEspacial);
-        ambiente.adicionarRobo(roboRastreador);
+        ambiente.adicionarEntidade(roboLimpeza);
+        ambiente.adicionarEntidade(roboAgricultor);
+        ambiente.adicionarEntidade(roboEspacial);
+        ambiente.adicionarEntidade(roboRastreador);
 
         // Adiciona Plantinhas
-        ambiente.adicionarObstaculo(new Plantinha(5, 5, 0, 5, 5, 0, "Tomate"));
+        ambiente.adicionarEntidade(new Plantinha(5, 5, 0, 5, 5, 0, "Tomate"));
         Plantinha tomateDoente = new Plantinha(3, 7, 0, 3, 7, 0, "Tomate");
-        ambiente.adicionarObstaculo(tomateDoente);
+        ambiente.adicionarEntidade(tomateDoente);
         tomateDoente.setSaudavel(false);
         Plantinha tomateCrescido = new Plantinha(6, 3, 0, 6, 3, 0, "Tomate");
-        ambiente.adicionarObstaculo(tomateCrescido);
+        ambiente.adicionarEntidade(tomateCrescido);
         tomateCrescido.setCrescimento(80);
         
         // Adiciona Lixos
-        ambiente.adicionarObstaculo(new Lixo(3, 3, 0, 3, 3, 0, "Plastico"));
-        ambiente.adicionarObstaculo(new Lixo(2, 3, 0, 2, 3, 4, "Plastico"));
-        ambiente.adicionarObstaculo(new Lixo(8, 8, 0, 8, 8, 0, "Vidro"));
-        ambiente.adicionarObstaculo(new Lixo(7, 4, 0, 7, 4, 3, "Vidro"));
-        ambiente.adicionarObstaculo(new Lixo(4, 8, 0, 4, 8, 0, "Metal"));
-        ambiente.adicionarObstaculo(new Lixo(2, 5, 0, 2, 5, 7, "Metal"));
-        ambiente.adicionarObstaculo(new Lixo(2, 2, 0, 2, 2, 5, "Metal"));
+        ambiente.adicionarEntidade(new Lixo(3, 3, 0, 3, 3, 0, "Plastico"));
+        ambiente.adicionarEntidade(new Lixo(2, 3, 0, 2, 3, 4, "Plastico"));
+        ambiente.adicionarEntidade(new Lixo(8, 8, 0, 8, 8, 0, "Vidro"));
+        ambiente.adicionarEntidade(new Lixo(7, 4, 0, 7, 4, 3, "Vidro"));
+        ambiente.adicionarEntidade(new Lixo(4, 8, 0, 4, 8, 0, "Metal"));
+        ambiente.adicionarEntidade(new Lixo(2, 5, 0, 2, 5, 7, "Metal"));
+        ambiente.adicionarEntidade(new Lixo(2, 2, 0, 2, 2, 5, "Metal"));
 
-        // ambiente.adicionarObstaculo(new Tesouro(7, 7, 7, 7, 0));
+        // ambiente.adicionarEntidade(new Tesouro(7, 7, 7, 7, 0));
 
         // Adicionando Planeta e respectivo portal
-        ambiente.adicionarObstaculo(new Portal(8, 8, 0, 8, 8, 0, 1, 1, 6));
-        ambiente.adicionarObstaculo(new Planeta(1, 1, 6, 4, 4, 0));
+        ambiente.adicionarEntidade(new Portal(8, 8, 0, 8, 8, 0, 1, 1, 6));
+        ambiente.adicionarEntidade(new Planeta(1, 1, 6, 4, 4, 0));
 
         // Adiciona Tesouros para o RoboRastreador
-        ambiente.adicionarObstaculo(new Obstaculo(7, 7, 0, 7, 7, 0, TipoObstaculo.TESOURO));
-        ambiente.adicionarObstaculo(new Obstaculo(3, 5, 0, 3, 5, 0, TipoObstaculo.TESOURO));
-        ambiente.adicionarObstaculo(new Obstaculo(9, 2, 0, 9, 2, 0, TipoObstaculo.TESOURO));
+        ambiente.adicionarEntidade(new Obstaculo(7, 7, 0, 7, 7, 0, TipoObstaculo.TESOURO));
+        ambiente.adicionarEntidade(new Obstaculo(3, 5, 0, 3, 5, 0, TipoObstaculo.TESOURO));
+        ambiente.adicionarEntidade(new Obstaculo(9, 2, 0, 9, 2, 0, TipoObstaculo.TESOURO));
 
         // Testes obrigatórios fora do menu
         roboLimpeza.exibirPosicao();

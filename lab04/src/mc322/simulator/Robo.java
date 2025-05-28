@@ -214,5 +214,13 @@
      public int getBateria() {
         return bateria;
      }
+
+     public void setEstado(EstadoRobo estado) {
+        this.estado = estado;
+     }
+
+     public EstadoRobo getEstado() {
+        return estado;
+     }     
  }
  
