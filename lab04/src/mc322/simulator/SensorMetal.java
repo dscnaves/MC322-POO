@@ -27,7 +27,7 @@ public class SensorMetal extends Sensor {
             return;
         }
 
-        System.out.println(robo.getNome() + " ativou o Sensor de Metal.");
+        System.out.println(robo.getId() + " ativou o Sensor de Metal.");
 
         Ambiente ambiente = robo.getAmbiente();
         int xRobo = robo.getPosicaoX();
@@ -44,7 +44,7 @@ public class SensorMetal extends Sensor {
             if (Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, xRobo, yRobo, zRobo)) {
 
                 // Verifica se o obstáculo é um tesouro ou lixo
-                if (obst.getTipo() == TipoObstaculo.TESOURO || obst.getTipo() == TipoObstaculo.LIXO) {
+                if (obst.getTipoObstaculo() == TipoObstaculo.TESOURO || obst.getTipoObstaculo() == TipoObstaculo.LIXO) {
 
                     // Atualiza a localização do tesouro e classifica o metal
                     ((RoboRastreador) robo).atualizarLocalizacaoTesouro(obst.x1, obst.y1, obst.z1);
@@ -74,7 +74,7 @@ public class SensorMetal extends Sensor {
         // Verifica cada obstáculo no ambiente
         for (Obstaculo obst : ambiente.getObstaculos()) {
             // Verifica se o obstáculo é um tesouro e se está dentro do alcance do sensor
-            if (obst.getTipo() == TipoObstaculo.TESOURO) {
+            if (obst.getTipoObstaculo() == TipoObstaculo.TESOURO) {
                 // Verifica se o obstáculo é um tesouro e se está dentro do alcance do sensor
                 if (Sensor.dentroDoAlcance(obst.x1, obst.y1, obst.z1, robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())){
                     tesouroEncontrado = true;

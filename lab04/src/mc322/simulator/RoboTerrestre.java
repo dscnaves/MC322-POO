@@ -14,16 +14,20 @@
  * no plano XY com velocidade máxima limitada.
  */
  
- public class RoboTerrestre extends Entidade implements 
-    Sensoreavel, Comunicavel, Diagnosticavel, Recarregavel, Autodesligavel{
+ public class RoboTerrestre extends Robo{
  
     // Atributos necessários para definir a classe RoboTerrestre
     private int velocidadeMaxima;
 
     // Método construtor para inicialização dos atributos da classe RoboTerrestre
-    public RoboTerrestre(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente){
-        super(nome, posicaoX, posicaoY, direcao,0, ambiente);
+    public RoboTerrestre(String id, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente){
+        super(id, posicaoX, posicaoY, ambiente, 0);
         this.velocidadeMaxima = velocidadeMaxima;
+    }
+
+    @Override
+    public void executarTarefa() {
+        System.out.println(id + " está executando sua tarefa terrestre.");
     }
 
     @Override
@@ -37,15 +41,15 @@
         
         // Verifica limite de velocidade máxima
         if (Math.abs(deltaX) > velocidadeMaxima) {
-            System.out.println(nome + " tentou andar " + deltaX + " posicoes no eixo X, mas foi limitado a " + newdeltaX + " posicoes por sua veocidade máxima.");
+            System.out.println(id + " tentou andar " + deltaX + " posicoes no eixo X, mas foi limitado a " + newdeltaX + " posicoes por sua veocidade máxima.");
         }
 
         // Verifica limite de velocidade máxima
         if (Math.abs(deltaY) > velocidadeMaxima) {
-            System.out.println(nome + " tentou andar " + deltaY + " posicoes no eixo Y, mas foi limitado a " + newdeltaY + " posicoes por sua veocidade máxima.");
+            System.out.println(id + " tentou andar " + deltaY + " posicoes no eixo Y, mas foi limitado a " + newdeltaY + " posicoes por sua veocidade máxima.");
         }
 
-        super.mover(newdeltaX, newdeltaY, deltaZ);
+        super.moverPara(newdeltaX, newdeltaY, deltaZ);
     }
 
     // Funções Getters e Setters

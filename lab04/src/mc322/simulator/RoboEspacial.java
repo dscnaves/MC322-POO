@@ -23,8 +23,8 @@ public class RoboEspacial extends RoboAereo implements
     private Planeta planetaAtual;
 
     // Construtor da classe RoboEspacial
-    public RoboEspacial(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente) {
-        super(nome, posicaoX, posicaoY, direcao, altitudeMaxima, altitude, ambiente);
+    public RoboEspacial(String id, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente) {
+        super(id, posicaoX, posicaoY, direcao, altitudeMaxima, ambiente);
         this.qtdePlanetasDescobertos = 0;
         this.planetaAtual = null;
         

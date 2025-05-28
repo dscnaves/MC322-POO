@@ -38,7 +38,7 @@ public class SensorReciclagem extends Sensor {
             return;
         }
 
-        System.out.println(robo.getNome() + " ativou o Sensor de Reciclagem.");
+        System.out.println(robo.getId() + " ativou o Sensor de Reciclagem.");
 
         // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();

@@ -23,7 +23,7 @@ public class SensorPortal extends Sensor {
 
     // Método para monitorar o ambiente em busca de portais
     public void monitorar(Robo robo) {
-        System.out.println(robo.getNome() + " ativou o Sensor de Portal.");
+        System.out.println(robo.getId() + " ativou o Sensor de Portal.");
         Portal portal = checkPortal(robo);
 
         // Verifica se encontrou um portal
@@ -43,7 +43,7 @@ public class SensorPortal extends Sensor {
         // Percorre a lista de obstáculos do ambiente
         for (Obstaculo obst : robo.getAmbiente().getObstaculos()) {
             // Verifica se o obstáculo é um portal e se está dentro do alcance do sensor
-            if (obst.getTipo() == TipoObstaculo.PORTAL && 
+            if (obst.getTipoObstaculo() == TipoObstaculo.PORTAL && 
                 Sensor.dentroDoAlcance(obst.getX1(), obst.getY1(), obst.getZ1(), 
                                       robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
                 return (Portal) obst;

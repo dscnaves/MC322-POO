@@ -23,7 +23,7 @@ public class SensorColheita extends Sensor {
 
     // Método para monitorar o ambiente em busca de plantinhas prontas para colheita
     public void monitorar(Robo robo) {
-        System.out.println("🌿 " + robo.getNome() + " ativou o Sensor de Colheita.");
+        System.out.println("🌿 " + robo.getId() + " ativou o Sensor de Colheita.");
 
         // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();

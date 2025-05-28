@@ -40,8 +40,8 @@
      protected ArrayList<Sensor> sensores = new ArrayList<>();
      
      // Método construtor para inicialização dos atributos da classe Robo
-     public Robo(String idd, int x, int y, Ambiente ambiente, int altitude){
-         this.id = idd;
+     public Robo(String id, int x, int y, Ambiente ambiente, int altitude){
+         this.id = id;
          this.posicaoX = x;
          this.posicaoY = y;
          this.ambiente = ambiente;

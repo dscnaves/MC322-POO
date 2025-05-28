@@ -23,8 +23,8 @@ public class RoboAgricultor extends RoboAereo implements
     private SensorIrrigacao sensorIrrigacao = new SensorIrrigacao(5.0);
 
     // Construtor
-    public RoboAgricultor(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, String tipoPlantinha, Ambiente ambiente) {
-        super(nome, posicaoX, posicaoY, direcao, altitudeMaxima, altitude, ambiente);
+    public RoboAgricultor(String id, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, String tipoPlantinha, Ambiente ambiente) {
+        super(id, posicaoX, posicaoY, direcao, altitudeMaxima, ambiente);
         this.tipoPlantinha = tipoPlantinha;
         this.adicionarSensor(sensorColheita);
         this.adicionarSensor(sensorSaude);

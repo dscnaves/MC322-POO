@@ -22,7 +22,7 @@ public class SensorPovoamento extends Sensor {
 
     // Método para monitorar o ambiente
     public void monitorar(Robo robo) {
-        System.out.println("🛰️ " + robo.getNome() + " ativou o Sensor de Povoamento.");
+        System.out.println("🛰️ " + robo.getId() + " ativou o Sensor de Povoamento.");
         Planeta planeta = checkPovo(robo);
 
         // Verifica se o planeta está povoado ou não
@@ -44,7 +44,7 @@ public class SensorPovoamento extends Sensor {
         for (Obstaculo obst : robo.getAmbiente().getObstaculos()) {
             
             // Verifica se o obstáculo é um planeta e se contém a posição do robô
-            if (obst.getTipo() == TipoObstaculo.PLANETA && 
+            if (obst.getTipoObstaculo() == TipoObstaculo.PLANETA && 
                 obst.contemPonto(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
                 return (Planeta) obst;
             }
@@ -57,7 +57,7 @@ public class SensorPovoamento extends Sensor {
         for (Obstaculo obst : ambiente.getObstaculos()) {
             
             // Verifica se o obstáculo é um alienígena e se está dentro do planeta
-            if (obst.getTipo() == TipoObstaculo.ALIENIGENA &&
+            if (obst.getTipoObstaculo() == TipoObstaculo.ALIENIGENA &&
                 obst.getX1() >= planeta.getX1() && obst.getX2() <= planeta.getX2() &&
                 obst.getY1() >= planeta.getY1() && obst.getY2() <= planeta.getY2()) {
                 return true;

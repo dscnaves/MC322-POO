@@ -157,7 +157,7 @@ public class Ambiente {
                     if (ent instanceof Obstaculo) {
                         Obstaculo o = (Obstaculo) ent;
                         if (o.contemPonto(robo.getPosicaoX(), robo.getPosicaoY(), robo.getAltitude())) {
-                            System.out.println("COLISÃO: Robô " + robo.getNome() + " colidiu com um obstáculo.");
+                            System.out.println("COLISÃO: Robô " + robo.getId() + " colidiu com um obstáculo.");
                         }
                     }
                 }

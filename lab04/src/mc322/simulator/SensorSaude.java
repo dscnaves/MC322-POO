@@ -22,7 +22,7 @@ public class SensorSaude extends Sensor {
 
     // Método para monitorar o ambiente em busca de plantinhas doentes
     public void monitorar(Robo robo) {
-        System.out.println(robo.getNome() + " ativou o Sensor de Saúde.");
+        System.out.println(robo.getId() + " ativou o Sensor de Saúde.");
 
         // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();

@@ -20,9 +20,15 @@
     protected int altitude;
     private int altitudeMaxima;
 
+    // Implementação do método abstrato executarTarefa()
+    @Override
+    public void executarTarefa() {
+        System.out.println("Executando tarefa padrão do RoboAereo.");
+    }
+
     // Método construtor para inicialização dos atributos da classe RoboAereo
-    public RoboAereo(String nome, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, int altitude, Ambiente ambiente){
-        super(nome, posicaoX, posicaoY, direcao, ambiente,0);
+    public RoboAereo(String id, int posicaoX, int posicaoY, String direcao, int altitudeMaxima, Ambiente ambiente){
+        super(id, posicaoX, posicaoY, ambiente, 0);
         this.altitudeMaxima = altitudeMaxima;
         
         // Define altitude inicial do robo aereo
@@ -33,7 +39,7 @@
         } else {
             this.altitude = 0;
             setAltitude(0);
-            System.out.println("Robo " + nome + " com altitude inicial invalida. Altitude inicial definida como 0.");
+            System.out.println("Robo " + id + " com altitude inicial invalida. Altitude inicial definida como 0.");
         }
     }
 
@@ -44,13 +50,13 @@
         if (newAltitude <= limite){
             altitude = newAltitude;
             setAltitude(altitude);
-            System.out.println(nome + " subiu " + metros + " metros. Altitude atual: " + altitude);
+            System.out.println(id + " subiu " + metros + " metros. Altitude atual: " + altitude);
         } else {
             metros = limite - altitude;
             altitude = limite;
             setAltitude(altitude);
             System.out.println("Altura maxima do robo ou do ambiente excedida!");
-            System.out.println(nome + " subiu " + metros + " metros. Altitude atual: " + altitude);
+            System.out.println(id + " subiu " + metros + " metros. Altitude atual: " + altitude);
         }
     }
 
@@ -60,12 +66,12 @@
         if (newAltitude >= 0) {
             altitude = newAltitude;
             setAltitude(altitude);
-            System.out.println(nome + " desceu " + metros + " metros. Altitude atual: " + altitude);
+            System.out.println(id + " desceu " + metros + " metros. Altitude atual: " + altitude);
         } else {
             altitude = 0;
             setAltitude(0);
             System.out.println("Altura minima do ambiente excedida!");
-            System.out.println(nome + " atingiu o solo");
+            System.out.println(id + " atingiu o solo");
         }
     }
 
