@@ -23,8 +23,8 @@ public class RoboRastreador extends RoboTerrestre implements
     private SensorMetal sensorMetal = new SensorMetal(7.0);
 
     // Construtor
-    public RoboRastreador(String nome, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente) {
-        super(nome, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
+    public RoboRastreador(String id, int posicaoX, int posicaoY, String direcao, int velocidadeMaxima, Ambiente ambiente) {
+        super(id, posicaoX, posicaoY, direcao, velocidadeMaxima, ambiente);
         this.tesouroX = -1;
         this.tesouroY = -1;
         this.tesouroZ = -1;

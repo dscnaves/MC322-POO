@@ -22,7 +22,7 @@ public class SensorPovoamento extends Sensor {
 
     // Método para monitorar o ambiente
     public void monitorar(Robo robo) {
-        System.out.println("🛰️ " + robo.getId() + " ativou o Sensor de Povoamento.");
+        System.out.println("Robo " + robo.getId() + " ativou o Sensor de Povoamento.");
         Planeta planeta = checkPovo(robo);
 
         // Verifica se o planeta está povoado ou não

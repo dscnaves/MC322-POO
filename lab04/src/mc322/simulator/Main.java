@@ -74,6 +74,12 @@ public class Main {
         System.out.println("\n");
         roboRastreador.checkBauDeTesouros();
         System.out.println("\n");
+
+        try {
+            roboLimpeza.usarSensores();
+        } catch (RoboDesligadoException e) {
+            System.out.println(e.getMessage());
+        }
         roboLimpeza.usarSensores();
         System.out.print("\n");
         roboAgricultor.usarSensores();
@@ -139,14 +145,14 @@ public class Main {
                             if (roboSelecionado instanceof Comunicavel) {
                                 System.out.println(menuIndex++ + ". Comunicação (enviar mensagem)");
                             }
-                            if (roboSelecionado instanceof Monitoravel) {
-                                System.out.println(menuIndex++ + ". Monitorar ambiente");
+                            if (roboSelecionado instanceof Recarregavel) {
+                                System.out.println(menuIndex++ + ". Recarregar bateria");
                             }
-                            if (roboSelecionado instanceof Movimentavel) {
-                                System.out.println(menuIndex++ + ". Realizar manobra");
+                            if (roboSelecionado instanceof Diagnosticavel) {
+                                System.out.println(menuIndex++ + ". Realizar diagnóstico");
                             }
-                            if (roboSelecionado instanceof Operacional) {
-                                System.out.println(menuIndex++ + ". Executar rotina de manutenção");
+                            if (roboSelecionado instanceof Autodesligavel) {
+                                System.out.println(menuIndex++ + ". Autodesligar se bateria <= 10");
                             }
                             System.out.println("0. Voltar ao menu principal");
 
@@ -218,22 +224,26 @@ public class Main {
                                     break;
 
                                 case 7:
-                                    if (roboSelecionado instanceof Monitoravel) {
-                                        ((Monitoravel) roboSelecionado).monitorarAmbiente();
+                                    if (roboSelecionado instanceof Diagnosticavel) {
+                                        ((Diagnosticavel) roboSelecionado).realizarDiagnostico();
+                                    } else {
+                                        System.out.println("Este robô não possui capacidade de diagnóstico.");
                                     }
                                     break;
 
                                 case 8:
-                                    if (roboSelecionado instanceof Movimentavel) {
-                                        System.out.print("Digite o tipo de manobra: ");
-                                        String manobra = sc.nextLine();
-                                        ((Movimentavel) roboSelecionado).realizarManobra(manobra);
+                                    if (roboSelecionado instanceof Recarregavel) {
+                                        ((Recarregavel) roboSelecionado).recarregar();
+                                    } else {
+                                        System.out.println("Este robô não pode ser recarregado.");
                                     }
                                     break;
 
                                 case 9:
-                                    if (roboSelecionado instanceof Operacional) {
-                                        ((Operacional) roboSelecionado).executarRotinaDeManutencao();
+                                    if (roboSelecionado instanceof Autodesligavel) {
+                                        ((Autodesligavel) roboSelecionado).desligarSeBateriaBaixa();
+                                    } else {
+                                        System.out.println("Este robô não possui função de autodesligamento.");
                                     }
                                     break;
 

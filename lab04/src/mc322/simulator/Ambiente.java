@@ -112,7 +112,7 @@ public class Ambiente {
                     char c;
                     switch (mapa[y][x][z]) {
                         case VAZIO: 
-                            c = '.';
+                            c = '_';
                             break;
                         case ROBO:
                             c = 'R';

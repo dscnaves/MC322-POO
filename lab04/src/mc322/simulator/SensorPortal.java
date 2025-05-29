@@ -23,7 +23,7 @@ public class SensorPortal extends Sensor {
 
     // Método para monitorar o ambiente em busca de portais
     public void monitorar(Robo robo) {
-        System.out.println(robo.getId() + " ativou o Sensor de Portal.");
+        System.out.println("Robo " + robo.getId() + " ativou o Sensor de Portal.");
         Portal portal = checkPortal(robo);
 
         // Verifica se encontrou um portal

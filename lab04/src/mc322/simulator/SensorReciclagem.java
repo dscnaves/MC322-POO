@@ -28,7 +28,6 @@ public class SensorReciclagem extends Sensor {
     }
 
     @Override
-
     // Função para monitorar o ambiente em busca de lixo
     public void monitorar(Robo robo) {
 
@@ -38,7 +37,7 @@ public class SensorReciclagem extends Sensor {
             return;
         }
 
-        System.out.println(robo.getId() + " ativou o Sensor de Reciclagem.");
+        System.out.println("Robo " + robo.getId() + " ativou o Sensor de Reciclagem.");
 
         // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();

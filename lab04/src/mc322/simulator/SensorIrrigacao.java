@@ -23,7 +23,7 @@ public class SensorIrrigacao extends Sensor {
 
     // Método para monitorar o ambiente em busca de plantinhas prontas para Irrigacao
     public void monitorar(Robo robo) {
-        System.out.println(robo.getId() + " ativou o Sensor de Irrigacao.");
+        System.out.println("Robo " + robo.getId() + " ativou o Sensor de Irrigacao.");
 
         // Obtendo o ambiente e a posição do robo
         Ambiente ambiente = robo.getAmbiente();

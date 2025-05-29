@@ -123,7 +123,6 @@ public class RoboAgricultor extends RoboAereo implements
         System.out.println("Robo " + getId() + " recebeu mensagem: '" + mensagem + "'");
     }
 
-
     @Override
     // Essa função realiza um diagnóstico do estado do robo, incluindo a bateria, o estado do sistema e a especialidade
     public void realizarDiagnostico() {

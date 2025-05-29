@@ -27,7 +27,7 @@ public class SensorMetal extends Sensor {
             return;
         }
 
-        System.out.println(robo.getId() + " ativou o Sensor de Metal.");
+        System.out.println("Robo " + robo.getId() + " ativou o Sensor de Metal.");
 
         Ambiente ambiente = robo.getAmbiente();
         int xRobo = robo.getPosicaoX();
@@ -66,7 +66,6 @@ public class SensorMetal extends Sensor {
             System.out.println("Este sensor só funciona com RoboRastreador");
             return null;
         }
-        
         
         Ambiente ambiente = robo.getAmbiente();
         boolean tesouroEncontrado = false;

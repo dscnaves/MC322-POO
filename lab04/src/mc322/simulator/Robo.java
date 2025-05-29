@@ -57,12 +57,12 @@
 
     // Função percorre o array de sensores do robo que chama o método executa a função proncipal de cada sensor
     public void usarSensores() {
-         if (estado != EstadoRobo.LIGADO) {
+        if (estado != EstadoRobo.LIGADO) {
             throw new RoboDesligadoException("Robo " + id + " está desligado e não pode usar sensores.");
-         }
-         for (Sensor s : sensores) {
-             s.monitorar(this);
-         }
+        }
+        for (Sensor s : sensores) {
+            s.monitorar(this);
+        }
      }
 
      public void consumirBateria(int consumo) {
