@@ -13,6 +13,6 @@ public class RoboDesligadoException extends RuntimeException{
     
     // Construtor que recebe uma mensagem de erro
     public RoboDesligadoException(String mensagem) {
-        super(mensagem);
+        super("mensagem");
     }
 }

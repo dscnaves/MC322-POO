@@ -17,6 +17,15 @@
 import java.util.Scanner;
 
 public class Main {
+
+    public static void TentarUsarSensores(Robo robo) {
+        try {
+            robo.usarSensores();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -72,22 +81,22 @@ public class Main {
         roboEspacial.exibirPosicao();
         roboRastreador.exibirPosicao();
         System.out.println("\n");
+
         roboRastreador.checkBauDeTesouros();
         System.out.println("\n");
 
-        try {
-            roboLimpeza.usarSensores();
-        } catch (RoboDesligadoException e) {
-            System.out.println(e.getMessage());
-        }
-        roboLimpeza.usarSensores();
+        
+        // Supondo que isso esteja dentro de um método principal ou similar:
+        TentarUsarSensores(roboLimpeza);
         System.out.print("\n");
-        roboAgricultor.usarSensores();
+        TentarUsarSensores(roboAgricultor);
         System.out.print("\n");
-        roboEspacial.usarSensores();
+        TentarUsarSensores(roboEspacial);
         System.out.print("\n");
-        roboRastreador.usarSensores();
+        TentarUsarSensores(roboRastreador);
         System.out.println("\n");
+
+
         roboLimpeza.limparLixo();
         roboAgricultor.regarPlantinha();
         roboAgricultor.tratarPlantaDoente();
@@ -288,5 +297,6 @@ public class Main {
         }
 
         sc.close();
+
     }
 }
