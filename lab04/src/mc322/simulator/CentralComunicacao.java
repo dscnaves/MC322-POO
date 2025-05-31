@@ -17,12 +17,12 @@ public class CentralComunicacao {
     private ArrayList<String> mensagens = new ArrayList<>();
 
     // Método para registrar uma mensagem enviada por um remetente
-    public void registrarMensagem(String remetente, String msg) {
-        mensagens.add(remetente + ": " + msg);
+    public void registrarMensagem(String remetente, String destinatario, String msg) {
+        mensagens.add("De " + remetente + " para " +destinatario+ ": " + msg);
     }
 
     // Método para registrar uma mensagem recebida por um destinatário
-    public void exibirMensagens() {
+    public void exibirHistoticoMensagens() {
         System.out.println("Historico de mensagens:");
         for (String m : mensagens) {
             System.out.println(m);

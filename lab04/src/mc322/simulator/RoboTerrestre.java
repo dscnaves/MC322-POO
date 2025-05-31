@@ -25,9 +25,10 @@
         this.velocidadeMaxima = velocidadeMaxima;
     }
 
+    // Implementação do método abstrato executarTarefa()
     @Override
     public void executarTarefa() {
-        System.out.println(id + " está executando sua tarefa terrestre.");
+        System.out.println("Inicializando execução de tarefa padrão de Robo Terrestre...\n");
     }
 
     @Override

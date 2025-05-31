@@ -313,7 +313,7 @@ Sensor <|-- SensorReciclagem
 
 1. Compile todos os arquivos:
 ```bash
-javac -d bin src/mc322/Simulator/*.java
+javac -d bin src/mc322/simulator/*.java
 ```
 
 2. Execute a simulação:

@@ -35,13 +35,25 @@ public class RoboEspacial extends RoboAereo implements
         this.adicionarSensor(sensorPovoamento);
     }
 
+     @Override
+    // Método para funções bases do RoboEspacial
+    public void executarTarefa(){
+        // Verifica se o robô está em um planeta
+        if (estaEmPlaneta()) {
+            System.out.println("Robo " + getId() + " está em um planeta. Procurar sinais de vida extraterrestre...");
+            usarSensorPovoamento();
+        } else {
+            System.out.println("Robo " + getId() + " não está em um planeta. Explorando o espaço...");
+            atravessarPortal();
+        }
+    }
+
     // Método para usar sensores individualmente
     public void usarSensorPortal() {
         sensorPortal.monitorar(this);
         Portal portal = sensorPortal.checkPortal(this);
         if (portal != null) {
             System.out.println("Portal detectado em (" + portal.getX1() + "," + portal.getY1() + "," + portal.getZ1() + ")");
-            System.out.println("Use a opção 13 para atravessar este portal!");
         }
         consumirBateria(10);
     }
@@ -52,7 +64,6 @@ public class RoboEspacial extends RoboAereo implements
         planetaAtual = sensorPovoamento.checkPovo(this);
         if (planetaAtual != null) {
             System.out.println("Planeta descoberto e pronto para ser nomeado!");
-            System.out.println("Use a opção 14 para nomear este planeta!");
         }
         consumirBateria(10);
     }
@@ -63,7 +74,8 @@ public class RoboEspacial extends RoboAereo implements
         Portal portal = sensorPortal.checkPortal(this);
 
         // Verifica se encontrou um portal
-        if(portal != null){        
+        if(portal != null){    
+            System.out.println("Portal detectado em (" + portal.getX1() + "," + portal.getY1() + "," + portal.getZ1() + ")");
             System.out.println("Atravessando portal...");
 
             // Atualiza o mapa que o robo deicou sua posição inicial

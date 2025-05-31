@@ -27,6 +27,14 @@
          this.adicionarSensor(sensorReciclagem);
      }
 
+
+    @Override
+    // Método para funções bases do RoboLimpeza
+    public void executarTarefa(){
+        // Procura por lixo no ambiente dentro do raio de alcance do sensor
+        classificarELimparLixo();
+    }
+
      // Método para limpar lixo 
      public void limparLixo() {
          boolean lixoRemovido = false;
@@ -67,7 +75,7 @@
                     ambiente.removerEntidade(obst);
                     // Atualiza o mapa removendo o lixo
                     ambiente.atualizarMapa(posicaoX, posicaoY, altitude, TipoEntidade.VAZIO);
-                    System.out.println("Lixo classificado e removido da posição atual.");
+                    System.out.println("Lixo na posição (" + posicaoX + ", " + posicaoY + ", " + altitude + ")classificado e devidamente reciclado!");
                     consumirBateria(10);
                     desligarSeBateriaBaixa();
                     return;

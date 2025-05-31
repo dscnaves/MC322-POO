@@ -31,6 +31,22 @@ public class RoboAgricultor extends RoboAereo implements
         this.adicionarSensor(sensorIrrigacao);
     }
 
+    @Override
+    // Método para funções bases do RoboAgricultor
+    public void executarTarefa(){
+        // Procurar uma plantinha para regar
+        Plantinha p = sensorIrrigacao.checarIrrigacao(this);
+        if (p != null) {
+            regarPlantinha();
+
+            if (!p.isSaudavel()){
+                tratarPlantaDoente();
+            } else if (p.podeColher()) {
+                colherPlantinha();
+            }
+        }
+    }
+
     // Método para regar uma plantinha
     public void regarPlantinha() {
         boolean regou = false;
@@ -42,9 +58,14 @@ public class RoboAgricultor extends RoboAereo implements
         if (plantinha != null){
             // Verifica se a plantinha é do tipo que o agricultor cuida
             if(plantinha.getEspecie() == tipoPlantinha){
-                plantinha.regar();
-                regou = true;
-                consumirBateria(10);
+                try {
+                    plantinha.regar();
+                    regou = true;
+                    consumirBateria(10);
+                } catch (CrescimentoMaximoAtingidoException e) {
+                    e.getMessage();
+                    //System.out.println("Não foi possível regar: crescimento máximo atingido para a plantinha da espécie " + tipoPlantinha + ".");
+                }
             } 
         }
         if (!regou) {

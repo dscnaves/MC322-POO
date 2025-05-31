@@ -28,17 +28,20 @@ public class Plantinha extends Obstaculo {
     }
 
     // Métodos específicos de Plantinha
-    public void regar() {
-        if (crescimento < 100) {
-            crescimento = Math.min(100, crescimento + 10);
-            System.out.println(especie + " regada! Crescimento atual: " + crescimento + "%");
+    public void regar() throws CrescimentoMaximoAtingidoException {
+        if (crescimento >= 100) {
+            throw new CrescimentoMaximoAtingidoException(especie);
         }
+
+        crescimento = Math.min(100, crescimento + 10);
+        System.out.println("Plantinha " + especie + " regada! Crescimento atual: " + crescimento + "%");
     }
+    
 
     // Método para tratar a plantinha
     public void tratar() {
         saudavel = true;
-        System.out.println(especie + " foi tratada e está saudável!");
+        System.out.println("Plantinha" + especie + " foi tratada e está saudável!");
     }
 
     // Método para verificar se a plantinha pode ser colhida

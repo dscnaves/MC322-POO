@@ -11,6 +11,6 @@
 // Essa classe é responsável por lançar o erro caso a entidade esteja fora dos limites de ambiente
 public class ForaDosLimitesException extends RuntimeException {
     public ForaDosLimitesException(String mensagem) {
-        super(mensagem);
+        super("Fora dos limites: " + mensagem);
     }
 }

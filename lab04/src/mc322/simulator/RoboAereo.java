@@ -23,7 +23,7 @@
     // Implementação do método abstrato executarTarefa()
     @Override
     public void executarTarefa() {
-        System.out.println("Executando tarefa padrão do RoboAereo.");
+        System.out.println("Inicializando execução de tarefa padrão do Robo Aereo...\n");
     }
 
     // Método construtor para inicialização dos atributos da classe RoboAereo

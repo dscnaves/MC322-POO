@@ -35,6 +35,18 @@ public class RoboRastreador extends RoboTerrestre implements
         this.adicionarSensor(sensorMetal);
     }
 
+     @Override
+    // Método para funções bases do RoboRastreador
+    public void executarTarefa(){
+        Obstaculo obstaculo = sensorMetal.detectorTesouros(this);
+        if (obstaculo != null) {
+            classificarMetal(obstaculo);
+            extrairTesouro();
+        } else {
+            System.out.println("Nenhum tesouro encontrado no ambiente.");
+        }
+    }
+
     // Métodos para atualizar a localização do tesouro
     public void atualizarLocalizacaoTesouro(int x, int y, int z) {
         this.tesouroX = x;
@@ -46,7 +58,7 @@ public class RoboRastreador extends RoboTerrestre implements
     // Método para classificar o metal entre puro ou impiruro
     public void classificarMetal(Obstaculo obstaculo) {
         if (obstaculo == null) {
-            System.out.println("Nenhum obstáculo para classificar.");
+            System.out.println("Nenhum metal precioso encontrado no raio de alcance do sensor.");
             return;
         }
 
@@ -58,6 +70,8 @@ public class RoboRastreador extends RoboTerrestre implements
                 break;
             case LIXO:
                 System.out.println("Metal lixo encontrado.");
+                // Enviar mensagem para Central de comunicação que informará o RoboLimpeza para classificar o lixo
+                System.out.println("Enviando mensagem para RoboLimpeza para classificar o lixo localizado na posição (" + obstaculo.getX1() + ", " + obstaculo.getY1() + ", " + obstaculo.getZ1() + ")");
                 break;
             default:
                 System.out.println("Objeto encontrado não é metal conhecido.");

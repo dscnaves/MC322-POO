@@ -73,6 +73,8 @@ public class SensorColheita extends Sensor {
                 }
             }
         }
+        // Caso não encontre uma plantinha pronta para colheita, retorna null
+        System.out.println("Nenhuma plantinha pronta para colheita encontrada.");
         return null;
     }
 }

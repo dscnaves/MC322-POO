@@ -11,6 +11,6 @@
 // Esta classe define a exceção ColisaoException, que é lançada quando dois objetos colidem
 public class ColisaoException extends RuntimeException {
     public ColisaoException(String mensagem) {
-        super(mensagem);
+        super("Colisão detectada: " + mensagem);
     }
 }

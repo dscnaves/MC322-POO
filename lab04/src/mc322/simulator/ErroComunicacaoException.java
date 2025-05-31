@@ -18,7 +18,7 @@ public class ErroComunicacaoException extends RuntimeException {
         Chama o construtor da superclasse (RuntimeException)
         e passa a mensagem, que pode ser acessada com getMessage()
         */
-        super(mensagem);
+        super("Erro de comunicação: " + mensagem);
     }
 }
 

@@ -54,39 +54,55 @@ public class Main {
         Plantinha tomateCrescido = new Plantinha(6, 3, 0, 6, 3, 0, "Tomate");
         ambiente.adicionarEntidade(tomateCrescido);
         tomateCrescido.setCrescimento(80);
+
+        // Adicionando mais Plantinhas de outras espécies
+        ambiente.adicionarEntidade(new Plantinha(1, 3, 3, 1, 3, 0, "Alface"));
+        ambiente.adicionarEntidade(new Plantinha(2, 2, 3, 2, 2, 0, "Alface"));
+        ambiente.adicionarEntidade(new Plantinha(4, 5, 3, 4, 5, 0, "Laranja"));
+        ambiente.adicionarEntidade(new Plantinha(8, 2, 9, 8, 2, 0, "Laranja"));  
         
         // Adiciona Lixos
-        ambiente.adicionarEntidade(new Lixo(3, 3, 0, 3, 3, 0, "Plastico"));
-        ambiente.adicionarEntidade(new Lixo(2, 3, 0, 2, 3, 4, "Plastico"));
-        ambiente.adicionarEntidade(new Lixo(8, 8, 0, 8, 8, 0, "Vidro"));
-        ambiente.adicionarEntidade(new Lixo(7, 4, 0, 7, 4, 3, "Vidro"));
-        ambiente.adicionarEntidade(new Lixo(4, 8, 0, 4, 8, 0, "Metal"));
-        ambiente.adicionarEntidade(new Lixo(2, 5, 0, 2, 5, 7, "Metal"));
-        ambiente.adicionarEntidade(new Lixo(2, 2, 0, 2, 2, 5, "Metal"));
+        ambiente.adicionarEntidade(new Lixo(3, 3, 5, 3, 3, 0, "Plastico"));
+        ambiente.adicionarEntidade(new Lixo(2, 3, 4, 2, 3, 4, "Plastico"));
+        ambiente.adicionarEntidade(new Lixo(8, 8, 3, 8, 8, 0, "Vidro"));
+        ambiente.adicionarEntidade(new Lixo(7, 4, 8, 7, 4, 3, "Vidro"));
+        ambiente.adicionarEntidade(new Lixo(4, 8, 7, 4, 8, 0, "Metal"));
+        ambiente.adicionarEntidade(new Lixo(2, 5, 6, 2, 5, 7, "Metal"));
+        ambiente.adicionarEntidade(new Lixo(2, 2, 2, 2, 2, 5, "Metal"));        
 
-        // ambiente.adicionarEntidade(new Tesouro(7, 7, 7, 7, 0));
+        // Adicionar Portal perto de roboEspacial
+        ambiente.adicionarEntidade(new Portal(1, 1, 0, 1, 1, 0, 4, 4, 6));
+        ambiente.adicionarEntidade(new Portal(4, 4, 0, 4, 4, 0, 1, 1, 6));
 
-        // Adicionando Planeta e respectivo portal
+        // Adicionando Planeta perto de roboEspacial
+        ambiente.adicionarEntidade(new Planeta(8, 8, 9, 9, 9, 0));
         ambiente.adicionarEntidade(new Portal(8, 8, 0, 8, 8, 0, 1, 1, 6));
         ambiente.adicionarEntidade(new Planeta(1, 1, 6, 4, 4, 0));
+
+        // Adicionar Lixo próximo ao RoboRastreador
+        ambiente.adicionarEntidade(new Lixo(0, 1, 0, 0, 1, 0, "Metal"));
+        ambiente.adicionarEntidade(new Lixo(1, 0, 0, 1, 0, 0, "Metal"));
 
         // Adiciona Tesouros para o RoboRastreador
         ambiente.adicionarEntidade(new Obstaculo(7, 7, 0, 7, 7, 0, TipoObstaculo.TESOURO));
         ambiente.adicionarEntidade(new Obstaculo(3, 5, 0, 3, 5, 0, TipoObstaculo.TESOURO));
         ambiente.adicionarEntidade(new Obstaculo(9, 2, 0, 9, 2, 0, TipoObstaculo.TESOURO));
+        ambiente.adicionarEntidade(new Obstaculo(6, 1, 4, 1, 3, 0, TipoObstaculo.TESOURO));
+        ambiente.adicionarEntidade(new Obstaculo(7, 7, 7, 7, 7, 0, TipoObstaculo.TESOURO));
 
         // Testes obrigatórios fora do menu
+        System.out.println("============== Posição Inicial dos Robôs ==============");
         roboLimpeza.exibirPosicao();
         roboAgricultor.exibirPosicao();
         roboEspacial.exibirPosicao();
         roboRastreador.exibirPosicao();
-        System.out.println("\n");
+        System.out.println("\n\n");
 
         roboRastreador.checkBauDeTesouros();
         System.out.println("\n");
-
         
-        // Supondo que isso esteja dentro de um método principal ou similar:
+        //Testes dos sensores obrigatórios
+        System.out.println("============== Testando Sensores ==============");
         TentarUsarSensores(roboLimpeza);
         System.out.print("\n");
         TentarUsarSensores(roboAgricultor);
@@ -96,7 +112,7 @@ public class Main {
         TentarUsarSensores(roboRastreador);
         System.out.println("\n");
 
-
+        // Testes dos métodos obrigatórios
         roboLimpeza.limparLixo();
         roboAgricultor.regarPlantinha();
         roboAgricultor.tratarPlantaDoente();
@@ -112,7 +128,7 @@ public class Main {
             System.out.println("\n========== MENU INTERATIVO ==========");
             System.out.println("1. Listar robôs por tipo e estado");
             System.out.println("2. Selecionar robô para interagir");
-            System.out.println("3. Visualizar status do robô e ambiente");
+            System.out.println("3. Visualizar status do robô em ambiente");
             System.out.println("4. Visualizar mapa 2D do ambiente");
             System.out.println("5. Listar mensagens trocadas entre robôs");
             System.out.println("0. Sair");
@@ -131,7 +147,7 @@ public class Main {
                 case 2:
                     System.out.println("Escolha o número do robô para interagir:");
                     for (int i = 0; i < robos.length; i++) {
-                        System.out.println((i + 1) + ". " + robos[i].getId());
+                        System.out.println((i + 1) + ". " + robos[i].getId()+ "\n");
                     }
                     int escolha = sc.nextInt();
                     sc.nextLine();
@@ -225,7 +241,7 @@ public class Main {
                                         Comunicavel destinatario = (Comunicavel) robos[dest - 1];
                                         try {
                                             ((Comunicavel) roboSelecionado).enviarMensagem(destinatario, msg);
-                                            central.registrarMensagem(roboSelecionado.getId(), msg);
+                                            central.registrarMensagem(roboSelecionado.getId(), robos[dest].getId(), msg);
                                         } catch (RoboDesligadoException e) {
                                             System.out.println(e.getMessage());
                                         }
@@ -270,21 +286,34 @@ public class Main {
                     break;
 
                 case 3:
-                    if (roboSelecionado != null) {
-                        roboSelecionado.exibirPosicao();
+                    // Seleciona o robô para exibir status
+                    System.out.println("Escolha o número do robô para interagir:");
+                    for (int i = 0; i < robos.length; i++) {
+                        System.out.println((i + 1) + ". " + robos[i].getId()+ "\n");
+                    }
+                    int escolhaRobo = sc.nextInt();
+                    sc.nextLine();
+                    if (escolhaRobo >= 1 && escolhaRobo <= robos.length) {
+                        roboSelecionado = robos[escolhaRobo - 1];
+                    }
+                    // Exibe o status do robô selecionado
+                    System.out.println("Status do robô " + roboSelecionado.getId() + ":");
+                    System.out.println("Bateria: " + roboSelecionado.getBateria() + "%");
+                    System.out.println("Posição: (" + roboSelecionado.getPosicaoX() + ", " + roboSelecionado.getPosicaoY() + ", " + roboSelecionado.getAltitude() + ")");
+                    System.out.println("Estado: " + roboSelecionado.getEstado());
+
+                case 4:
+                    System.out.print("Escolha o andar (0 a " + (ambiente.getAmbienteAltitude() - 1) + ") OU digite -1 para ver todos os andares: ");
+                    int z = sc.nextInt();
+                    if (z == -1) {
+                        ambiente.exibirMapa();
                     } else {
-                        System.out.println("Nenhum robô selecionado.");
+                        ambiente.exibirPlanoXMapa(z);
                     }
                     break;
 
-                case 4:
-                    System.out.print("Escolha o andar (0 a " + (ambiente.getAmbienteAltitude() - 1) + "): ");
-                    int z = sc.nextInt();
-                    ambiente.exibirPlanoXMapa(z);
-                    break;
-
                 case 5:
-                    central.exibirMensagens();
+                    central.exibirHistoticoMensagens();
                     break;
 
                 case 0:
