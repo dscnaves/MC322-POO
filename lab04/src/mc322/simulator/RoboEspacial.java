@@ -13,6 +13,8 @@
 * o RoboEspacial é um robô aéreo que explora o espaço.
 */
 
+import java.util.Scanner;
+
 public class RoboEspacial extends RoboAereo implements 
     Sensoreavel, Comunicavel, Diagnosticavel, Recarregavel {
 
@@ -61,13 +63,23 @@ public class RoboEspacial extends RoboAereo implements
     // Método para usar sensor de povoamento
     public void usarSensorPovoamento() {
         sensorPovoamento.monitorar(this);
-        planetaAtual = sensorPovoamento.checkPovo(this);
+        planetaAtual = sensorPovoamento.roboDentroPlaneta(this);
         if (planetaAtual != null) {
-            System.out.println("Planeta descoberto e pronto para ser nomeado!");
+            System.out.println("Planeta descoberto! Precisamos verificar se já é povoado.");
+            if (sensorPovoamento.planetaJaPovoado(ambiente, planetaAtual)) {
+                System.out.println("Planeta já está povoado.");
+            } else {
+                System.out.println("Planeta desabitado! Pode ser nomeado.");
+                // // Nomear o planeta
+                // System.out.println("Nome do planeta: ");
+                // try (Scanner scanner = new Scanner(System.in)) {
+                //     String nomePlaneta = scanner.nextLine(); 
+                //     nomearPlaneta(nomePlaneta);              
+                // }
+            }
         }
         consumirBateria(10);
     }
-
     // Método para atravessar um portal
     public void atravessarPortal(){
         // Obtém portal pelo sensor de portal

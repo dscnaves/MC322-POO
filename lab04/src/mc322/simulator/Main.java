@@ -76,8 +76,8 @@ public class Main {
         ambiente.adicionarEntidade(new Portal(8, 7, 0, 8, 7, 0, 1, 1, 6));
 
         // Adicionando Planeta perto de roboEspacial
-        ambiente.adicionarEntidade(new Planeta(8, 9, 9, 9, 9, 0)); // Movido de (8,8) para (8,9)
-        ambiente.adicionarEntidade(new Planeta(1, 2, 6, 4, 4, 0)); // Movido de (1,1) para (1,2)
+        ambiente.adicionarEntidade(new Planeta(8, 9, 9, 9, 9, 0));
+        ambiente.adicionarEntidade(new Planeta(1, 2, 6, 4, 4, 0)); 
 
         // Adicionar Lixo próximo ao RoboRastreador
         ambiente.adicionarEntidade(new Lixo(0, 1, 0, 0, 1, 0, "Metal"));
@@ -89,6 +89,9 @@ public class Main {
         ambiente.adicionarEntidade(new Obstaculo(9, 2, 0, 9, 2, 0, TipoObstaculo.TESOURO));
         ambiente.adicionarEntidade(new Obstaculo(6, 1, 4, 1, 3, 0, TipoObstaculo.TESOURO));
         ambiente.adicionarEntidade(new Obstaculo(7, 6, 7, 7, 6, 0, TipoObstaculo.TESOURO));
+
+        // Adicionar um alienigena dentro de um planeta próximo do RoboEspacial
+        ambiente.adicionarEntidade(new Obstaculo(8, 8, 0, 8, 8, 0, TipoObstaculo.ALIENIGENA)); // Está dentro do Planeta 1
 
         // Testes obrigatórios fora do menu
         System.out.println("============== Posição Inicial dos Robôs ==============");
@@ -128,7 +131,7 @@ public class Main {
             System.out.println("\n========== MENU INTERATIVO ==========");
             System.out.println("1. Listar robôs por tipo e estado");
             System.out.println("2. Selecionar robô para interagir");
-            System.out.println("3. Visualizar status do robô em ambiente");
+            System.out.println("3. Visualizar status do robô e ambiente");
             System.out.println("4. Visualizar mapa 2D do ambiente");
             System.out.println("5. Listar mensagens trocadas entre robôs");
             System.out.println("0. Sair");
