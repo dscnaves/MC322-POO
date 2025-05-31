@@ -57,7 +57,7 @@ public class Main {
 
         // Adicionando mais Plantinhas de outras espécies
         ambiente.adicionarEntidade(new Plantinha(1, 3, 3, 1, 3, 0, "Alface"));
-        ambiente.adicionarEntidade(new Plantinha(2, 2, 3, 2, 2, 0, "Alface"));
+        ambiente.adicionarEntidade(new Plantinha(2, 3, 3, 2, 3, 0, "Alface"));
         ambiente.adicionarEntidade(new Plantinha(4, 5, 3, 4, 5, 0, "Laranja"));
         ambiente.adicionarEntidade(new Plantinha(8, 2, 9, 8, 2, 0, "Laranja"));  
         
@@ -68,16 +68,16 @@ public class Main {
         ambiente.adicionarEntidade(new Lixo(7, 4, 8, 7, 4, 3, "Vidro"));
         ambiente.adicionarEntidade(new Lixo(4, 8, 7, 4, 8, 0, "Metal"));
         ambiente.adicionarEntidade(new Lixo(2, 5, 6, 2, 5, 7, "Metal"));
-        ambiente.adicionarEntidade(new Lixo(2, 2, 2, 2, 2, 5, "Metal"));        
+        ambiente.adicionarEntidade(new Lixo(2, 1, 2, 2, 1, 5, "Metal"));       
 
         // Adicionar Portal perto de roboEspacial
-        ambiente.adicionarEntidade(new Portal(1, 1, 0, 1, 1, 0, 4, 4, 6));
-        ambiente.adicionarEntidade(new Portal(4, 4, 0, 4, 4, 0, 1, 1, 6));
+        ambiente.adicionarEntidade(new Portal(1, 0, 0, 1, 0, 0, 4, 4, 6)); 
+        ambiente.adicionarEntidade(new Portal(4, 3, 0, 4, 3, 0, 1, 1, 6)); 
+        ambiente.adicionarEntidade(new Portal(8, 7, 0, 8, 7, 0, 1, 1, 6));
 
         // Adicionando Planeta perto de roboEspacial
-        ambiente.adicionarEntidade(new Planeta(8, 8, 9, 9, 9, 0));
-        ambiente.adicionarEntidade(new Portal(8, 8, 0, 8, 8, 0, 1, 1, 6));
-        ambiente.adicionarEntidade(new Planeta(1, 1, 6, 4, 4, 0));
+        ambiente.adicionarEntidade(new Planeta(8, 9, 9, 9, 9, 0)); // Movido de (8,8) para (8,9)
+        ambiente.adicionarEntidade(new Planeta(1, 2, 6, 4, 4, 0)); // Movido de (1,1) para (1,2)
 
         // Adicionar Lixo próximo ao RoboRastreador
         ambiente.adicionarEntidade(new Lixo(0, 1, 0, 0, 1, 0, "Metal"));
@@ -88,7 +88,7 @@ public class Main {
         ambiente.adicionarEntidade(new Obstaculo(3, 5, 0, 3, 5, 0, TipoObstaculo.TESOURO));
         ambiente.adicionarEntidade(new Obstaculo(9, 2, 0, 9, 2, 0, TipoObstaculo.TESOURO));
         ambiente.adicionarEntidade(new Obstaculo(6, 1, 4, 1, 3, 0, TipoObstaculo.TESOURO));
-        ambiente.adicionarEntidade(new Obstaculo(7, 7, 7, 7, 7, 0, TipoObstaculo.TESOURO));
+        ambiente.adicionarEntidade(new Obstaculo(7, 6, 7, 7, 6, 0, TipoObstaculo.TESOURO));
 
         // Testes obrigatórios fora do menu
         System.out.println("============== Posição Inicial dos Robôs ==============");
