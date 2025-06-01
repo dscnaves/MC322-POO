@@ -135,9 +135,23 @@ public class Ambiente {
         System.out.println("\n[Mapa no andar Z=" + z + "]");
         for (int y = 0; y < profundidade; y++) {
             for (int x = 0; x < largura; x++) {
-                System.out.print(mapa[y][x][z] + " ");
-            }
-            System.out.println();
+                char c;
+                    switch (mapa[y][x][z]) {
+                        case VAZIO: 
+                            c = '_';
+                            break;
+                        case ROBO:
+                            c = 'R';
+                            break;
+                        case OBSTACULO:
+                            c = 'O';
+                            break;
+                        default:
+                            c = '?';
+                    }
+                    System.out.print(c + " ");
+                }
+                System.out.println();
         }
     }
 
