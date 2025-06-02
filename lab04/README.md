@@ -386,18 +386,18 @@ class SensorReciclagem
 class Entidade
 class CentralComunicacao
 
-class Autodesligavel <<interface>>
-class Comunicavel <<interface>>
-class Diagnosticavel <<interface>>
-class Recarregavel <<interface>>
-class Sensoreavel <<interface>>
+class Autodesligavel
+class Comunicavel
+class Diagnosticavel
+class Recarregavel
+class Sensoreavel
 
-class ColisaoException <<exception>>
-class CrescimentoMaximoAtingidoException <<exception>>
-class ErroComunicacaoException <<exception>>
-class ForaDosLimitesException <<exception>>
-class PlanetaException <<exception>>
-class RoboDesligadoException <<exception>>
+class ColisaoException
+class CrescimentoMaximoAtingidoException
+class ErroComunicacaoException
+class ForaDosLimitesException
+class PlanetaException
+class RoboDesligadoException
 
 Entidade <|-- Robo
 Entidade <|-- Obstaculo
