@@ -146,8 +146,9 @@ O seguinte diagrama mostra as principais classes do simulador, suas heranças, c
 
 
 > **Importante:**  
-> - As **setas das interfaces** implementadas pelos robôs ficaram um pouco **sobrepostas**, mas se conectam apenas aos **robôs específicos** e **NÃO aos sensores**.  
+> - As **setas das interfaces** implementadas pelos robôs ficaram um pouco **sobrepostas**, mas se conectam **apenas** aos **robôs específicos** (RoboLimpeza, RoboRastreador, RoboAgricultor e RoboEspacial). 
 > - Para maior clareza, **RoboLimpeza** e **RoboRastreador** implementam **todas** as interfaces, enquanto **RoboAgricultor** e **RoboEspacial** só **NÃO** implementam `Autodesligavel`.
+> - As **setas dos sensores específicos** se conectam apenas à classe **sensor**.  
 
 ```mermaid	
 ---
