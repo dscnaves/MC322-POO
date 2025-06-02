@@ -1,9 +1,9 @@
 /*
 * Main.java
 * 
-* Última modificação: 28/04/2025
+* Última modificação: 01/06/2025
 * 
-* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* Classe componente do Lab04 da disciplina MC322 - Programação Orientada a Objetos
 * 
 * Autores: Anita Almeida e Daniela Naves
 */
@@ -250,20 +250,20 @@ public class Main {
                                         }
                                     }
                                     break;
-
+                                
                                 case 7:
-                                    if (roboSelecionado instanceof Diagnosticavel) {
-                                        ((Diagnosticavel) roboSelecionado).realizarDiagnostico();
-                                    } else {
-                                        System.out.println("Este robô não possui capacidade de diagnóstico.");
-                                    }
-                                    break;
-
-                                case 8:
                                     if (roboSelecionado instanceof Recarregavel) {
                                         ((Recarregavel) roboSelecionado).recarregar();
                                     } else {
                                         System.out.println("Este robô não pode ser recarregado.");
+                                    }
+                                    break;
+
+                                case 8:
+                                    if (roboSelecionado instanceof Diagnosticavel) {
+                                        ((Diagnosticavel) roboSelecionado).realizarDiagnostico();
+                                    } else {
+                                        System.out.println("Este robô não possui capacidade de diagnóstico.");
                                     }
                                     break;
 

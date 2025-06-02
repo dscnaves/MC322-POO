@@ -1,9 +1,9 @@
 /*
 * RoboEspacial.java
 * 
-* Última modificação: 28/04/2025
+* Última modificação: 01/06/2025
 * 
-* Classe componente do Lab03 da disciplina MC322 - Programação Orientada a Objetos
+* Classe componente do Lab04 da disciplina MC322 - Programação Orientada a Objetos
 * 
 * Autores: Anita Almeida e Daniela Naves
 */
@@ -12,8 +12,6 @@
 * Esta classe contém a estrutura de implementação de RoboEspacial
 * o RoboEspacial é um robô aéreo que explora o espaço.
 */
-
-import java.util.Scanner;
 
 public class RoboEspacial extends RoboAereo implements 
     Sensoreavel, Comunicavel, Diagnosticavel, Recarregavel {
