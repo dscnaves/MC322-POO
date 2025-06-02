@@ -433,7 +433,7 @@ java -cp bin Main
 | Comunicavel      | Permite que o robô envie mensagens para outros robôs             | RoboAgricultor, RoboLimpeza, RoboRastreador, RoboEspacial       |
 | Recarregavel     | Permite que o robô seja recarregado manualmente                  | RoboAgricultor, RoboLimpeza, RoboRastreador, RoboEspacial       |
 | Diagnosticavel   | Permite que o robô execute uma rotina de diagnóstico              | RoboAgricultor, RoboLimpeza, RoboRastreador, RoboEspacial       |
-| Autodesligavel   | Permite que o robô se desligue automaticamente com bateria baixa | RoboAgricultor e RoboEspacial       |
+| Autodesligavel   | Permite que o robô se desligue automaticamente com bateria baixa | RoboLimpeza e RoboRastreador       |
 
 ## 🚨 Exceções Personalizadas Implementadas e Onde São Lançadas
 
