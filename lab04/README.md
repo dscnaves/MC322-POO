@@ -88,6 +88,7 @@ flowchart TD
 | `Portal.java`                             | Obstáculo do tipo portal de teletransporte                                  |
 | `Planeta.java`                            | Obstáculo do tipo planeta espacial                                          |
 | `Plantinha.java`                          | Obstáculo do tipo plantinha com crescimento e estados                       |
+| `Tesouro.java`                          | Obstáculo do tipo tesouro                       |
 |                                           |
 | 🔍 Sensores                                                                     |
 | `Sensor.java`                             | Classe base de todos os sensores                                            |
@@ -101,9 +102,6 @@ flowchart TD
 | `SensorPovoamento.java`                   | Detecta planetas habitáveis                                                 |
 |                                           |
 | 📑 Interfaces                                                                   |
-| `Movimentavel.java`                       | Interface para robôs que realizam manobras                                 |
-| `Monitoravel.java`                        | Interface para robôs que monitoram o ambiente                              |
-| `Operacional.java`                        | Interface para robôs que fazem manutenção                                  |
 | `Sensoreavel.java`                        | Interface para robôs que utilizam sensores                                 |
 | `Comunicavel.java`                        | Interface para robôs que se comunicam entre si                             |
 | `Autodesligavel.java`                     | Interface para robôs que desligam sozinhos ao esgotar bateria              |
