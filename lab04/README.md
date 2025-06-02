@@ -331,8 +331,6 @@ classDiagram
         + String classificarLixo(Obstaculo)
     }
 
-    %% === CLASSES AUXILIARES ===
-
     %% === INTERFACES ===
     class Autodesligavel {
         + void desligar()
@@ -352,7 +350,7 @@ classDiagram
     }
 
     class Sensoreavel {
-        + void lerSensores()
+        + void acionarSensores()
     }
 
     %% === EXCEÇÕES ===
