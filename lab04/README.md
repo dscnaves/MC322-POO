@@ -331,6 +331,8 @@ classDiagram
         + String classificarLixo(Obstaculo)
     }
 
+    %% === CLASSES AUXILIARES ===
+
     %% === INTERFACES ===
     class Autodesligavel {
         + void desligar()
