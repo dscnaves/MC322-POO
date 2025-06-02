@@ -413,6 +413,10 @@ classDiagram
     RoboEspacial ..|> Sensoreavel
 ```
 
+> **Importante:**  
+> - As setas das interfaces implementadas pelos robôs ficaram um pouco sobrepostas, mas se conectam apenas aos robôs específicos e não sensores.  
+> - Para maior clareza, RoboLimpeza e RoboRastreador implementam todas as interfaces, enquanto RoboAgricultor e RoboEspacial só não implementam `Autodesligavel`.
+
 ---
 
 ## ▶️ Como Executar
