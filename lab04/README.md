@@ -358,6 +358,11 @@ Sensor <|-- SensorReciclagem
 ---
 
 ```mermaid	
+---
+config:
+  class:
+    hideEmptyMembersBox: true
+---
 classDiagram
     direction LR
 
