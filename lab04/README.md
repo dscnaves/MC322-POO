@@ -357,6 +357,7 @@ Sensor <|-- SensorReciclagem
 
 ---
 
+```mermaid	
 classDiagram
     direction LR
 
@@ -619,6 +620,7 @@ classDiagram
     RoboEspacial ..|> Diagnosticavel
     RoboEspacial ..|> Recarregavel
     RoboEspacial ..|> Sensoreavel
+```
 
 ---
 
