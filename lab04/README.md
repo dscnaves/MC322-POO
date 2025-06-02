@@ -357,6 +357,87 @@ Sensor <|-- SensorReciclagem
 
 ---
 
+```mermaid
+classDiagram
+
+class Ambiente
+class Robo
+class RoboTerrestre
+class RoboAereo
+class RoboLimpeza
+class RoboAgricultor
+class RoboEspacial
+class RoboRastreador
+class Obstaculo
+class Plantinha
+class Lixo
+class Portal
+class Planeta
+class TipoObstaculo
+class TipoEntidade
+class Sensor
+class SensorColheita
+class SensorIrrigacao
+class SensorSaude
+class SensorMetal
+class SensorPortal
+class SensorPovoamento
+class SensorReciclagem
+class Entidade
+class CentralComunicacao
+
+class Autodesligavel <<interface>>
+class Comunicavel <<interface>>
+class Diagnosticavel <<interface>>
+class Recarregavel <<interface>>
+class Sensoreavel <<interface>>
+
+class ColisaoException <<exception>>
+class CrescimentoMaximoAtingidoException <<exception>>
+class ErroComunicacaoException <<exception>>
+class ForaDosLimitesException <<exception>>
+class PlanetaException <<exception>>
+class RoboDesligadoException <<exception>>
+
+Entidade <|-- Robo
+Entidade <|-- Obstaculo
+Entidade <|-- CentralComunicacao
+
+Robo <|-- RoboTerrestre
+Robo <|-- RoboAereo
+RoboTerrestre <|-- RoboLimpeza
+RoboTerrestre <|-- RoboRastreador
+RoboAereo <|-- RoboAgricultor
+RoboAereo <|-- RoboEspacial
+
+Obstaculo <|-- Plantinha
+Obstaculo <|-- Lixo
+Obstaculo <|-- Portal
+Obstaculo <|-- Planeta
+
+Sensor <|-- SensorColheita
+Sensor <|-- SensorIrrigacao
+Sensor <|-- SensorSaude
+Sensor <|-- SensorMetal
+Sensor <|-- SensorPortal
+Sensor <|-- SensorPovoamento
+Sensor <|-- SensorReciclagem
+
+Robo --> "0..*" Sensor
+Ambiente --> "1..*" Robo
+Ambiente --> "1..*" Obstaculo
+Obstaculo --> TipoObstaculo
+Entidade --> TipoEntidade
+
+Robo ..|> Autodesligavel
+Robo ..|> Comunicavel
+Robo ..|> Diagnosticavel
+Robo ..|> Recarregavel
+Robo ..|> Sensoreavel
+```
+
+---
+
 ## ▶️ Como Executar
 
 1. Compile todos os arquivos:
