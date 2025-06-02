@@ -425,6 +425,28 @@ java -cp bin Main
 
 ---
 
+## 🔌 Interfaces Criadas e Onde São Implementadas
+
+| Interface         | Descrição                                                       | Classes que Implementam                         |
+|------------------|------------------------------------------------------------------|-------------------------------------------------|
+| Sensoreavel      | Permite que o robô utilize sensores para interagir com o ambiente | RoboAgricultor, RoboLimpeza, RoboRastreador, RoboEspacial |
+| Comunicavel      | Permite que o robô envie mensagens para outros robôs             | RoboAgricultor, RoboLimpeza, RoboRastreador, RoboEspacial       |
+| Recarregavel     | Permite que o robô seja recarregado manualmente                  | RoboAgricultor, RoboLimpeza, RoboRastreador, RoboEspacial       |
+| Diagnosticavel   | Permite que o robô execute uma rotina de diagnóstico              | RoboAgricultor, RoboLimpeza, RoboRastreador, RoboEspacial       |
+| Autodesligavel   | Permite que o robô se desligue automaticamente com bateria baixa | RoboAgricultor e RoboEspacial       |
+
+## 🚨 Exceções Personalizadas Implementadas e Onde São Lançadas
+
+| Exceção                             | Descrição                                                        | Lançada em                                                               |
+|------------------------------------|------------------------------------------------------------------|--------------------------------------------------------------------------|
+| CrescimentoMaximoAtingidoException | Quando uma plantinha atinge o crescimento máximo                 | SensorCrescimento, RoboAgricultor                                        |
+| ErroComunicacaoException           | Quando ocorre falha na troca de mensagens entre robôs            | Métodos das classes que implementam Comunicavel                         |
+| ForaDosLimitesException            | Quando um robô tenta se mover fora dos limites do ambiente       | Métodos de movimentação em Robo e suas subclasses                       |
+| ColisaoException                   | Quando duas entidades ocupam a mesma posição no ambiente         | Métodos relacionados a movimentação dos Robos em Ambiente                       |
+| RoboDesligadoException             | Quando se tenta usar um robô que está desligado                  | Métodos de sensores, movimentação ou operação em robôs com bateria zero |
+
+---
+
 # 🧠 Ações Específicas por Tipo de Robô
 
 | Robô            | Ações Especiais                                         | Sensores Utilizados                | Obstáculos Relacionados |
