@@ -357,84 +357,268 @@ Sensor <|-- SensorReciclagem
 
 ---
 
-```mermaid
 classDiagram
+    direction LR
 
-class Ambiente
-class Robo
-class RoboTerrestre
-class RoboAereo
-class RoboLimpeza
-class RoboAgricultor
-class RoboEspacial
-class RoboRastreador
-class Obstaculo
-class Plantinha
-class Lixo
-class Portal
-class Planeta
-class TipoObstaculo
-class TipoEntidade
-class Sensor
-class SensorColheita
-class SensorIrrigacao
-class SensorSaude
-class SensorMetal
-class SensorPortal
-class SensorPovoamento
-class SensorReciclagem
-class Entidade
-class CentralComunicacao
+    %% === CLASSES PRINCIPAIS ===
+    class Ambiente {
+        - int largura
+        - int altura
+        - int altitude
+        - String[][][] mapa
+        - ArrayList~Robo~ robosAtivos
+        - ArrayList~Obstaculo~ obstaculos
+        + void inicializarMapa()
+        + void adicionarRobo(Robo)
+        + void removerRobo(Robo)
+        + void adicionarObstaculo(Obstaculo)
+        + boolean dentroDosLimites(int, int, int)
+        + boolean posicaoLivre(int, int, int)
+        + void atualizarMapa(int, int, int, String)
+        + void exibirMapa()
+        + void detectarColisoes()
+    }
 
-class Autodesligavel
-class Comunicavel
-class Diagnosticavel
-class Recarregavel
-class Sensoreavel
+    class Entidade {
+        - int x
+        - int y
+        - int z
+        - TipoEntidade tipo
+        + int getX()
+        + int getY()
+        + int getZ()
+        + TipoEntidade getTipo()
+    }
 
-class ColisaoException
-class CrescimentoMaximoAtingidoException
-class ErroComunicacaoException
-class ForaDosLimitesException
-class PlanetaException
-class RoboDesligadoException
+    class Robo {
+        # String nome
+        # String direcao
+        # Ambiente ambiente
+        # ArrayList~Sensor~ sensores
+        + void adicionarSensor(Sensor)
+        + void usarSensores()
+        + void mover(int, int, int)
+        + void exibirPosicao()
+    }
 
-Entidade <|-- Robo
-Entidade <|-- Obstaculo
-Entidade <|-- CentralComunicacao
+    class RoboTerrestre {
+        - int velocidadeMaxima
+        + int getVelocidadeMaxima()
+        + void setVelocidadeMaxima(int)
+    }
 
-Robo <|-- RoboTerrestre
-Robo <|-- RoboAereo
-RoboTerrestre <|-- RoboLimpeza
-RoboTerrestre <|-- RoboRastreador
-RoboAereo <|-- RoboAgricultor
-RoboAereo <|-- RoboEspacial
+    class RoboAereo {
+        - int altitudeMaxima
+        + int getAltitudeMaxima()
+        + void subir(int)
+        + void descer(int)
+    }
 
-Obstaculo <|-- Plantinha
-Obstaculo <|-- Lixo
-Obstaculo <|-- Portal
-Obstaculo <|-- Planeta
+    class RoboLimpeza {
+        - SensorReciclagem sensorReciclagem
+        + void limparLixo()
+        + void classificarELimparLixo()
+    }
 
-Sensor <|-- SensorColheita
-Sensor <|-- SensorIrrigacao
-Sensor <|-- SensorSaude
-Sensor <|-- SensorMetal
-Sensor <|-- SensorPortal
-Sensor <|-- SensorPovoamento
-Sensor <|-- SensorReciclagem
+    class RoboAgricultor {
+        - String tipoPlantinha
+        - SensorIrrigacao sensorIrrigacao
+        + void regarPlantinha()
+        + void tratarPlantaDoente()
+        + void colherPlantinha()
+    }
 
-Robo --> "0..*" Sensor
-Ambiente --> "1..*" Robo
-Ambiente --> "1..*" Obstaculo
-Obstaculo --> TipoObstaculo
-Entidade --> TipoEntidade
+    class RoboEspacial {
+        - int qtdePlanetasDescobertos
+        + void nomearPlaneta(String)
+        + void atravessarPortal(Portal)
+    }
 
-Robo ..|> Autodesligavel
-Robo ..|> Comunicavel
-Robo ..|> Diagnosticavel
-Robo ..|> Recarregavel
-Robo ..|> Sensoreavel
-```
+    class RoboRastreador {
+        - int tesouroX
+        - int tesouroY
+        - int tesouroZ
+        + void atualizarLocalizacaoTesouro(int, int, int)
+        + void classificarMetal(Obstaculo)
+        + void checkCriptomoeda()
+    }
+
+    class Obstaculo {
+        - int x1
+        - int y1
+        - int z1
+        - int x2
+        - int y2
+        - int altura
+        - TipoObstaculo tipo
+        + boolean contemPonto(int, int, int)
+    }
+
+    class Sensor {
+        # double raio
+        + boolean dentroDoAlcance(int, int, int, int, int, int)
+    }
+
+    class TipoObstaculo {
+        + int getAlturaPadrao()
+        + boolean isBloqueiaPassagem()
+        + String getIcone()
+    }
+
+    class Plantinha {
+        - String especie
+        - double crescimento
+        - boolean saudavel
+        + void regar()
+        + void tratar()
+        + boolean podeColher()
+    }
+
+    class Lixo {
+        - String tipoLixo
+        + String getTipoLixo()
+    }
+
+    class Portal {
+        - int destinoX
+        - int destinoY
+        - int destinoZ
+        + int getDestinoX()
+    }
+
+    class Planeta {
+        - String nome
+        + String getNome()
+    }
+
+    class TipoEntidade
+
+    class CentralComunicacao {
+        + void enviarMensagem(String)
+        + String receberMensagem()
+    }
+
+    %% === SENSORES ESPECÍFICOS ===
+    class SensorColheita {
+        + void monitorar(Robo)
+        + Plantinha checarColheita(Robo)
+    }
+
+    class SensorIrrigacao {
+        + void monitorar(Robo)
+        + Plantinha checarIrrigacao(Robo)
+    }
+
+    class SensorSaude {
+        + void monitorar(Robo)
+        + Plantinha checkup(Robo)
+    }
+
+    class SensorMetal {
+        + void monitorar(Robo)
+        + Obstaculo detectorTesouros(Robo)
+    }
+
+    class SensorPortal {
+        + void monitorar(Robo)
+        + Portal checarPortal(Robo)
+    }
+
+    class SensorPovoamento {
+        + void monitorar(Robo)
+        + Planeta checkPovo(Robo)
+        + boolean planetaJaPovoado(Ambiente, Planeta)
+    }
+
+    class SensorReciclagem {
+        - int lixoX
+        - int lixoY
+        - int lixoZ
+        + void monitorar(Robo)
+        + String classificarLixo(Obstaculo)
+    }
+
+    %% === INTERFACES ===
+    class Autodesligavel {
+        + void desligar()
+    }
+
+    class Comunicavel {
+        + void enviarMensagem(String)
+        + String receberMensagem()
+    }
+
+    class Diagnosticavel {
+        + void diagnosticar()
+    }
+
+    class Recarregavel {
+        + void recarregar()
+    }
+
+    class Sensoreavel {
+        + void lerSensores()
+    }
+
+    %% === EXCEÇÕES ===
+    class ColisaoException
+    class CrescimentoMaximoAtingidoException
+    class ErroComunicacaoException
+    class ForaDosLimitesException
+    class PlanetaException
+    class RoboDesligadoException
+
+    %% === HERANÇAS E ASSOCIAÇÕES ===
+    Ambiente --> "1..*" Robo
+    Ambiente --> "1..*" Obstaculo
+    Robo --> "0..*" Sensor
+    Obstaculo --> TipoObstaculo
+    Entidade --> TipoEntidade
+
+    Entidade <|-- Robo
+    Entidade <|-- Obstaculo
+
+    Robo <|-- RoboTerrestre
+    Robo <|-- RoboAereo
+    RoboTerrestre <|-- RoboLimpeza
+    RoboTerrestre <|-- RoboRastreador
+    RoboAereo <|-- RoboAgricultor
+    RoboAereo <|-- RoboEspacial
+
+    Obstaculo <|-- Plantinha
+    Obstaculo <|-- Lixo
+    Obstaculo <|-- Portal
+    Obstaculo <|-- Planeta
+
+    Sensor <|-- SensorColheita
+    Sensor <|-- SensorIrrigacao
+    Sensor <|-- SensorSaude
+    Sensor <|-- SensorMetal
+    Sensor <|-- SensorPortal
+    Sensor <|-- SensorPovoamento
+    Sensor <|-- SensorReciclagem
+
+    RoboLimpeza ..|> Autodesligavel
+    RoboLimpeza ..|> Comunicavel
+    RoboLimpeza ..|> Diagnosticavel
+    RoboLimpeza ..|> Recarregavel
+    RoboLimpeza ..|> Sensoreavel
+
+    RoboRastreador ..|> Autodesligavel
+    RoboRastreador ..|> Comunicavel
+    RoboRastreador ..|> Diagnosticavel
+    RoboRastreador ..|> Recarregavel
+    RoboRastreador ..|> Sensoreavel
+
+    RoboAgricultor ..|> Comunicavel
+    RoboAgricultor ..|> Diagnosticavel
+    RoboAgricultor ..|> Recarregavel
+    RoboAgricultor ..|> Sensoreavel
+
+    RoboEspacial ..|> Comunicavel
+    RoboEspacial ..|> Diagnosticavel
+    RoboEspacial ..|> Recarregavel
+    RoboEspacial ..|> Sensoreavel
 
 ---
 
