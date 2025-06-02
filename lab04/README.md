@@ -20,6 +20,29 @@ Cada robô possui sensores específicos para detectar ou interagir com esses ele
 
 ---
 
+# 🔄 Mudanças Realizadas neste Laboratório
+
+- Implementação de **cinco novas interfaces**:
+  - `Comunicavel`: para robôs que podem se comunicar com outros robôs.
+  - `Sensoreavel`: para robôs que possuem sensores.
+  - `Autodesligavel`: para robôs que se desligam automaticamente com bateria baixa.
+  - `Recarregavel`: para robôs que podem ser recarregados manualmente.
+  - `Diagnosticavel`: para robôs que executam uma rotina de diagnóstico.
+- Todos os robôs implementam `Comunicavel`, `Sensoreavel`, `Recarregavel` e `Diagnosticavel`
+- Apenas robôs terrestres implementam `Autodesligavel`
+- Implementação de **cinco novas exceções personalizadas**:
+  - `RoboDesligadoException`: lançada quando um robô foi solicitado para realizar atividade, mas está desligado.
+  - `ColisaoException`: lançada quando um robô tenta se mover para uma posição ocupada por outro robô ou objeto.
+  - `ForaDosLimitesException`: lançada quando um robô tenta se mover para uma posição fora dos limites do ambiente.
+  - `ErroComunicacaoException`: lançada quando um robô tenta se comunicar com outro robô, mas a comunicação não é possível.
+  - `CrescimentoMaximoAtingidoException`: lançada quando uma plantinha já antigiu seu crescimento máximo.
+- Implementação de sistema de mapa tridimensional e sua visualização.
+- Adição de tarefas específicas para cada tipo de robô.
+- Atualização da lógica no `Main.java` com novos **cases no menu de interação**.
+- Atualização do README com as novas alterações.
+
+---
+
 ## 🎮 Menu Interativo 
 
 ```mermaid
