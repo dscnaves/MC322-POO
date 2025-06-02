@@ -50,9 +50,9 @@ flowchart TD
     
     H -->|Sensoreavel| G5[5: Acionar sensores]
     H -->|Comunicavel| G6[6: Enviar mensagem]
-    H -->|Monitoravel| G7[7: Monitorar ambiente]
-    H -->|Movimentavel| G8[8: Realizar manobra]
-    H -->|Operacional| G9[9: Executar manutenção]
+    H -->|Recarregavel| G7[7: Recarregar bateria]
+    H -->|Diagnosticavel| G8[8: Realizar diagnnóstico]
+    H -->|Autodesligavel| G9[9: Desligar se bateria baixa]
 
     G --> G0[0: Voltar ao menu principal]
 
@@ -64,31 +64,58 @@ flowchart TD
 
 ## 📁 Estrutura de Arquivos
 
-| Arquivo                       | Descrição                                              |
-|--------------------------------|--------------------------------------------------------|
-| `Main.java`                   | Classe principal com testes e menu interativo          |
-| `Ambiente.java`               | Gerencia robôs e obstáculos no ambiente 3D             |
-| `Obstaculo.java`              | Classe base para obstáculos                           |
-| `Plantinha.java`              | Obstáculo do tipo plantinha                            |
-| `Lixo.java`                   | Obstáculo do tipo lixo                                 |
-| `Portal.java`                 | Obstáculo do tipo portal de teletransporte             |
-| `Planeta.java`                | Obstáculo do tipo planeta                             |
-| `TipoObstaculo.java`          | Enumeração de tipos de obstáculos                     |
-| `Robo.java`                   | Classe base para robôs                                |
-| `RoboTerrestre.java`          | Robôs que se movem apenas no plano XY                  |
-| `RoboAereo.java`              | Robôs que se movem em XYZ (incluindo altitude)         |
-| `RoboLimpeza.java`            | Robô que coleta e classifica lixo                     |
-| `RoboAgricultor.java`         | Robô que cuida e colhe plantinhas                     |
-| `RoboEspacial.java`           | Robô que nomeia planetas e atravessa portais           |
-| `RoboRastreador.java`         | Robô que localiza e identifica metais e tesouros       |
-| `Sensor.java`                 | Classe base para sensores                             |
-| `SensorColheita.java`         | Sensor que detecta plantinhas prontas para colheita    |
-| `SensorIrrigacao.java`         | Sensor que detecta plantinhas que precisam de água     |
-| `SensorSaude.java`            | Sensor que detecta plantinhas doentes                  |
-| `SensorMetal.java`            | Sensor que detecta metais no ambiente                 |
-| `SensorPortal.java`           | Sensor que detecta portais                            |
-| `SensorPovoamento.java`       | Sensor que detecta se planetas estão povoados          |
-| `SensorReciclagem.java`       | Sensor para identificar tipo de lixo para reciclagem   |
+| 📦 Arquivo                                 | 📝 Descrição                                                                 |
+|-------------------------------------------|------------------------------------------------------------------------------|
+| `Main.java`                               | Classe principal com menu de interação com o ambiente                       |
+|                                           |                                                                              |
+| 🎮 Robôs                                                                        |
+| `Robo.java`                               | Classe abstrata base de todos os robôs                                      |
+| `RoboTerrestre.java`                      | Robô que se movimenta no plano XY                                           |
+| `RoboAereo.java`                          | Robô que pode se movimentar na altitude                                     |
+| `RoboAgricultor.java`                     | Robô que interage com plantinhas                                            |
+| `RoboLimpeza.java`                        | Robô que coleta e classifica lixo                                           |
+| `RoboRastreador.java`                     | Robô que detecta tesouros e metais                                          |
+| `RoboEspacial.java`                       | Robô que descobre e nomeia planetas via portais                             |
+|                                           |
+| 🌐 Ambiente                                                                      |
+| `Ambiente.java`                           | Classe que representa o ambiente 3D e gerencia o mapa e interações          |
+|                                           |
+| 🪨 Obstáculos                                                                   |
+| `Obstaculo.java`                          | Classe base para obstáculos                                                 |
+| `TipoObstaculo.java`                      | Enumeração de tipos de obstáculos                                           |
+| `TipoEntidade.java`                       | Enumeração de tipos de entidade (robôs, obstáculos, etc)                    |
+| `Lixo.java`                               | Obstáculo do tipo lixo                                                      |
+| `Portal.java`                             | Obstáculo do tipo portal de teletransporte                                  |
+| `Planeta.java`                            | Obstáculo do tipo planeta espacial                                          |
+| `Plantinha.java`                          | Obstáculo do tipo plantinha com crescimento e estados                       |
+|                                           |
+| 🔍 Sensores                                                                     |
+| `Sensor.java`                             | Classe base de todos os sensores                                            |
+| `SensorColheita.java`                     | Detecta plantinhas prontas para colheita                                    |
+| `SensorIrrigacao.java`                    | Detecta plantinhas que precisam de água                                     |
+| `SensorSaude.java`                        | Detecta plantinhas doentes                                                  |
+| `SensorReciclagem.java`                   | Detecta tipo de lixo para separação correta                                 |
+| `SensorMetal.java`                        | Detecta metais no ambiente                                                  |
+| `SensorTesouro.java`                      | Detecta tesouros no ambiente                                                |
+| `SensorPortal.java`                       | Detecta portais próximos                                                    |
+| `SensorPovoamento.java`                   | Detecta planetas habitáveis                                                 |
+|                                           |
+| 📑 Interfaces                                                                   |
+| `Movimentavel.java`                       | Interface para robôs que realizam manobras                                 |
+| `Monitoravel.java`                        | Interface para robôs que monitoram o ambiente                              |
+| `Operacional.java`                        | Interface para robôs que fazem manutenção                                  |
+| `Sensoreavel.java`                        | Interface para robôs que utilizam sensores                                 |
+| `Comunicavel.java`                        | Interface para robôs que se comunicam entre si                             |
+| `Autodesligavel.java`                     | Interface para robôs que desligam sozinhos ao esgotar bateria              |
+| `Recarregavel.java`                       | Interface para robôs que podem ser recarregados                            |
+| `Diagnosticavel.java`                     | Interface para robôs que realizam diagnóstico                              |
+|                                           |
+| ⚠️ Exceções                                                                     |
+| `CrescimentoMaximoAtingidoException.java` | Lançada quando plantinha chega ao máximo de crescimento                     |
+| `ErroComunicacaoException.java`           | Lançada quando há falha de comunicação entre robôs                         |
+| `ForaDosLimitesException.java`            | Lançada quando robô tenta ir para fora do ambiente                         |
+| `ColisaoException.java`                   | Lançada quando duas entidades tentam ocupar a mesma posição                |
+| `RoboDesligadoException.java`             | Lançada quando se tenta usar um robô desligado                             |
 
 ---
 
@@ -320,36 +347,6 @@ javac -d bin src/mc322/simulator/*.java
 ```bash
 java -cp bin Main
 ```
-
----
-
-# 🕹️ Menu Interativo
-
-Após a execução, você poderá:
-
-| Opção | Ação |
-|------|-------------------------------------------------|
-| 1    | Mover um robô                                   |
-| 2    | Visualizar status dos robôs                     |
-| 3    | Visualizar o ambiente tridimensional completo   |
-| 4    | Usar sensores dos robôs                         |
-| 5    | Regar uma plantinha                             |
-| 6    | Tratar uma plantinha doente                     |
-| 7    | Colher uma plantinha                            |
-| 8    | Classificar e limpar lixo                       |
-| 9    | Visualizar 1 andar específico do ambiente       |
-| 10   | Usar sensor de metal (Rastreador)               |
-| 11   | Extrair tesouro (Rastreador)                    |
-| 12   | Verificar tesouros coletados (Rastreador)       |
-| 13   | Atravessar portal (Espacial)                    |
-| 14   | Nomear planeta (Espacial)                       |
-| 15   | Usar sensor de portal (Espacial)                |
-| 16   | Usar sensor de povoamento (Espacial)            |
-| 17   | Ver planetas descobertos (Espacial)             |
-| 0    | Encerrar o simulador                            |
-
-**Observação:** As classes são instanciadas no início do programa. O menu apenas realiza interações.
-
 
 ---
 
