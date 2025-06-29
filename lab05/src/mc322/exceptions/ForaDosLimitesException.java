@@ -1,0 +1,18 @@
+/*
+* ForaDosLimitesException.java
+* 
+* Última modificação: 01/06/2025
+* 
+* Classe componente do Lab04 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+package mc322.exceptions;
+
+// Essa classe é responsável por lançar o erro caso a entidade esteja fora dos limites de ambiente
+public class ForaDosLimitesException extends RuntimeException {
+    public ForaDosLimitesException(String mensagem) {
+        super("Fora dos limites: " + mensagem);
+    }
+}

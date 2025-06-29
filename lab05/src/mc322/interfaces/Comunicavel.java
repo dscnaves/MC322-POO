@@ -1,0 +1,28 @@
+/*
+* Comunicavel.java
+* 
+* Última modificação: 01/06/2025
+* 
+* Classe componente do Lab04 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+package mc322.interfaces;
+
+import mc322.exceptions.RoboDesligadoException;
+
+// Esta classe define a interface Comunicavel, que permite que objetos se comuniquem entre si
+public interface Comunicavel {
+    
+    /**
+     * Método para enviar uma mensagem a outro objeto que implementa a interface Comunicavel
+     */
+    void enviarMensagem(Comunicavel destinatario, String mensagem) throws RoboDesligadoException;
+
+    
+    /**
+     * Método para receber uma mensagem de outro objeto que implementa a interface Comunicavel
+     */
+    void receberMensagem(String mensagem) throws RoboDesligadoException;
+}

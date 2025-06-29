@@ -1,0 +1,33 @@
+/*
+* Ambiente.java
+* 
+* Última modificação: 01/06/2025
+* 
+* Classe componente do Lab04 da disciplina MC322 - Programação Orientada a Objetos
+* 
+* Autores: Anita Almeida e Daniela Naves
+*/
+
+package mc322.comunicacao;
+
+import java.util.ArrayList;
+
+// Esta classe define a Central de Comunicação, que registra e exibe mensagens trocadas entre objetos
+public class CentralComunicacao {
+
+    // Atributo que armazena as mensagens trocadas
+    private ArrayList<String> mensagens = new ArrayList<>();
+
+    // Método para registrar uma mensagem enviada por um remetente
+    public void registrarMensagem(String remetente, String destinatario, String msg) {
+        mensagens.add("De " + remetente + " para " +destinatario+ ": " + msg);
+    }
+
+    // Método para registrar uma mensagem recebida por um destinatário
+    public void exibirHistoticoMensagens() {
+        System.out.println("Historico de mensagens:");
+        for (String m : mensagens) {
+            System.out.println(m);
+        }
+    }
+}
