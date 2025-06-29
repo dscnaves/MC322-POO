@@ -14,6 +14,8 @@
 
 package mc322.ambiente;
 
+import mc322.exceptions.CrescimentoMaximoAtingidoException;
+
 public class Plantinha extends Obstaculo {
 
     // Atributos específicos de Plantinha

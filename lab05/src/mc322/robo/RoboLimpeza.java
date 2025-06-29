@@ -16,20 +16,19 @@
 
  package mc322.robo;
 
- import mc322.robo.RoboTerrestre;
  import mc322.ambiente.Ambiente;
  import mc322.ambiente.Lixo;
- import mc322.sensores.SensorReciclagem;
- import mc322.interfaces.Sensoreavel;
+ import mc322.ambiente.Obstaculo;
+ import mc322.ambiente.TipoEntidade;
+ import mc322.interfaces.Autodesligavel;
  import mc322.interfaces.Comunicavel;
  import mc322.interfaces.Diagnosticavel;
  import mc322.interfaces.Recarregavel;
- import mc322.interfaces.Autodesligavel;
- import mc322.ambiente.TipoEntidade;
- import mc322.ambiente.Obstaculo;
+ import mc322.interfaces.Sensoreavel;
  import mc322.sensores.Sensor;
+ import mc322.sensores.SensorReciclagem;
 
- public class RoboLimpeza extends RoboTerrestre implements 
+ public class RoboLimpeza extends AgenteInteligente implements 
     Sensoreavel, Comunicavel, Diagnosticavel, Recarregavel, Autodesligavel {
 
     // Atributos específicos do RoboLimpeza
@@ -48,6 +47,16 @@
     public void executarTarefa(){
         // Procura por lixo no ambiente dentro do raio de alcance do sensor
         classificarELimparLixo();
+    }
+
+    @Override
+    public void executarMissao(Ambiente ambiente) {
+        if (temMissao()) {
+            System.out.println("RoboLimpeza executando missão...");
+            missao.executar(this, ambiente);
+        } else {
+            System.out.println("RoboLimpeza sem missão atribuída.");
+        }
     }
 
      // Método para limpar lixo 

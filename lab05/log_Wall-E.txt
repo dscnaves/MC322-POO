@@ -1,0 +1,10 @@
+Iniciando missão de monitoramento...
+Erro: Colisão detectada: Robo Wall-E encontrou posição ocupada ao mover no eixo Y: (1,0,0)
+Iniciando missão de buscar ponto...
+Erro: Colisão detectada: Robo Wall-E encontrou posição ocupada ao mover no eixo X: (-1,1,0)
+Iniciando missão circular.
+Erro: Colisão detectada: Robo Wall-E encontrou posição ocupada ao mover no eixo Y: (1,0,0)
+Iniciando missão de monitoramento.
+Erro na movimentação: Colisão detectada: Robo Wall-E encontrou posição ocupada ao mover no eixo Y: (1,0,0)
+Sensores ativados.
+Missão finalizada. Estado: LIGADO

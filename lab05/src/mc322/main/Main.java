@@ -31,6 +31,11 @@ import mc322.interfaces.Comunicavel;
 import mc322.interfaces.Diagnosticavel;
 import mc322.interfaces.Recarregavel;
 import mc322.interfaces.Sensoreavel;
+import mc322.missao.Missao;
+import mc322.missao.MissaoBuscarPonto;
+import mc322.missao.MissaoCircular;
+import mc322.missao.MissaoMonitorarZona;
+import mc322.robo.AgenteInteligente;
 import mc322.robo.Robo;
 import mc322.robo.RoboAgricultor;
 import mc322.robo.RoboEspacial;
@@ -59,7 +64,7 @@ public class Main {
         RoboLimpeza roboLimpeza = new RoboLimpeza("Wall-E", 1, 1, "Norte", 3, ambiente);
         RoboAgricultor roboAgricultor = new RoboAgricultor("Agricultor_Dust", 2, 2, "Leste", 10, 2, "Tomate", ambiente);
         RoboEspacial roboEspacial = new RoboEspacial("R2-D2", 4, 4, "Sul", 10, 3, ambiente);
-        RoboRastreador roboRastreador = new RoboRastreador("Pirata", 0, 0, "Oeste", 3, ambiente);
+        RoboRastreador roboRastreador = new RoboRastreador("Pirata", 0, 0, "Oeste", 3, ambiente);        
 
         // Adiciona robôs ao Ambiente
         ambiente.adicionarEntidade(roboLimpeza);
@@ -101,7 +106,7 @@ public class Main {
         ambiente.adicionarEntidade(new Planeta(1, 2, 6, 4, 4, 0)); 
 
         // Adicionar Lixo próximo ao RoboRastreador
-        ambiente.adicionarEntidade(new Lixo(0, 1, 0, 0, 1, 0, "Metal"));
+        ambiente.adicionarEntidade(new Lixo(0, 2, 0, 0, 2, 0, "Metal"));
         ambiente.adicionarEntidade(new Lixo(1, 0, 0, 1, 0, 0, "Metal"));
 
         // Adiciona Tesouros para o RoboRastreador
@@ -141,6 +146,21 @@ public class Main {
         roboAgricultor.regarPlantinha();
         roboAgricultor.tratarPlantaDoente();
         roboAgricultor.colherPlantinha();
+
+        // Testes das missões autônomas
+        /*
+        roboRastreador.ligar();
+        roboRastreador.definirMissao(new MissaoBuscarPonto(0, 1, 0)); 
+        roboRastreador.executarMissao(ambiente); 
+        roboRastreador.definirMissao(new MissaoCircular()); 
+        roboRastreador.executarMissao(ambiente);
+        roboRastreador.desligar();
+        
+        roboLimpeza.ligar();
+        roboLimpeza.definirMissao(new MissaoMonitorarZona()); 
+        roboLimpeza.executarMissao(ambiente); 
+        roboLimpeza.desligar();
+        */
 
         // Início do menu interativo
         Robo[] robos = {roboLimpeza, roboAgricultor, roboEspacial, roboRastreador};
@@ -185,7 +205,7 @@ public class Main {
                             System.out.println("2. Ativar robô");
                             System.out.println("3. Desligar robô");
                             System.out.println("4. Executar tarefa");
-
+                            
                             int menuIndex = 5;
 
                             if (roboSelecionado instanceof Sensoreavel) {
@@ -203,6 +223,13 @@ public class Main {
                             if (roboSelecionado instanceof Autodesligavel) {
                                 System.out.println(menuIndex++ + ". Autodesligar se bateria <= 10");
                             }
+                            if (roboSelecionado instanceof AgenteInteligente) {
+                                System.out.println(menuIndex++ + ". Atribuir missão");
+                            }
+                            if (roboSelecionado instanceof AgenteInteligente) {
+                                System.out.println(menuIndex++ + ". Executar missão atribuída");
+                            }
+
                             System.out.println("0. Voltar ao menu principal");
 
                             subOpcao = sc.nextInt();
@@ -293,6 +320,63 @@ public class Main {
                                         ((Autodesligavel) roboSelecionado).desligarSeBateriaBaixa();
                                     } else {
                                         System.out.println("Este robô não possui função de autodesligamento.");
+                                    }
+                                    break;
+
+                                case 10:
+                                    if (roboSelecionado instanceof AgenteInteligente) {
+                                        System.out.println("Escolha o tipo de missão:");
+                                        System.out.println("1 - Buscar Ponto");
+                                        System.out.println("2 - Circular");
+                                        System.out.println("3 - Monitorar Zona");
+
+                                        int escolhaMissao = sc.nextInt();
+                                        sc.nextLine();
+
+                                        Missao missao = null;
+
+                                        switch (escolhaMissao) {
+                                            case 1:
+                                                System.out.print("Digite X do destino: ");
+                                                int x = sc.nextInt();
+                                                System.out.print("Digite Y do destino: ");
+                                                int y = sc.nextInt();
+                                                System.out.print("Digite Z do destino: ");
+                                                int zz = sc.nextInt();
+                                                sc.nextLine();
+                                                missao = new MissaoBuscarPonto(x, y, zz);
+                                                break;
+
+                                            case 2:
+                                                missao = new MissaoCircular();
+                                                break;
+
+                                            case 3:
+                                                missao = new MissaoMonitorarZona();
+                                                break;
+
+                                            default:
+                                                System.out.println("Tipo de missão inválido.");
+                                        }
+
+                                        if (missao != null) {
+                                            ((AgenteInteligente) roboSelecionado).definirMissao(missao);
+                                            System.out.println("Missão atribuída com sucesso!");
+                                        }
+
+                                    } else {
+                                        System.out.println("Este robô não aceita missões autônomas.");
+                                    }
+                                    break;
+                                case 11:
+                                    if (roboSelecionado instanceof AgenteInteligente) {
+                                        try {
+                                            ((AgenteInteligente) roboSelecionado).executarMissao(ambiente);
+                                        } catch (Exception e) {
+                                            System.out.println("Erro ao executar missão: " + e.getMessage());
+                                        }
+                                    } else {
+                                        System.out.println("Este robô não possui missões autônomas.");
                                     }
                                     break;
 

@@ -1,0 +1,10 @@
+Iniciando missão de monitoramento...
+Erro: Colisão detectada: Robo Pirata encontrou posição ocupada ao mover no eixo X: (1,0,0)
+Iniciando missão de buscar ponto...
+Erro na movimentação: Robo desligado: Robo Pirata está desligado e não pode se mover.
+Erro ao acionar sensores: Robo desligado: Robo Pirata está desligado e não pode usar sensores.
+Missão finalizada. Estado: DESLIGADO
+Iniciando missão de buscar ponto...
+Movimentação para (0, 1, 0) concluída.
+Sensores ativados.
+Missão finalizada. Estado: LIGADO

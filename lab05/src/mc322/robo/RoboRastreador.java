@@ -24,7 +24,7 @@ import mc322.interfaces.Recarregavel;
 import mc322.interfaces.Sensoreavel;
 import mc322.sensores.SensorMetal;
 
-public class RoboRastreador extends RoboTerrestre implements 
+public class RoboRastreador extends AgenteInteligente implements 
     Sensoreavel, Comunicavel, Diagnosticavel, Recarregavel, Autodesligavel {
 
     // Atributos
@@ -56,6 +56,16 @@ public class RoboRastreador extends RoboTerrestre implements
             extrairTesouro();
         } else {
             System.out.println("Nenhum tesouro encontrado no ambiente.");
+        }
+    }
+
+    @Override
+    public void executarMissao(Ambiente a) {
+        if (temMissao()) {
+            System.out.println("RoboRastreador executando missão autônoma...");
+            missao.executar(this, a);
+        } else {
+            System.out.println("Nenhuma missão atribuída a " + getId());
         }
     }
 
