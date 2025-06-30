@@ -1,4 +1,4 @@
-# 🚀 Laboratório 04 - MC322 - Programação Orientada a Objetos
+# 🚀 Laboratório 05 - MC322 - Programação Orientada a Objetos
 
 **Autores:**  
 - Anita Almeida - RA: 173273  
