@@ -22,22 +22,18 @@ Cada robô possui sensores específicos para detectar ou interagir com esses ele
 
 # 🔄 Mudanças Realizadas neste Laboratório
 
-- Implementação de **cinco novas interfaces**:
-  - `Comunicavel`: para robôs que podem se comunicar com outros robôs.
-  - `Sensoreavel`: para robôs que possuem sensores.
-  - `Autodesligavel`: para robôs que se desligam automaticamente com bateria baixa.
-  - `Recarregavel`: para robôs que podem ser recarregados manualmente.
-  - `Diagnosticavel`: para robôs que executam uma rotina de diagnóstico.
-- Todos os robôs implementam `Comunicavel`, `Sensoreavel`, `Recarregavel` e `Diagnosticavel`
-- Apenas robôs terrestres implementam `Autodesligavel`
-- Implementação de **cinco novas exceções personalizadas**:
-  - `RoboDesligadoException`: lançada quando um robô foi solicitado para realizar atividade, mas está desligado.
-  - `ColisaoException`: lançada quando um robô tenta se mover para uma posição ocupada por outro robô ou objeto.
-  - `ForaDosLimitesException`: lançada quando um robô tenta se mover para uma posição fora dos limites do ambiente.
-  - `ErroComunicacaoException`: lançada quando um robô tenta se comunicar com outro robô, mas a comunicação não é possível.
-  - `CrescimentoMaximoAtingidoException`: lançada quando uma plantinha já antigiu seu crescimento máximo.
-- Implementação de sistema de mapa tridimensional e sua visualização.
-- Adição de tarefas específicas para cada tipo de robô.
+- **Reorganização** dos arquivos em subpastas.
+- Implementação de **missões autônomas**:
+  - `BuscarPonto`: busca posição (x,y,z), aciona sensores e reporta.
+  - `Circular`: faz movimentação em círculo (1 quadrado de passo), aciona sensores e reporta.
+  - `Monitorar`: anda uma posição para a direita, aciona sensores e reporta.
+- Registro de missões em Log.
+- Implementação de **AgenteInteligente**, que estende a classe Robo para executar missões autônomas.
+- Apenas robôs RoboLimpeza e RoboRastreador herdam `AgenteInteligente`
+- Implementação de **Subsistemas Internos**:
+  - `ControleMovimento`: para movimentação dos robôs.
+  - `GerenciadorSensores`: para acionamento de sensores.
+  - `ModuloComunicacao`: para comunicação entre robôs.
 - Atualização da lógica no `Main.java` com novos **cases no menu de interação**.
 - Atualização do README com as novas alterações.
 
@@ -76,6 +72,9 @@ flowchart TD
     H -->|Recarregavel| G7[7: Recarregar bateria]
     H -->|Diagnosticavel| G8[8: Realizar diagnnóstico]
     H -->|Autodesligavel| G9[9: Desligar se bateria baixa]
+    H -->|AgenteInteligente| G10[10: Atribuir missão]
+    H -->|AgenteInteligente| G11[11: Executar missão]
+
 
     G --> G0[0: Voltar ao menu principal]
 
@@ -99,6 +98,7 @@ flowchart TD
 | `RoboLimpeza.java`                        | Robô que coleta e classifica lixo                                           |
 | `RoboRastreador.java`                     | Robô que detecta tesouros e metais                                          |
 | `RoboEspacial.java`                       | Robô que descobre e nomeia planetas via portais                             |
+| `Agente Inteligente.java`                 | Robô que pode executar missões autônomas                                    |
 |                                           |
 | 🌐 Ambiente                                                                      |
 | `Ambiente.java`                           | Classe que representa o ambiente 3D e gerencia o mapa e interações          |
@@ -137,6 +137,17 @@ flowchart TD
 | `ForaDosLimitesException.java`            | Lançada quando robô tenta ir para fora do ambiente                         |
 | `ColisaoException.java`                   | Lançada quando duas entidades tentam ocupar a mesma posição                |
 | `RoboDesligadoException.java`             | Lançada quando se tenta usar um robô desligado                             |
+|                                           |                                                                            |
+| 🌐 Subsistemas                                                                     |
+| `ControleMovimentacao.java`               | Controla movimentação do robô.                                             |
+| `GerenciadorSensores.java`                | Aciona sensores do robô.                                                   |
+| `ModuloComunicacao.java`                  | Faz comunicação do robô                                                    |
+|                                           |                                         
+| 🔍 Missões                                                                     |
+| `Missao.java`                             | Classe base de todas as missões                                            |
+| `MissaoBuscarPonto.java`                  | Missão para buscar ponto (x,y,z) e acionar sensores                        |
+| `MissaoCircular.java`                     | Missão para andar em círculo ao redor da posição atual e acionar sensores  |
+| `MissaoMonitorar.java`                    | Missão que anda uma casa pra direita e aciona sensores                     |
 
 ---
 
@@ -425,12 +436,12 @@ classDiagram
 
 1. Compile todos os arquivos:
 ```bash
-javac -d bin src/mc322/simulator/*.java
+javac -d bin src\mc322\main\Main.java src\mc322\robo\*.java src\mc322\ambiente\*.java src\mc322\sensores\*.java src\mc322\comunicacao\*.java src\mc322\interfaces\*.java src\mc322\exceptions\*.java src\mc322\missao\*.java 
 ```
 
 2. Execute a simulação:
 ```bash
-java -cp bin Main
+java -cp bin mc322.main.Main
 ```
 
 ---
