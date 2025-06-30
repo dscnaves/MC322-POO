@@ -428,6 +428,16 @@ classDiagram
     RoboEspacial ..|> Diagnosticavel
     RoboEspacial ..|> Recarregavel
     RoboEspacial ..|> Sensoreavel
+
+    class Missao
+    class MissaoBuscarPonto
+    class MissaoCircular
+    class MissaoMonitorar
+
+    Missao <|-- MissaoBuscarPonto
+    Missao <|-- MissaoCircular
+    Missao <|-- MissaoMonitorar
+  
 ```
 
 ---
